@@ -28,7 +28,7 @@ public:
 	void SetPos(FPOINT pos) { pos = pos; }
 	void SetIsFlip(bool flip) { isFlip = flip; }
 	void SetFrame(int frame) { animationFrame = frame; }
-	void SetHP(int hp) { hp = hp; }
+	//void SetHP(int hp) { hp = hp; }
 
 	int GetAnimationFrame() { return animationFrame; }
 	State GetState() { return _state; }

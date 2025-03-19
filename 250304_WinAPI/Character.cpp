@@ -53,7 +53,7 @@ void Character::Update()
 		break;
 	case State::ATTACK:
 		animationFrame++;
-		if (animationFrame > 8)
+		if (animationFrame > 9)
 		{
 			animationFrame = 0;
 			_state = State::MOVE;
