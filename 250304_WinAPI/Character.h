@@ -10,18 +10,19 @@ enum class State
 	ATTACKED
 };
 
-//enum class AnimationType
-//{
-//	IDLE,
-//	MOVE,
-//	DEAD,
-//	ATTACK,
-//  ATTACK2,
-//  ATTACK3,
-//  ATTACK4,
-//	GUARD,
-//	ATTACKED
-//};
+enum class AnimationType
+{
+	IDLE,
+	MOVE,
+	DEAD,
+	ATTACK,
+	ATTACK2,
+	ATTACK3,
+	ATTACK4,
+	GUARD,
+	ATTACKED,
+	END
+};
 
 typedef enum AttackedType
 {
@@ -56,11 +57,18 @@ public:
 	void SetPos(FPOINT pos) { pos = pos; }
 	void SetIsFlip(bool flip) { isFlip = flip; }
 	void SetFrame(int frame) { animationFrame = frame; }
+	void SetHP(int hp) { this->hp = hp; }
+	void setDamage(int damage) { this->damage = damage; }
+	void SetState(State state) { _state = state; }
 	// SetHP, SetDamage, SetState 필요
 
 	int GetAnimationFrame() { return animationFrame; }
 	int GetFrame() { return frameCount; }
 	State GetState() { return _state; }
+	int GetHP() { return hp; }
+	int GetDamage() { return damage; }
+	RECT GetCharacterRC() { return characterRC; }
+	RECT GetAttackRC() { return attackRC; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
 private:
@@ -71,6 +79,8 @@ private:
 	RECT attackRC;
 	bool attackRCactivated{ false };
 	RECT characterRC;
+	int hp;
+	int damage;
 	// hp, damage 필요
 
 	at attackType{ NONE };
@@ -78,6 +88,7 @@ private:
 	// Image 벡터화 필요함
 	// vector<Image> animImages;
 	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
+	vector<Image> animImages;
 	Image* characterImage;
 	Image* punchImage;
 	Image* bigKickImage;

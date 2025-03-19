@@ -23,6 +23,11 @@ void Character::Init()
 	isLeft = true;
 	_state = State::MOVE;
 	canMove = true;
+	animImages.resize((int)AnimationType::END);
+	if (FAILED(animImages[(int)AnimationType::IDLE].Init(TEXT("Image/iori_walk.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/iori_walk.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
 
 	characterImage = new Image();
 	if (FAILED(characterImage->Init(TEXT("Image/iori_walk.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
