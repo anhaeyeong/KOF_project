@@ -28,13 +28,16 @@ public:
 	void SetPos(FPOINT pos) { pos = pos; }
 	void SetIsFlip(bool flip) { isFlip = flip; }
 	void SetFrame(int frame) { animationFrame = frame; }
+	void SetHP(int hp) { hp = hp; }
 
 	int GetAnimationFrame() { return animationFrame; }
 	State GetState() { return _state; }
 
-	RECT GetCharacterRC() { return characterRC; }
-	RECT GetAttackRC() { return attackRC; }
-	int GetDamage() { return 10; }
+	/*RECT GetCharacterRC();
+	RECT GetAttackRC();
+	int GetDamage();
+	int GetHP();
+	int GetSpeed();*/
 
 private:
 	FPOINT pos;
