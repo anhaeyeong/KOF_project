@@ -35,6 +35,11 @@ void Character::Init()
 	}
 
 	attackRC = GetRectAtCenter(-10, -10, 10, 20); //렉트 조정
+
+	stat.maxHP = 100;
+	stat.curHP = 100;
+	stat.moveSpeed = 10;
+
 }
 
 void Character::Update()

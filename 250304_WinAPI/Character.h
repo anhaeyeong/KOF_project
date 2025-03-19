@@ -10,7 +10,7 @@ enum class State
 	ATTACKED
 };
 
-typedef enum AttackedType
+typedef enum AttackType
 {
 	NONE,
 	BIG_KICK,
@@ -18,6 +18,12 @@ typedef enum AttackedType
 	BIG_PUNCH,
 	SMALL_PUNCH
 }at;
+
+struct Stat {
+	int maxHP{ 100 };
+	float moveSpeed{ 10 };
+	int curHP{ 100 };
+};
 
 class Image;
 class Character
@@ -45,10 +51,19 @@ public:
 	void SetFrame(int frame) { animationFrame = frame; }
 
 	int GetAnimationFrame() { return animationFrame; }
-	int GetFrame() { return frameCount; }
+
 	State GetState() { return _state; }
 
+	inline Stat GetStat() { return stat; }
+	inline void SetCurHP(int hp) { stat.curHP = hp; }
+
+	void CheckIsAlive() { if (stat.curHP <= 0) isAlive = false; }
+	bool GetIsAlive() { return isAlive; };
+
+
 private:
+	bool isAlive{ true };
+
 	FPOINT pos;
 	int width;
 	int height;
@@ -59,12 +74,12 @@ private:
 
 	at attackType{ NONE };
 
+	Stat stat;
+
 	Image* characterImage;
 	Image* punchImage;
 	Image* bigKickImage;
 	int animationFrame;
-
-	int frameCount{ 0 };
 
 	bool debugRender = true;
 	bool canMove;
