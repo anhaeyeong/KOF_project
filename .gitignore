@@ -31,4 +31,5 @@
 *.out
 *.app
 
-/.vs/
+# Visual Studio 관련 설정 폴더 무시
+.vs/
