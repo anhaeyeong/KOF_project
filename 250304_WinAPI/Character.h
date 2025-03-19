@@ -34,10 +34,10 @@ public:
 	void Move(int dx, int dy);
 	FPOINT GetPos() { return pos; }
 
-	void BigKick();
-	void SmallKick();
-	void BigPunch();
-	void SmallPunch();
+	virtual void BigKick();
+	virtual void SmallKick();
+	virtual void BigPunch();
+	virtual void SmallPunch();
 
 	
 	void SetPos(FPOINT pos) { pos = pos; }
