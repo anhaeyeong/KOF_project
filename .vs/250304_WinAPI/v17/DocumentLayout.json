@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\Character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\MainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\MainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\MainGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\MainGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\MainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\MainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,19 +30,20 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MainGame.h",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\MainGame.h",
               "RelativeDocumentMoniker": "250304_WinAPI\\MainGame.h",
               "ToolTip": "C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\MainGame.h",
               "RelativeToolTip": "250304_WinAPI\\MainGame.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-19T05:44:58.686Z"
+              "WhenOpened": "2025-03-19T05:44:58.686Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MainGame.cpp",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\MainGame.cpp",
               "RelativeDocumentMoniker": "250304_WinAPI\\MainGame.cpp",
@@ -50,7 +51,8 @@
               "RelativeToolTip": "250304_WinAPI\\MainGame.cpp",
               "ViewState": "AgIAAEIAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-19T05:44:23.917Z"
+              "WhenOpened": "2025-03-19T05:44:23.917Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -58,9 +60,9 @@
               "Title": "Character.cpp",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\Character.cpp",
               "RelativeDocumentMoniker": "250304_WinAPI\\Character.cpp",
-              "ToolTip": "C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\Character.cpp",
-              "RelativeToolTip": "250304_WinAPI\\Character.cpp",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAAAI8AAAANAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\Character.cpp*",
+              "RelativeToolTip": "250304_WinAPI\\Character.cpp*",
+              "ViewState": "AgIAABEAAAAAAAAAAAAmwCkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-19T05:44:45.492Z",
               "EditorCaption": ""
@@ -73,9 +75,10 @@
               "RelativeDocumentMoniker": "250304_WinAPI\\Character.h",
               "ToolTip": "C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\Character.h",
               "RelativeToolTip": "250304_WinAPI\\Character.h",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACoAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-19T05:44:43.759Z"
+              "WhenOpened": "2025-03-19T05:44:43.759Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -60,7 +60,7 @@ private:
 	at attackType{ NONE };
 
 	Image* characterImage;
-	Image* punchImage;
+	Image* smallPunchImage;
 	Image* bigKickImage;
 	int animationFrame;
 

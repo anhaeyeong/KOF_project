@@ -33,6 +33,12 @@ void Character::Init()
 	{
 		MessageBox(g_hWnd, TEXT("Image/iori_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
+	
+	smallPunchImage = new Image();
+	if (FAILED(smallPunchImage->Init(TEXT("Image/Iori_small_punch.bmp"), 440, 125, 5, 1, true, RGB(169, 139, 150))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
 
 	attackRC = GetRectAtCenter(-10, -10, 10, 20); //렉트 조정
 }
@@ -66,7 +72,7 @@ void Character::Update()
 
 			break;
 		case SMALL_PUNCH:
-
+			SmallPunch();
 			break;
 		default:
 			break;
@@ -84,6 +90,16 @@ void Character::Update()
 			attackType = BIG_KICK;
 		}
 	}
+	if (KeyManager::GetInstance()->IsOnceKeyDown('I'))
+	{
+		if (_state == State::MOVE)
+		{
+			animationFrame = 0;
+			_state = State::ATTACK;
+			canMove = false;
+			attackType = SMALL_PUNCH;
+		}
+	}
 	
 }
 
@@ -95,7 +111,17 @@ void Character::Render(HDC hdc)
 		characterImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 
 	if (_state == State::ATTACK)
-		bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+	{
+		switch (attackType)
+		{
+		case BIG_KICK:
+			bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+			break;
+		case SMALL_PUNCH:
+			smallPunchImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+			break;
+		}
+	}
 
 	
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
@@ -103,7 +129,7 @@ void Character::Render(HDC hdc)
 	if (debugRender)
 		RenderRectAtCenter(hdc, pos.x, pos.y, width, height);
 	if(attackRCactivated==true)
-		RenderRect(hdc, attackRC.left, attackRC.top, 20, 20);
+		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 
 	SelectObject(hdc, oldBrush);
 	DeleteObject(myBrush);
@@ -135,7 +161,7 @@ void Character::BigKick()
 		attackRCactivated = true;	
 		nowAttDamage = bigAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x+42, pos.y-21, 20, 20); //렉트 조정
+		SetRectAtCenter(attackRC, pos.x+42, pos.y, 40, 20); //렉트 조정
 	}
 
 	else if(animationFrame < 10 && animationFrame > 5)
@@ -167,4 +193,28 @@ void Character::BigPunch()
 
 void Character::SmallPunch()
 {
+	if (animationFrame >= 2 && animationFrame <= 3) {
+		attackRCactivated = true;
+		nowAttDamage = bigAttDamage;
+
+		SetRectAtCenter(attackRC, pos.x + 42, pos.y, 20, 20); //렉트 조정
+	}
+
+	else if (animationFrame < 5 && animationFrame > 3)
+	{
+		attackRCactivated = false;
+		nowAttDamage = 0;
+
+		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로
+
+	}
+
+	else if (animationFrame >= 5)
+	{
+		animationFrame = 0;
+		_state = State::MOVE;
+		canMove = true;
+		attackType = NONE;
+
+	}
 }

@@ -7,75 +7,16 @@ C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(99,16):
   
 C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(19,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(19,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(95,41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(95,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(98,39): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(98,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(104,37): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(104,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(138,44): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(138,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CollisionManager.cpp
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\commonFunction.h(97,17): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'CollisionManager.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\commonFunction.h(99,16): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'CollisionManager.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CollisionManager.cpp(18,3): warning C4150: 불완전한 형식 'Character'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
-      C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CollisionManager.h(6,7):
-      'Character' 선언을 참조하십시오.
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CollisionManager.cpp(23,3): warning C4150: 불완전한 형식 'Character'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
-      C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CollisionManager.h(6,7):
-      'Character' 선언을 참조하십시오.
-  
-  Enemy.cpp
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(97,17): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'Enemy.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(99,16): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'Enemy.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Enemy.cpp(26,37): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Enemy.cpp(26,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  MainGame.cpp
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(97,17): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'MainGame.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(99,16): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'MainGame.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\MainGame.cpp(72,47): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\MainGame.cpp(75,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\MainGame.cpp(77,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Missile.cpp
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(97,17): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'Missile.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(99,16): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'Missile.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Missile.cpp(32,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Missile.cpp(32,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Missile.cpp(40,29): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Missile.cpp(41,29): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Tank.cpp
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(97,17): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'Tank.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\CommonFunction.h(99,16): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 'Tank.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(12,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(12,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(45,42): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(46,42): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(60,39): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(60,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(62,26): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(62,19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(63,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Tank.cpp(63,23): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(111,41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(111,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(118,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(118,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(121,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(121,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(130,37): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(130,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(164,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(164,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(200,44): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Desktop\kof Git\KOF_project\250304_WinAPI\Character.cpp(200,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   250304_WinAPI.vcxproj -> C:\Users\user\Desktop\kof Git\KOF_project\x64\Debug\250304_WinAPI.exe
