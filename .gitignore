@@ -32,4 +32,4 @@
 *.app
 
 # Visual Studio 관련 설정 폴더 무시
-.vs/
+*.vs/
