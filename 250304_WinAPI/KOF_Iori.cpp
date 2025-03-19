@@ -51,8 +51,8 @@ void KOF_Iori::Update()
 
 void KOF_Iori::Render(HDC hdc)
 {
-	if (image)
-		image->Render(hdc, pos.x, pos.y, currAnimaionFrame, true);
+	/*if (image)
+		image->Render(hdc, pos.x, pos.y, currAnimaionFrame, true);*/
 }
 
 void KOF_Iori::Move()
