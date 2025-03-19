@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "250304_WinAPI\\MainGame.h",
               "ToolTip": "C:\\Users\\user\\Desktop\\kof Git\\KOF_project\\250304_WinAPI\\MainGame.h",
               "RelativeToolTip": "250304_WinAPI\\MainGame.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-19T05:44:58.686Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "250304_WinAPI\\Character.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-19T05:44:45.492Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T05:44:45.492Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "250304_WinAPI\\Character.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-19T05:44:43.759Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T05:44:43.759Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "250304_WinAPI\\MainGame.cpp",
               "ViewState": "AgIAAFQAAAAAAAAAAAAAAA0AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-19T05:44:23.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T05:44:23.917Z"
             }
           ]
         }

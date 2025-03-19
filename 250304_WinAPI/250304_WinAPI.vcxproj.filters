@@ -54,6 +54,9 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -90,6 +93,9 @@
       <Filter>2D Framework</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
