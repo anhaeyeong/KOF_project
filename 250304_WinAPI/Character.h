@@ -32,6 +32,10 @@ public:
 	int GetAnimationFrame() { return animationFrame; }
 	State GetState() { return _state; }
 
+	RECT GetCharacterRC() { return characterRC; }
+	RECT GetAttackRC() { return attackRC; }
+	int GetDamage() { return 10; }
+
 private:
 	FPOINT pos;
 	int width;
