@@ -27,6 +27,12 @@ inline RECT GetRectAtCenter(int x, int y, int width, int height)
 	return rc;
 }
 
+inline void SetRectAtCenter(RECT& rc, int x, int y, int width, int height)
+{
+	rc = { x - (width / 2), y - (height / 2),
+		x + (width / 2), y + (height / 2) };
+}
+
 inline void RenderStar(HDC hdc, int posX, int posY)
 {
 	MoveToEx(hdc, posX + 60, posY + 20, NULL);
