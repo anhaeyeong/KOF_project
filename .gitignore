@@ -55,6 +55,7 @@
 mono_crash.*
 
 # Build results
+250304_WinAPI/x64/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
