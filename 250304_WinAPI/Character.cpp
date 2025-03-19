@@ -33,6 +33,8 @@ void Character::Init()
 	{
 		MessageBox(g_hWnd, TEXT("Image/iori_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
+
+	attackRC = GetRectAtCenter(-10, -10, 10, 20); //렉트 조정
 }
 
 void Character::Update()
@@ -43,21 +45,31 @@ void Character::Update()
 		if (KeyManager::GetInstance()->IsStayKeyDown('D'))
 		{
 			Move(10, 0);
-			isFlip = false;
+			//isFlip = false;
 		}
 		else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
 		{
 			Move(-10, 0);
-			isFlip = true;
+			//isFlip = true;
 		}
 		break;
 	case State::ATTACK:
 		animationFrame++;
-		if (animationFrame > 8)
-		{
-			animationFrame = 0;
-			_state = State::MOVE;
-			canMove = true;
+		switch (attackType) {
+		case BIG_KICK:
+			BigKick();
+			break;
+		case SMALL_KICK:
+
+			break;
+		case BIG_PUNCH:
+
+			break;
+		case SMALL_PUNCH:
+
+			break;
+		default:
+			break;
 		}
 		break;
 	}
@@ -69,6 +81,7 @@ void Character::Update()
 			animationFrame = 0;
 			_state = State::ATTACK;
 			canMove = false;
+			attackType = BIG_KICK;
 		}
 	}
 	
@@ -79,22 +92,18 @@ void Character::Render(HDC hdc)
 	if (!characterImage)	return;
 	
 	if (_state == State::MOVE)
-	{
-		if (!isFlip)
-			//characterImage->RenderX(hdc, pos.x, pos.y, animationFrame, 9, RGB(255, 0, 255));
-			characterImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
-		else
-			//characterImage->RenderFlipX(hdc, pos.x, pos.y, animationFrame, 9);
-			characterImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
-	}
+		characterImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 
 	if (_state == State::ATTACK)
 		bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+
 	
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
 		RenderRectAtCenter(hdc, pos.x, pos.y, width, height);
+	if(attackRCactivated==true)
+		RenderRect(hdc, attackRC.left, attackRC.top, 20, 20);
 
 	SelectObject(hdc, oldBrush);
 	DeleteObject(myBrush);
@@ -117,4 +126,45 @@ void Character::Move(int dx, int dy)
 	pos.x += dx;
 	pos.y += dy;
 	animationFrame++;
+}
+
+void Character::BigKick()
+{
+	
+	if (animationFrame >= 3 && animationFrame <= 5) {
+		attackRCactivated = true;	
+		nowAttDamage = bigAttDamage;
+
+		SetRectAtCenter(attackRC, pos.x+42, pos.y-21, 20, 20); //렉트 조정
+	}
+
+	else if(animationFrame < 10 && animationFrame > 5)
+	{
+		attackRCactivated = false;
+		nowAttDamage = 0;
+
+		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로
+		
+	}
+
+	else if (animationFrame >= 10)
+	{
+		animationFrame = 0;
+		_state = State::MOVE;
+		canMove = true;
+		attackType = NONE;
+
+	}
+}
+
+void Character::SmallKick()
+{
+}
+
+void Character::BigPunch()
+{
+}
+
+void Character::SmallPunch()
+{
 }

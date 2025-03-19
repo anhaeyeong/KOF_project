@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\Character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\MainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\MainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\MainGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\MainGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\MainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\MainGame.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\Character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\Character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\CommonFunction.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6ABEA605-BD94-4C4E-9DCB-8EC658972AAA}|250304_WinAPI\\250304_WinAPI.vcxproj|solutionrelative:250304_WinAPI\\CommonFunction.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "CommonFunction.h",
+              "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\CommonFunction.h",
+              "RelativeDocumentMoniker": "250304_WinAPI\\CommonFunction.h",
+              "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\CommonFunction.h",
+              "RelativeToolTip": "250304_WinAPI\\CommonFunction.h",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAawB0AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-19T06:31:49.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MainGame.h",
               "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\MainGame.h",
               "RelativeDocumentMoniker": "250304_WinAPI\\MainGame.h",
@@ -49,7 +66,7 @@
               "RelativeDocumentMoniker": "250304_WinAPI\\Character.cpp",
               "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\Character.cpp",
               "RelativeToolTip": "250304_WinAPI\\Character.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC4AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-19T05:44:45.492Z",
               "EditorCaption": ""
@@ -62,21 +79,23 @@
               "RelativeDocumentMoniker": "250304_WinAPI\\Character.h",
               "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\Character.h",
               "RelativeToolTip": "250304_WinAPI\\Character.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-19T05:44:43.759Z"
+              "WhenOpened": "2025-03-19T05:44:43.759Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MainGame.cpp",
               "DocumentMoniker": "C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\MainGame.cpp",
               "RelativeDocumentMoniker": "250304_WinAPI\\MainGame.cpp",
               "ToolTip": "C:\\Users\\user\\Documents\\GitHub\\KOF_project\\250304_WinAPI\\MainGame.cpp",
               "RelativeToolTip": "250304_WinAPI\\MainGame.cpp",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAAA0AAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-19T05:44:23.917Z"
+              "WhenOpened": "2025-03-19T05:44:23.917Z",
+              "EditorCaption": ""
             }
           ]
         }
