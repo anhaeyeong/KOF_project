@@ -79,14 +79,7 @@ void Character::Render(HDC hdc)
 	if (!characterImage)	return;
 	
 	if (_state == State::MOVE)
-	{
-		if (!isFlip)
-			//characterImage->RenderX(hdc, pos.x, pos.y, animationFrame, 9, RGB(255, 0, 255));
-			characterImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
-		else
-			//characterImage->RenderFlipX(hdc, pos.x, pos.y, animationFrame, 9);
-			characterImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
-	}
+		characterImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 
 	if (_state == State::ATTACK)
 		bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
