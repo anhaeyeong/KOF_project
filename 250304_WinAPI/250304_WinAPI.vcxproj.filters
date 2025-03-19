@@ -51,11 +51,11 @@
     <ClCompile Include="KeyManager.cpp">
       <Filter>2D Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>2D Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>MainGame\KOF_Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,11 +92,11 @@
     <ClInclude Include="Singleton.h">
       <Filter>2D Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionManager.h">
-      <Filter>소스 파일</Filter>
+      <Filter>2D Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>MainGame\KOF_Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

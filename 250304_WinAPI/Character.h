@@ -10,6 +10,19 @@ enum class State
 	ATTACKED
 };
 
+//enum class AnimationType
+//{
+//	IDLE,
+//	MOVE,
+//	DEAD,
+//	ATTACK,
+//  ATTACK2,
+//  ATTACK3,
+//  ATTACK4,
+//	GUARD,
+//	ATTACKED
+//};
+
 typedef enum AttackedType
 {
 	NONE,
@@ -34,19 +47,21 @@ public:
 	void Move(int dx, int dy);
 	FPOINT GetPos() { return pos; }
 
-	void BigKick();
-	void SmallKick();
-	void BigPunch();
-	void SmallPunch();
+	virtual void BigKick();
+	virtual void SmallKick();
+	virtual void BigPunch();
+	virtual void SmallPunch();
 
 	
 	void SetPos(FPOINT pos) { pos = pos; }
 	void SetIsFlip(bool flip) { isFlip = flip; }
 	void SetFrame(int frame) { animationFrame = frame; }
+	// SetHP, SetDamage, SetState 필요
 
 	int GetAnimationFrame() { return animationFrame; }
 	int GetFrame() { return frameCount; }
 	State GetState() { return _state; }
+	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
 private:
 	FPOINT pos;
@@ -56,9 +71,13 @@ private:
 	RECT attackRC;
 	bool attackRCactivated{ false };
 	RECT characterRC;
+	// hp, damage 필요
 
 	at attackType{ NONE };
 
+	// Image 벡터화 필요함
+	// vector<Image> animImages;
+	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
 	Image* characterImage;
 	Image* smallPunchImage;
 	Image* bigKickImage;
@@ -69,6 +88,7 @@ private:
 	bool debugRender = true;
 	bool canMove;
 	bool isFlip;
+	bool isLeft;
 	State _state;
 
 
