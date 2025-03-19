@@ -20,6 +20,7 @@ void Character::Init()
 	animationFrame = 0;
 	speed = 10;
 	isFlip = false;
+	isLeft = true;
 	_state = State::MOVE;
 	canMove = true;
 
@@ -33,6 +34,8 @@ void Character::Init()
 	{
 		MessageBox(g_hWnd, TEXT("Image/iori_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
+	// animImages.resize(애니메이션 개수);
+	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
 
 	attackRC = GetRectAtCenter(-10, -10, 10, 20); //렉트 조정
 }
@@ -72,6 +75,8 @@ void Character::Update()
 			break;
 		}
 		break;
+	case State::ATTACKED:
+		break;
 	}
 
 	if (KeyManager::GetInstance()->IsOnceKeyDown('U'))
@@ -96,7 +101,12 @@ void Character::Render(HDC hdc)
 
 	if (_state == State::ATTACK)
 		bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+	// state에 따른 이미지 렌더링
+	// if(_state == ~~~) 
+	//  animImages[AnimationType::~~~]->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+	// -> AnimationType도 필요없을수도? 그냥 animImages[State::~~]->Render() 가능해보임
 
+		
 	
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
@@ -117,6 +127,14 @@ void Character::Release()
 		delete characterImage;
 		characterImage = nullptr;
 	}
+	/*if (animImages.size() > 0)
+	{
+		for (int i = 0; i < animImages.size(); i++)
+		{
+			animImages[i].Release();
+		}
+		animImages.clear();
+	}*/
 }
 
 void Character::Move(int dx, int dy)
