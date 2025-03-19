@@ -24,18 +24,18 @@ void Character::Init()
 	canMove = true;
 
 	characterImage = new Image();
-	if (FAILED(characterImage->Init(TEXT("Image/iori_walk.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
+	if (FAILED(characterImage->Init(TEXT("Image/Ryo_Smove_Front.bmp"), 1097, 300, 6, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/iori_walk.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	bigKickImage = new Image();
-	if (FAILED(bigKickImage->Init(TEXT("Image/iori_kick.bmp"), 1170, 106, 10, 1, true, RGB(169, 139, 150))))
+	if (FAILED(bigKickImage->Init(TEXT("Image/iori_kick.bmp"), 1170, 106, 10, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/iori_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	
 	smallPunchImage = new Image();
-	if (FAILED(smallPunchImage->Init(TEXT("Image/Iori_small_punch.bmp"), 440, 125, 5, 1, true, RGB(169, 139, 150))))
+	if (FAILED(smallPunchImage->Init(TEXT("Image/Iori_small_punch.bmp"), 440, 125, 5, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
@@ -148,7 +148,7 @@ void Character::Release()
 void Character::Move(int dx, int dy)
 {
 	if (canMove == false) return;
-	if (animationFrame > 7)	animationFrame = 0;
+	if (animationFrame >= 5)	animationFrame = 0;
 	pos.x += dx;
 	pos.y += dy;
 	animationFrame++;
