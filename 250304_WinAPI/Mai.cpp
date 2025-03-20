@@ -124,7 +124,7 @@ void Mai::Render(HDC hdc)
 void Mai::Move(int dir)
 {
 	if (canMove == false) return;
-	
+	_state = State::MOVE;
 	if (animationFrame >= 5)
 	{
 		animationFrame = 0;

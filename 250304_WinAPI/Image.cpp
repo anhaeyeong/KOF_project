@@ -239,6 +239,21 @@ void Image::RenderUI(HDC hdc, int destX, int destY, int width, int height, bool 
     }
 }
 
+void Image::RenderBackGround(HDC hdc, int frameIndex)
+{
+    StretchBlt(
+        hdc,
+        0, 0,
+        WINSIZE_X,
+        WINSIZE_Y,
+        imageInfo->hMemDC,
+        0,
+        imageInfo->frameHeight * frameIndex,
+        imageInfo->width, imageInfo->frameHeight,
+        SRCCOPY
+    );
+}
+
 void Image::Release()
 {
     if (imageInfo)
