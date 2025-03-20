@@ -132,6 +132,7 @@
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Iori.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="KOF_Iori.cpp" />
     <ClCompile Include="Mai.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="Iori.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="KOF_Iori.h" />
     <ClInclude Include="Mai.h" />

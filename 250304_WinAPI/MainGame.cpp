@@ -7,10 +7,11 @@
 #include "Mai.h"
 #include "Clark.h"
 
+#include "Iori.h"
 
 /*
-	½Ç½À1. ÀÌ¿À¸® Áý¿¡ º¸³»±â
-	½Ç½À2. ¹è°æ ¹Ù²Ù±â (Å·¿ÀÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç ¹è°æ)
+	ï¿½Ç½ï¿½1. ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ï¿½Ç½ï¿½2. ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½ (Å·ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½)
 */
 
 void MainGame::Init()
@@ -21,16 +22,16 @@ void MainGame::Init()
 	if (FAILED(backBuffer->Init(WINSIZE_X, WINSIZE_Y)))
 	{
 		MessageBox(g_hWnd, 
-			TEXT("¹é¹öÆÛ »ý¼º ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+			TEXT("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"), TEXT("ï¿½ï¿½ï¿½"), MB_OK);
 	}
 	backGround = new Image();
 	if (FAILED(backGround->Init(TEXT("Image/kof_animBackground.bmp"),768, 8784, 1, 36)))
 	{
 		MessageBox(g_hWnd,
-			TEXT("Image/kof_animBackground.bmp »ý¼º ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+			TEXT("Image/kof_animBackground.bmp ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"), TEXT("ï¿½ï¿½ï¿½"), MB_OK);
 	}
 
-	iori = new Mai();
+	iori = new Iori();
 	iori->Init();
 
 	clark = new Ryo();
@@ -92,7 +93,12 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
-	// ¹é¹öÆÛ¿¡ ¸ÕÀú º¹»ç
+	if (backBuffer == nullptr) {
+		// Handle the error, log it, or initialize backBuffer
+		return;
+	}
+
+	// ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 
 	backGround->RenderBackGround(hBackBufferDC, backGroundFrame);
@@ -101,7 +107,7 @@ void MainGame::Render(HDC hdc)
 
 	UIManager::GetInstance()->Render(hBackBufferDC);
 
-	// ¹é¹öÆÛ¿¡ ÀÖ´Â ³»¿ëÀ» ¸ÞÀÎ hdc¿¡ º¹»ç
+	// ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ hdcï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	backBuffer->Render(hdc);
 }
 
