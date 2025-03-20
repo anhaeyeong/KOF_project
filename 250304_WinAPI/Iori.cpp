@@ -77,7 +77,17 @@ void Iori::Render(HDC hdc)
 	if (_state == State::IDLE)
 		animImages[ActType::IDLE]->Render(hdc, pos.x, pos.y - 15, animationFrame, width + 20, height + 30, isFlip);
 	if (_state == State::MOVE)
-		animImages[ActType::MOVE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 10, height + 20, isFlip);
+	{
+		switch (actType) {
+		case MOVE_F:
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 10, height + 20, isFlip);
+			break;
+
+		case MOVE_B:
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 10, height + 20, isFlip);
+			break;
+		}
+	}
 
 	if (_state == State::ATTACK)
 
@@ -148,7 +158,7 @@ void Iori::BigKick()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 
 	}
 }
@@ -173,7 +183,7 @@ void Iori::SmallKick()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 	}
 }
 
@@ -199,7 +209,7 @@ void Iori::BigPunch()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 	}
 }
 
@@ -221,7 +231,7 @@ void Iori::SmallPunch()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 		attackRCactivated = false;
 	}
 }
