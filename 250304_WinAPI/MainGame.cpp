@@ -3,11 +3,12 @@
 #include "Image.h"
 #include "KOF_Iori.h"
 #include "Character.h"
+#include "Clark.h"
 #include "Ryo.h"
 
 /*
-	½Ç½À1. ÀÌ¿À¸® Áý¿¡ º¸³»±â
-	½Ç½À2. ¹è°æ ¹Ù²Ù±â (Å·¿ÀÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç ¹è°æ)
+	ï¿½Ç½ï¿½1. ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ï¿½Ç½ï¿½2. ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½ (Å·ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½)
 */
 
 void MainGame::Init()
@@ -16,17 +17,20 @@ void MainGame::Init()
 	if (FAILED(backBuffer->Init(WINSIZE_X, WINSIZE_Y)))
 	{
 		MessageBox(g_hWnd, 
-			TEXT("¹é¹öÆÛ »ý¼º ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+			TEXT("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"), TEXT("ï¿½ï¿½ï¿½"), MB_OK);
 	}
 	backGround = new Image();
 	if (FAILED(backGround->Init(TEXT("Image/BackGround.bmp"), WINSIZE_X, WINSIZE_Y)))
 	{
 		MessageBox(g_hWnd,
-			TEXT("Image/backGround.bmp »ý¼º ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+			TEXT("Image/backGround.bmp ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"), TEXT("ï¿½ï¿½ï¿½"), MB_OK);
 	}
 
 	iori = new Ryo();
 	iori->Init();
+
+	clark = new Clark;
+	clark->Init();
 }
 
 void MainGame::Release()
@@ -36,6 +40,13 @@ void MainGame::Release()
 		iori->Release();
 		delete iori;
 		iori = nullptr;
+	}
+
+	if (clark)
+	{
+		clark->Release();
+		delete clark;
+		clark = nullptr;
 	}
 
 	if (backGround)
@@ -58,16 +69,20 @@ void MainGame::Update()
 	if (iori)
 		iori->Update();
 
+	if (clark)
+		clark->Update();
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
-	// ¹é¹öÆÛ¿¡ ¸ÕÀú º¹»ç
+	// ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 
 	backGround->Render(hBackBufferDC);
 	iori->Render(hBackBufferDC);
+	clark->Render(hBackBufferDC);
 
 	wsprintf(szText, TEXT("Mouse X : %d, Y : %d"), mousePosX, mousePosY);
 	TextOut(hBackBufferDC, 20, 60, szText, wcslen(szText));
@@ -77,7 +92,7 @@ void MainGame::Render(HDC hdc)
 	wsprintf(szText, TEXT("frame : %d"), iori->GetFrame());
 	TextOut(hBackBufferDC, 400, 60, szText, wcslen(szText));
 
-	// ¹é¹öÆÛ¿¡ ÀÖ´Â ³»¿ëÀ» ¸ÞÀÎ hdc¿¡ º¹»ç
+	// ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ hdcï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	backBuffer->Render(hdc);
 }
 
