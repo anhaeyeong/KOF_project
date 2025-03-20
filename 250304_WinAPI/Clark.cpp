@@ -20,6 +20,8 @@ void Clark::Init()
 	canMove = true;
 	maxIdlePrame = 19;
 
+	IsFlipToModifyingValue();
+
 
 	animImages.reserve(9);
 	Image* idleImage = new Image();
@@ -100,20 +102,29 @@ void Clark::Init()
 void Clark::Render(HDC hdc)
 {
 	if (_state == State::IDLE) {
-		animImages[ActType::IDLE]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
+		animImages[ActType::IDLE]->Render(hdc, pos.x - 20 + modifyingValue* idleModifiedX, pos.y - 5, animationFrame, width, height, isFlip);
+		/*switch (isFlip) {
+		case true:
+			animImages[ActType::IDLE]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
+			break;
+
+		case false:
+			animImages[ActType::IDLE]->Render(hdc, pos.x - 10, pos.y - 5, animationFrame, width, height, isFlip);
+			break;
+		}*/
 	}
 	if (_state == State::MOVE)
 	{
 		switch (actType)
 		{
 		case MOVE_F:
-			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame,
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 20 + modifyingValue * idleModifiedX, pos.y - 5, animationFrame,
 				moveModifiedWidth,
 				moveModifiedHeight,
 				isFlip);
 			break;
 		case MOVE_B:
-			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame,
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 20 + modifyingValue * idleModifiedX, pos.y - 5, animationFrame,
 				moveBModifiedWidth,
 				moveBModifiedHeight,
 				isFlip);
@@ -127,28 +138,28 @@ void Clark::Render(HDC hdc)
 		switch (actType)
 		{
 		case BIG_KICK:
-			animImages[ActType::BIG_KICK]->Render(hdc, pos.x - 20, pos.y - 18, animationFrame, 
+			animImages[ActType::BIG_KICK]->Render(hdc, pos.x - 15 + modifyingValue*bigKickModifiedX, pos.y - 18, animationFrame, 
 				bigKickModifiedWidth, 
 				bigKickModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_KICK:
-			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x-80, pos.y +5, animationFrame, 
+			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x-20+modifyingValue*smallKickModifiedX, pos.y, animationFrame, 
 				smallKickModifiedWidth,
 				smallKickModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case BIG_PUNCH:
-			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x - 60, pos.y-20, animationFrame,
+			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x -25 + modifyingValue*bigPunchModifiedX, pos.y-20, animationFrame,
 				bigPunchModifiedWidth,
 				bigPunchModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_PUNCH:
-			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x -62, pos.y, animationFrame,
+			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x-13+modifyingValue*smallPunchModifiedX, pos.y, animationFrame,
 				smallPunchModifiedWidth,
 				smallPunchModifiedHeight,
 				isFlip);
@@ -172,7 +183,7 @@ void Clark::Move(int dir)
 {
 	_state = State::MOVE;
 	if (canMove == false) return;
-	if (animationFrame >= 7)	animationFrame = 0;
+	if (animationFrame >= 6)	animationFrame = 0;
 	pos.x += dir * speed;
 	//pos.y += dy;
 	animationFrame++;

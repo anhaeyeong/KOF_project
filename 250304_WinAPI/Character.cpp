@@ -287,3 +287,13 @@ void Character::SmallPunch()
 {
 	
 }
+
+void Character::IsFlipToModifyingValue()
+{
+	if (isFlip) {
+		modifyingValue = -1;
+	}
+	else {
+		modifyingValue = 1;
+	}
+}

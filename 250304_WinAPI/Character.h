@@ -73,6 +73,8 @@ public:
 	int GetCurHP() const { return hp; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
+	void IsFlipToModifyingValue();
+
 protected:
 
 	Team team{ Team::NONE };
@@ -96,6 +98,7 @@ protected:
 	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
 	int animationFrame;
 	int maxIdlePrame;
+	int modifyingValue;
 
 	int frameCount{ 0 };
 
