@@ -19,6 +19,11 @@ void Character::Update()
 {
 	switch (_state)
 	{
+	case State::IDLE:
+		animationFrame++;
+		if (animationFrame >= 12)
+			animationFrame = 0;
+		break;
 	case State::MOVE:
 		if (KeyManager::GetInstance()->IsStayKeyDown('D'))
 		{
@@ -27,6 +32,7 @@ void Character::Update()
 		}
 		else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
 		{
+			_state = State::MOVE;
 			Move(-1);
 			//isFlip = true;
 		}
@@ -53,10 +59,30 @@ void Character::Update()
 	case State::ATTACKED:
 		break;
 	}
-
+	if (KeyManager::GetInstance()->IsOnceKeyDown('D') ||
+		KeyManager::GetInstance()->IsOnceKeyDown('A'))
+	{
+		if (_state != State::ATTACK)
+			animationFrame = 0;
+	}
+		
+	if (KeyManager::GetInstance()->IsStayKeyDown('D') || 
+		KeyManager::GetInstance()->IsStayKeyDown('A'))
+	{
+		if (_state != State::ATTACK)
+		{
+			_state = State::MOVE;
+		}
+	}
+	if (KeyManager::GetInstance()->IsOnceKeyUp('D') ||
+		KeyManager::GetInstance()->IsOnceKeyUp('A'))
+	{
+		animationFrame = 0;
+		_state = State::IDLE;
+	}
 	if (KeyManager::GetInstance()->IsOnceKeyDown('U'))
 	{
-		if (_state == State::MOVE)
+		if (_state == State::MOVE || _state == State::IDLE)
 		{
 			animationFrame = 0;
 			_state = State::ATTACK;
@@ -66,7 +92,7 @@ void Character::Update()
 	}
 	if (KeyManager::GetInstance()->IsOnceKeyDown('I'))
 	{
-		if (_state == State::MOVE)
+		if (_state == State::MOVE || _state == State::IDLE)
 		{
 			animationFrame = 0;
 			_state = State::ATTACK;
@@ -76,7 +102,7 @@ void Character::Update()
 	}
 	if (KeyManager::GetInstance()->IsOnceKeyDown('J'))
 	{
-		if (_state == State::MOVE)
+		if (_state == State::MOVE || _state == State::IDLE)
 		{
 			animationFrame = 0;
 			_state = State::ATTACK;
@@ -86,7 +112,7 @@ void Character::Update()
 	}
 	if (KeyManager::GetInstance()->IsOnceKeyDown('K'))
 	{
-		if (_state == State::MOVE)
+		if (_state == State::MOVE || _state == State::IDLE)
 		{
 			animationFrame = 0;
 			_state = State::ATTACK;

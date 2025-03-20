@@ -21,7 +21,7 @@ void Mai::Init()
 	speed = 10;
 	isFlip = false;
 	isLeft = true;
-	_state = State::MOVE;
+	_state = State::IDLE;
 	canMove = true;
 
 	//animImages.resize(9);
@@ -73,7 +73,10 @@ void Mai::Init()
 
 void Mai::Render(HDC hdc)
 {
-	
+	if (_state == State::IDLE)
+	{
+		animImages[ActType::IDLE]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, isFlip);
+	}
 	if (_state == State::MOVE)
 		animImages[ActType::MOVE]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, isFlip);
 
@@ -87,7 +90,7 @@ void Mai::Render(HDC hdc)
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_KICK:
-			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 45, pos.y - 8, animationFrame, (width + 87), (height + 15), isFlip);
+			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 50, pos.y - 8, animationFrame, (width + 93), (height + 20), isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case BIG_PUNCH:
@@ -120,8 +123,12 @@ void Mai::Render(HDC hdc)
 void Mai::Move(int dir)
 {
 	if (canMove == false) return;
-	if (animationFrame >= 5)	animationFrame = 0;
-	pos.x += dir * speed;
+	
+	if (animationFrame >= 5)
+	{
+		animationFrame = 0;
+	}
+		pos.x += dir * speed;
 	//pos.y += dy;
 	animationFrame++;
 }
@@ -147,9 +154,9 @@ void Mai::BigKick()
 	else if (animationFrame >= 6)
 	{
 		animationFrame = 0;
-		_state = State::MOVE;
+		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 
 	}
 }
@@ -158,7 +165,7 @@ void Mai::SmallKick()
 {
 	if (animationFrame >= 1 && animationFrame <= 2) {
 		attackRCactivated = true;
-		nowAttDamage = bigAttDamage;
+		nowAttDamage = smallAttDamage;
 
 		SetRectAtCenter(attackRC, pos.x - 110, pos.y, 80, 40); //렉트 조정
 	}
@@ -175,9 +182,9 @@ void Mai::SmallKick()
 	else if (animationFrame >= 6)
 	{
 		animationFrame = 0;
-		_state = State::MOVE;
+		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 	}
 }
 
@@ -202,9 +209,9 @@ void Mai::BigPunch()
 	else if (animationFrame >= 5)
 	{
 		animationFrame = 0;
-		_state = State::MOVE;
+		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 	}
 }
 
@@ -212,7 +219,7 @@ void Mai::SmallPunch()
 {
 	if (animationFrame >= 2 && animationFrame <= 3) {
 		attackRCactivated = true;
-		nowAttDamage = bigAttDamage;
+		nowAttDamage = smallAttDamage;
 
 		SetRectAtCenter(attackRC, pos.x - 120, pos.y + 20, 80, 40); //렉트 조정
 	}
@@ -223,8 +230,8 @@ void Mai::SmallPunch()
 
 		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로
 		animationFrame = 0;
-		_state = State::MOVE;
+		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 	}
 }
