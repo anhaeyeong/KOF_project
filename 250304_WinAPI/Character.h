@@ -56,12 +56,18 @@ public:
 	void SetPos(FPOINT pos) { pos = pos; }
 	void SetIsFlip(bool flip) { isFlip = flip; }
 	void SetFrame(int frame) { animationFrame = frame; }
+	void SetHP(int hp);
+	void SetState(State state) { this->_state = state; }
 	// SetHP, SetDamage, SetState 필요
 
 	int GetAnimationFrame() { return animationFrame; }
 	int GetFrame() { return frameCount; }
 	State GetState() { return _state; }
 	int GetCurHP() const { return hp; }
+	int GetDamage() { return this->nowAttDamage; }
+	RECT GetAttackRC() { return this->attackRC; }
+	RECT GetCharacterRC() { return this->characterRC; }
+	bool GetIsFlip() { return this->isFlip; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
 protected:
@@ -69,8 +75,8 @@ protected:
 	int width;
 	int height;
 	int speed;
-	int maxHp;
-	int hp;
+	int maxHp{ 100 };
+	int hp{ 100 };
 	RECT attackRC;
 	bool attackRCactivated{ false };
 	RECT characterRC;
@@ -96,6 +102,6 @@ protected:
 
 	const int bigAttDamage{ 20 };
 	const int smallAttDamage{ 10 };
-	float nowAttDamage{ 0 };
+	int nowAttDamage{ 0 };
 };
 

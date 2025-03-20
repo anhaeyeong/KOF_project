@@ -20,9 +20,20 @@ void Character::Update()
 	if (canMove)
 	{
 		if (KeyManager::GetInstance()->IsStayKeyDown('D'))
-			Move(1);
+		{
+			if (CollisionManager::GetInstance()->isValidMove())
+			{
+				Move(1);
+			}
+		}
+			
 		else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
-			Move(-1);
+		{
+			if (CollisionManager::GetInstance()->isValidMove())
+			{
+				Move(-1);
+			}
+		}
 	}
 	switch (_state)
 	{
@@ -57,6 +68,12 @@ void Character::Update()
 		}
 		break;
 	case State::ATTACKED:
+		animationFrame++;
+		if (animationFrame >= 10)
+		{
+			animationFrame = 0;
+			_state = State::IDLE;
+		}
 		break;
 	default :
 		break;
@@ -151,4 +168,10 @@ void Character::BigPunch()
 void Character::SmallPunch()
 {
 	
+}
+
+void Character::SetHP(int hp)
+{
+	this->hp = hp;
+	UIManager::GetInstance()->UpdateHP(isFlip, this->hp);
 }

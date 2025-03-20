@@ -28,8 +28,11 @@ void MainGame::Init()
 
 	iori = new Mai();
 	iori->Init();
+	ryo = new Ryo();
+	ryo->Init();
 
 	UIManager::GetInstance()->Init();
+	CollisionManager::GetInstance()->Init(ryo, iori);
 }
 
 void MainGame::Release()
@@ -39,6 +42,12 @@ void MainGame::Release()
 		iori->Release();
 		delete iori;
 		iori = nullptr;
+	}
+	if (ryo)
+	{
+		ryo->Release();
+		delete ryo;
+		ryo = nullptr;
 	}
 
 	if (backGround)
@@ -59,7 +68,11 @@ void MainGame::Release()
 void MainGame::Update()
 {
 	if (iori)
+	{
+		CollisionManager::GetInstance()->isAttacked(iori);
 		iori->Update();
+	}
+		
 
 	InvalidateRect(g_hWnd, NULL, false);
 }
@@ -71,6 +84,7 @@ void MainGame::Render(HDC hdc)
 
 	backGround->Render(hBackBufferDC);
 	iori->Render(hBackBufferDC);
+	ryo->Render(hBackBufferDC);
 
 	wsprintf(szText, TEXT("Mouse X : %d, Y : %d"), mousePosX, mousePosY);
 	TextOut(hBackBufferDC, 20, 60, szText, wcslen(szText));

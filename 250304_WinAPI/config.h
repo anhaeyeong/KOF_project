@@ -10,6 +10,7 @@
 
 #include "KeyManager.h"
 #include "UIManager.h"
+#include "CollisionManager.h"
 
 using namespace std;
 

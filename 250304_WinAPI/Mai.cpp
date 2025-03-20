@@ -12,7 +12,7 @@ Mai::~Mai()
 
 void Mai::Init()
 {
-	pos.x = WINSIZE_X - 700;
+	pos.x = WINSIZE_X - 300;
 	pos.y = WINSIZE_Y - 150;
 	width = 100;
 	height = 200;
@@ -123,6 +123,7 @@ void Mai::Render(HDC hdc)
 
 void Mai::Move(int dir)
 {
+	_state = State::MOVE;
 	if (canMove == false) return;
 	
 	if (animationFrame >= 5)
