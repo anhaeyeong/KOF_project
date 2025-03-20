@@ -22,10 +22,10 @@ void MainGame::Init()
 			TEXT("백버퍼 생성 실패"), TEXT("경고"), MB_OK);
 	}
 	backGround = new Image();
-	if (FAILED(backGround->Init(TEXT("Image/BackGround.bmp"), WINSIZE_X, WINSIZE_Y)))
+	if (FAILED(backGround->Init(TEXT("Image/kof_animBackground.bmp"),768, 8784, 1, 36)))
 	{
 		MessageBox(g_hWnd,
-			TEXT("Image/backGround.bmp 생성 실패"), TEXT("경고"), MB_OK);
+			TEXT("Image/kof_animBackground.bmp 생성 실패"), TEXT("경고"), MB_OK);
 	}
 
 	iori = new Mai();
@@ -73,8 +73,13 @@ void MainGame::Update()
 	if (iori)
 		iori->Update();
 
+
+	backGroundFrame++;
+	if (backGroundFrame >= 36)	backGroundFrame = 0;
+
 	if (clark)
 		clark->Update();
+
 
 	InvalidateRect(g_hWnd, NULL, false);
 }
@@ -84,7 +89,7 @@ void MainGame::Render(HDC hdc)
 	// 백버퍼에 먼저 복사
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 
-	backGround->Render(hBackBufferDC);
+	backGround->RenderBackGround(hBackBufferDC, backGroundFrame);
 	iori->Render(hBackBufferDC);
 	clark->Render(hBackBufferDC);
 

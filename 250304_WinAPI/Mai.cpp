@@ -147,7 +147,7 @@ void Mai::Move(int dir)
 	_state = State::MOVE;
 
 	if (canMove == false) return;
-	
+	_state = State::MOVE;
 	if (animationFrame >= 5)
 	{
 		animationFrame = 0;

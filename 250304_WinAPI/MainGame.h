@@ -13,6 +13,7 @@ private:
 	int mousePosX = 0, mousePosY = 0;
 	FPOINT mousePos;
 	wchar_t szText[128];
+	int backGroundFrame = 0;
 
 	Image* backBuffer;
 	Image* backGround;
