@@ -1,4 +1,4 @@
-#include "MainGame.h"
+﻿#include "MainGame.h"
 #include "CommonFunction.h"
 #include "Image.h"
 #include "KOF_Iori.h"
@@ -10,8 +10,8 @@
 #include "Iori.h"
 
 /*
-	�ǽ�1. �̿��� ���� ������
-	�ǽ�2. ��� �ٲٱ� (ŷ���� �ִϸ��̼� ���)
+	실습1. 이오리 집에 보내기
+	실습2. 배경 바꾸기 (킹오파 애니메이션 배경)
 */
 
 void MainGame::Init()
@@ -22,13 +22,13 @@ void MainGame::Init()
 	if (FAILED(backBuffer->Init(WINSIZE_X, WINSIZE_Y)))
 	{
 		MessageBox(g_hWnd, 
-			TEXT("����� ���� ����"), TEXT("���"), MB_OK);
+			TEXT("백버퍼 생성 실패"), TEXT("경고"), MB_OK);
 	}
 	backGround = new Image();
 	if (FAILED(backGround->Init(TEXT("Image/kof_animBackground.bmp"),768, 8784, 1, 36)))
 	{
 		MessageBox(g_hWnd,
-			TEXT("Image/kof_animBackground.bmp ���� ����"), TEXT("���"), MB_OK);
+			TEXT("Image/backGround.bmp 생성 실패"), TEXT("경고"), MB_OK);
 	}
 
 	iori = new Iori();
@@ -98,7 +98,7 @@ void MainGame::Render(HDC hdc)
 		return;
 	}
 
-	// ����ۿ� ���� ����
+	// 백버퍼에 먼저 복사
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 
 	backGround->RenderBackGround(hBackBufferDC, backGroundFrame);
@@ -107,7 +107,7 @@ void MainGame::Render(HDC hdc)
 
 	UIManager::GetInstance()->Render(hBackBufferDC);
 
-	// ����ۿ� �ִ� ������ ���� hdc�� ����
+	// 백버퍼에 있는 내용을 메인 hdc에 복사
 	backBuffer->Render(hdc);
 }
 

@@ -1,4 +1,4 @@
-#include "Iori.h"
+ï»¿#include "Iori.h"
 #include "Image.h"
 #include "CommonFunction.h"
 
@@ -29,46 +29,46 @@ void Iori::Init()
 	Image* idleImage = new Image();
 	if (FAILED(idleImage->Init(TEXT("Image/Iori_idle.bmp"), 612, 96, 9, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/Iori_idle.bmp ÆÄÀÏ ·Îµå¿¡ ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Iori_idle.bmp íŒŒì¼ ë¡œë“œì— ì‹¤íŒ¨"), TEXT("ê²½ê³ "), MB_OK);
 	}
 	animImages.push_back(idleImage);
 	Image* characterImage = new Image();
 	if (FAILED(characterImage->Init(TEXT("Image/Iori_move_Front.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/Iori_move_Front.bmp ÆÄÀÏ ·Îµå¿¡ ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Iori_move_Front.bmp íŒŒì¼ ë¡œë“œì— ì‹¤íŒ¨"), TEXT("ê²½ê³ "), MB_OK);
 	}
 	animImages.push_back(characterImage);
 	animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Iori_high_kick.bmp"), 1400, 105, 10, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/Iori_high_kick.bmp ÆÄÀÏ ·Îµå¿¡ ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Iori_high_kick.bmp íŒŒì¼ ë¡œë“œì— ì‹¤íŒ¨"), TEXT("ê²½ê³ "), MB_OK);
 	}
 	animImages.push_back(bigKickImage);
 	Image* smallKickImage = new Image();
 	if (FAILED(smallKickImage->Init(TEXT("Image/Iori_middle_kick.bmp"), 720, 102, 6, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/Iori_middle_kick.bmp ÆÄÀÏ ·Îµå¿¡ ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Iori_middle_kick.bmp íŒŒì¼ ë¡œë“œì— ì‹¤íŒ¨"), TEXT("ê²½ê³ "), MB_OK);
 	}
 	animImages.push_back(smallKickImage);
 
 	Image* bigPunch = new Image();
 	if (FAILED(bigPunch->Init(TEXT("Image/Iori_big_punch.bmp"), 1080, 114, 9, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/Iori_big_punch.bmp ÆÄÀÏ ·Îµå¿¡ ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Iori_big_punch.bmp íŒŒì¼ ë¡œë“œì— ì‹¤íŒ¨"), TEXT("ê²½ê³ "), MB_OK);
 	}
 	animImages.push_back(bigPunch);
 	Image* smallPunchImage = new Image();
 	if (FAILED(smallPunchImage->Init(TEXT("Image/Iori_small_punch.bmp"), 500, 98, 5, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp ÆÄÀÏ ·Îµå¿¡ ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp íŒŒì¼ ë¡œë“œì— ì‹¤íŒ¨"), TEXT("ê²½ê³ "), MB_OK);
 	}
 	animImages.push_back(smallPunchImage);
 
-	// animImages.resize(¾Ö´Ï¸ÞÀÌ¼Ç °³¼ö);
+	// animImages.resize(ì• ë‹ˆë©”ì´ì…˜ ê°œìˆ˜);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
 
-	attackRC = GetRectAtCenter(-10, -10, 10, 20); //·ºÆ® Á¶Á¤
+	attackRC = GetRectAtCenter(-10, -10, 10, 20); //ë ‰íŠ¸ ì¡°ì •
 }
 
 void Iori::Render(HDC hdc)
@@ -99,10 +99,10 @@ void Iori::Render(HDC hdc)
 		}
 	}
 
-	// state¿¡ µû¸¥ ÀÌ¹ÌÁö ·»´õ¸µ
+	// stateì— ë”°ë¥¸ ì´ë¯¸ì§€ ë Œë”ë§
 	// if(_state == ~~~) 
 	//  animImages[AnimationType::~~~]->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
-	// -> AnimationTypeµµ ÇÊ¿ä¾øÀ»¼öµµ? ±×³É animImages[State::~~]->Render() °¡´ÉÇØº¸ÀÓ
+	// -> AnimationTypeë„ í•„ìš”ì—†ì„ìˆ˜ë„? ê·¸ëƒ¥ animImages[State::~~]->Render() ê°€ëŠ¥í•´ë³´ìž„
 	RenderEllipseAtCenter(hdc, pos.x, pos.y, 10, 10);
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
@@ -131,7 +131,7 @@ void Iori::BigKick()
 		attackRCactivated = true;
 		nowAttDamage = bigAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 90, pos.y - 40, 120, 40); //·ºÆ® Á¶Á¤
+		SetRectAtCenter(attackRC, pos.x + 90, pos.y - 40, 120, 40); //ë ‰íŠ¸ ì¡°ì •
 	}
 
 	else if (animationFrame < 10 && animationFrame > 5)
@@ -139,7 +139,7 @@ void Iori::BigKick()
 		attackRCactivated = false;
 		nowAttDamage = 0;
 
-		SetRectAtCenter(attackRC, -10, -10, 20, 20); //·ºÆ® ¿ø·¡´ë·Î
+		SetRectAtCenter(attackRC, -10, -10, 20, 20); //ë ‰íŠ¸ ì›ëž˜ëŒ€ë¡œ
 
 	}
 
@@ -159,13 +159,13 @@ void Iori::SmallKick()
 		attackRCactivated = true;
 		nowAttDamage = smallAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 100, pos.y, 140, 30); //·ºÆ® Á¶Á¤
+		SetRectAtCenter(attackRC, pos.x + 100, pos.y, 140, 30); //ë ‰íŠ¸ ì¡°ì •
 	}
 	else
 	{
 		attackRCactivated = false;
 		nowAttDamage = 0;
-		SetRectAtCenter(attackRC, -10, -10, 20, 20); //·ºÆ® ¿ø·¡´ë·Î
+		SetRectAtCenter(attackRC, -10, -10, 20, 20); //ë ‰íŠ¸ ì›ëž˜ëŒ€ë¡œ
 	}
 
 	if (animationFrame >= 6)
@@ -183,7 +183,7 @@ void Iori::BigPunch()
 		attackRCactivated = true;
 		nowAttDamage = bigAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 40, pos.y - 10, 90, 40); //·ºÆ® Á¶Á¤
+		SetRectAtCenter(attackRC, pos.x + 40, pos.y - 10, 90, 40); //ë ‰íŠ¸ ì¡°ì •
 	}
 
 	else if (animationFrame < 6 && animationFrame > 4)
@@ -191,7 +191,7 @@ void Iori::BigPunch()
 		attackRCactivated = false;
 		nowAttDamage = 0;
 
-		SetRectAtCenter(attackRC, -10, -10, 20, 20); //·ºÆ® ¿ø·¡´ë·Î
+		SetRectAtCenter(attackRC, -10, -10, 20, 20); //ë ‰íŠ¸ ì›ëž˜ëŒ€ë¡œ
 	}
 
 	else if (animationFrame >= 6)
@@ -209,12 +209,12 @@ void Iori::SmallPunch()
 		attackRCactivated = true;
 		nowAttDamage = smallAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 80, pos.y - 40, 100, 30); //·ºÆ® Á¶Á¤
+		SetRectAtCenter(attackRC, pos.x + 80, pos.y - 40, 100, 30); //ë ‰íŠ¸ ì¡°ì •
 	}
 	else
 	{
 		nowAttDamage = 0;
-		SetRectAtCenter(attackRC, -10, -10, 20, 20); //·ºÆ® ¿ø·¡´ë·Î
+		SetRectAtCenter(attackRC, -10, -10, 20, 20); //ë ‰íŠ¸ ì›ëž˜ëŒ€ë¡œ
 	}
 	if (animationFrame >= 3)
 	{
