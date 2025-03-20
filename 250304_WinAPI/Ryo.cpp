@@ -23,6 +23,7 @@ void Ryo::Init()
 	isFlip = false;
 	isLeft = true;
 	_state = State::IDLE;
+	actType = IDLE;
 	canMove = true;
 
 	//animImages.resize(9);
@@ -32,12 +33,22 @@ void Ryo::Init()
 		MessageBox(g_hWnd, TEXT("Image/Ryo_idle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(idleImage);
-	Image* characterImage = new Image();
-	if (FAILED(characterImage->Init(TEXT("Image/Ryo_Smove_Front.bmp"), 1097, 300, 6, 1, true, RGB(255, 0, 255))))
+	Image* moveFowardImage = new Image();
+	if (FAILED(moveFowardImage->Init(TEXT("Image/Ryo_Smove_Front.bmp"), 1097, 300, 6, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(characterImage);
+	animImages.push_back(moveFowardImage);
+
+	Image* moveBackwardImage = new Image();
+	if (FAILED(moveBackwardImage->Init(TEXT("Ryo_Smove_Back.bmp"), 1047, 305, 6, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(moveBackwardImage);
+
+
+	animImages.push_back(nullptr);
 	animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Ryo_high_kick.bmp"), 3843, 370, 10, 1, true, RGB(255, 0, 255))))
@@ -77,7 +88,17 @@ void Ryo::Render(HDC hdc)
 	if (_state == State::IDLE)
 		animImages[ActType::IDLE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 50, height + 15, isFlip);
 	if (_state == State::MOVE)
-		animImages[ActType::MOVE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 20, height + 20, isFlip);
+	{
+		switch (actType) {
+		case MOVE_F:
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 20, height + 20, isFlip);
+			break;
+
+		case MOVE_B:
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 20, height + 20, isFlip);
+			break;
+		}
+	}
 
 	if (_state == State::ATTACK)
 
@@ -148,7 +169,7 @@ void Ryo::BigKick()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 
 	}
 }
@@ -173,7 +194,7 @@ void Ryo::SmallKick()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 	}
 }
 
@@ -200,7 +221,7 @@ void Ryo::BigPunch()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 
 	}
 }
@@ -223,7 +244,7 @@ void Ryo::SmallPunch()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 		attackRCactivated = false;
 	}
 }
