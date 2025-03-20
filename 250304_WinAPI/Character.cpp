@@ -328,6 +328,19 @@ void Character::SetHP(int hp)
 	
 }
 
+void Character::IsFlipToModifyingValue()
+{
+	switch (isFlip) {
+	case true:
+		modifyingValue = -1;
+		break;
+
+	case false:
+		modifyingValue = 1;
+		break;
+	}
+}
+
 
 void Character::MovedByEnemy()
 {
@@ -340,16 +353,6 @@ void Character::MovedByEnemy()
 	{
 		pos.x += speed;
 		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
-
-void Character::IsFlipToModifyingValue()
-{
-	if (isFlip)
-	{
-		modifyingValue = -1;
-	}
-	else
-	{
-		modifyingValue = 1;
-
 	}
 }
+
