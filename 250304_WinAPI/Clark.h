@@ -16,7 +16,7 @@ private:
 	int bigPunchModifiedX{ 35 };
 	int bigPunchModifiedY;
 
-	int smallKickModifiedX{ 60 };
+	int smallKickModifiedX{ 70 };
 	int smallKickModifiedY;
 
 	int bigKickModifiedX{ 5 };

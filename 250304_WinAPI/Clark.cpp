@@ -8,7 +8,7 @@ void Clark::Init()
 	team = Team::LEFT;
 	pos.x = WINSIZE_X - 300;
 	pos.y = WINSIZE_Y - 150;
-	width = 160;
+	width = 165;
 	height = 230;
 	characterRC = GetRectAtCenter(pos.x, pos.y, 100, 200);
 	animationFrame = 0;
@@ -203,7 +203,7 @@ void Clark::BigKick()
 		if (isFlip == true) {
 			SetRectAtCenter(attackRC, pos.x - 40, pos.y - 70, 80, 40); //렉트 조정
 		}
-		else SetRectAtCenter(attackRC, pos.x + 40, pos.y - 70, 80, 40); //렉트 조정
+		else SetRectAtCenter(attackRC, pos.x + 70, pos.y - 70, 80, 40); //렉트 조정
 		
 	}
 
@@ -239,7 +239,7 @@ void Clark::SmallKick()
 			SetRectAtCenter(attackRC, pos.x - 70, pos.y, 30, 40); //렉트 조정
 			break;
 		case false:
-			SetRectAtCenter(attackRC, pos.x + 85, pos.y - 40, 70, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 35, pos.y, 30, 40); //렉트 조정
 			break;
 		}
 
@@ -272,7 +272,7 @@ void Clark::BigPunch()
 			SetRectAtCenter(attackRC, pos.x - 110, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		case false:
-			SetRectAtCenter(attackRC, pos.x + 110, pos.y - 40, 70, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 50, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		}
 
@@ -303,7 +303,7 @@ void Clark::SmallPunch()
 			SetRectAtCenter(attackRC, pos.x - 85, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		case false:
-			SetRectAtCenter(attackRC, pos.x + 85, pos.y - 40, 70, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 60, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		}
 		
