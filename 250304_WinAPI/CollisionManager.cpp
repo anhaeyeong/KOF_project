@@ -16,11 +16,13 @@ void CollisionManager::Release()
 {
 	if (pLeft)
 	{
+		pLeft->Release();
 		delete pLeft;
 		pLeft = nullptr;
 	}
 	if (pRight)
 	{
+		pLeft->Release();
 		delete pRight;
 		pRight = nullptr;
 	}
