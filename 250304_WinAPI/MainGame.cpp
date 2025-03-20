@@ -4,6 +4,7 @@
 #include "KOF_Iori.h"
 #include "Character.h"
 #include "Ryo.h"
+#include "Mai.h"
 
 /*
 	실습1. 이오리 집에 보내기
@@ -25,7 +26,7 @@ void MainGame::Init()
 			TEXT("Image/backGround.bmp 생성 실패"), TEXT("경고"), MB_OK);
 	}
 
-	iori = new Ryo();
+	iori = new Mai();
 	iori->Init();
 }
 
