@@ -39,9 +39,9 @@ public:
 	Character();
 	~Character();
 
-	void Init();
+	virtual void Init();
 	void Update();
-	void Render(HDC hdc);
+	virtual void Render(HDC hdc);
 	void Release();
 
 	void Move(int dx, int dy);
