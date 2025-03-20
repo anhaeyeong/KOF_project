@@ -5,6 +5,8 @@
 #include "Character.h"
 #include "Ryo.h"
 #include "Mai.h"
+#include "Clark.h"
+
 
 /*
 	실습1. 이오리 집에 보내기
@@ -28,6 +30,8 @@ void MainGame::Init()
 
 	iori = new Mai();
 	iori->Init();
+	clark = new Clark();
+	clark->Init();
 
 	UIManager::GetInstance()->Init();
 }
@@ -39,6 +43,13 @@ void MainGame::Release()
 		iori->Release();
 		delete iori;
 		iori = nullptr;
+	}
+
+	if (clark)
+	{
+		clark->Release();
+		delete clark;
+		clark = nullptr;
 	}
 
 	if (backGround)
@@ -61,6 +72,9 @@ void MainGame::Update()
 	if (iori)
 		iori->Update();
 
+	if (clark)
+		clark->Update();
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
@@ -71,6 +85,8 @@ void MainGame::Render(HDC hdc)
 
 	backGround->Render(hBackBufferDC);
 	iori->Render(hBackBufferDC);
+	clark->Render(hBackBufferDC);
+
 
 	wsprintf(szText, TEXT("Mouse X : %d, Y : %d"), mousePosX, mousePosY);
 	TextOut(hBackBufferDC, 20, 60, szText, wcslen(szText));

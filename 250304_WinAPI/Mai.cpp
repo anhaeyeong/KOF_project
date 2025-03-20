@@ -12,6 +12,8 @@ Mai::~Mai()
 
 void Mai::Init()
 {
+	team = Team::LEFT;
+
 	pos.x = WINSIZE_X - 700;
 	pos.y = WINSIZE_Y - 150;
 	width = 100;

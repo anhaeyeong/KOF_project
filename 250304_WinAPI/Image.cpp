@@ -154,7 +154,7 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex, int width, int
 
         GdiTransparentBlt(hdc,
             srcX, srcY,
-            imageInfo->frameWidth, imageInfo->frameHeight,
+            width, height,
 
             imageInfo->hTempDC,
             0, 0,

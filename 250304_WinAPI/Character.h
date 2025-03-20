@@ -1,5 +1,13 @@
 #pragma once
 #include "config.h"
+
+enum class Team
+{
+	NONE,
+	LEFT,
+	RIGHT
+};
+
 enum class State
 {
 	IDLE,
@@ -65,6 +73,9 @@ public:
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC ÇÊ¿ä
 
 protected:
+
+	Team team{ Team::NONE };
+
 	FPOINT pos;
 	int width;
 	int height;

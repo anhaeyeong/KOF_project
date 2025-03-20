@@ -17,8 +17,10 @@ void Clark::Init()
 	isLeft = true;
 	_state = State::IDLE;
 	canMove = true;
+	maxIdlePrame = 19;
 
-	//animImages.resize(9);
+
+	animImages.reserve(9);
 	Image* idleImage = new Image();
 	if (FAILED(idleImage->Init(TEXT("Image/Clark_Endle.bmp"), 4565, 300, 19, 1, true, RGB(255, 0, 255))))
 	{
@@ -75,7 +77,10 @@ void Clark::Render(HDC hdc)
 		animImages[ActType::IDLE]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
 	}
 	if (_state == State::MOVE)
-		animImages[ActType::MOVE]->Render(hdc, pos.x-30, pos.y-5, animationFrame, width, height, isFlip);
+		animImages[ActType::MOVE]->Render(hdc, pos.x-30, pos.y-5, animationFrame, 
+			width * animImages[ActType::MOVE]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth,
+			height * animImages[ActType::MOVE]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight,
+			isFlip);
 
 	if (_state == State::ATTACK)
 
@@ -84,29 +89,29 @@ void Clark::Render(HDC hdc)
 		{
 		case BIG_KICK:
 			animImages[ActType::BIG_KICK]->Render(hdc, pos.x + 40, pos.y - 18, animationFrame, 
-				width*animImages[ActType::BIG_KICK]->GetImageInfo()->frameWidth/ animImages[ActType::MOVE]->GetImageInfo()->frameWidth, 
-				height* animImages[ActType::BIG_KICK]->GetImageInfo()->frameHeight / animImages[ActType::MOVE]->GetImageInfo()->frameHeight, 
+				width*animImages[ActType::BIG_KICK]->GetImageInfo()->frameWidth/ animImages[ActType::IDLE]->GetImageInfo()->frameWidth, 
+				height* animImages[ActType::BIG_KICK]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_KICK:
 			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x-80, pos.y +5, animationFrame, 
-				width * animImages[ActType::SMALL_KICK]->GetImageInfo()->frameWidth / animImages[ActType::MOVE]->GetImageInfo()->frameWidth,
-				height * animImages[ActType::SMALL_KICK]->GetImageInfo()->frameHeight / animImages[ActType::MOVE]->GetImageInfo()->frameHeight,
+				width * animImages[ActType::SMALL_KICK]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth,
+				height * animImages[ActType::SMALL_KICK]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case BIG_PUNCH:
 			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x - 60, pos.y-20, animationFrame,
-				width * animImages[ActType::BIG_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::MOVE]->GetImageInfo()->frameWidth,
-				(height * animImages[ActType::BIG_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::MOVE]->GetImageInfo()->frameHeight)-5,
+				width * animImages[ActType::BIG_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth,
+				(height * animImages[ActType::BIG_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight)-5,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_PUNCH:
 			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x -62, pos.y, animationFrame,
-				width * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::MOVE]->GetImageInfo()->frameWidth,
-				height * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::MOVE]->GetImageInfo()->frameHeight,
+				width * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth,
+				height * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight,
 				isFlip);
 			//smallPunchImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
@@ -122,6 +127,16 @@ void Clark::Render(HDC hdc)
 
 	SelectObject(hdc, oldBrush);
 	DeleteObject(myBrush);
+}
+
+void Clark::Move(int dir)
+{
+	_state = State::MOVE;
+	if (canMove == false) return;
+	if (animationFrame >= 7)	animationFrame = 0;
+	pos.x += dir * speed;
+	//pos.y += dy;
+	animationFrame++;
 }
 
 void Clark::BigKick()

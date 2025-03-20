@@ -85,5 +85,9 @@ public:
 		}
 		return NULL;
 	}
+
+	inline IMAGE_INFO* GetImageInfo() {
+		return imageInfo;
+	}
 };
 
