@@ -14,7 +14,7 @@ void Mai::Init()
 {
 	team = Team::RIGHT;
 
-	pos.x = WINSIZE_X - 700;
+	pos.x = WINSIZE_X - 300;
 	pos.y = WINSIZE_Y - 150;
 	width = 100;
 	height = 200;

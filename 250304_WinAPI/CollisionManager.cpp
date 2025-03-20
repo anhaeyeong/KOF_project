@@ -65,29 +65,37 @@ void CollisionManager::isAttacked(Character* atkplayer)
 	}
 }
 
-bool CollisionManager::isValidMove()
+bool CollisionManager::isValidMove(Character* movingPlayer)
 {
-	/*RECT rcLeft = pLeft->GetRect();
-	RECT rcRight = pRight->GetRect();
-	if (RectInRect(rcLeft, rcRight))
+	RECT rcLeft = pLeft->GetCharacterRC();
+	RECT rcRight = pRight->GetCharacterRC();
+
+	Character* otherPlayer = (movingPlayer == pLeft) ? pRight : pLeft;
+
+	// 이동 후 예상 위치 계산
+	RECT movingRC = rcLeft;
+	if (movingPlayer == pRight)
+		movingRC = rcRight;
+	
+
+	if (RectInRect(movingRC, otherPlayer->GetCharacterRC()))
 	{
-		if (pLeft->GetState() == State::MOVE &&
-			pRight->GetState() == State::IDLE)
+		// 한 명이 이동 중이고, 다른 한 명이 IDLE이면 IDLE인 캐릭터를 밀어냄
+		if (movingPlayer->GetState() == State::MOVE && otherPlayer->GetState() == State::IDLE)
 		{
-			pRight->Move(pLeft->GetSpeed(), 0);
+			if (otherPlayer == pRight)
+				otherPlayer->Move(1);
+			else if (otherPlayer == pLeft)
+				otherPlayer->Move(-1);
+			return true;
 		}
-		else if (pLeft->GetState() == State::IDLE &&
-			pRight->GetState() == State::MOVE)
-		{
-			pLeft->Move(-pRight->GetSpeed(), 0);
-		}
-		else
+		// 동시에 이동 중이면 이동 불가
+		else if (movingPlayer->GetState() == State::MOVE && otherPlayer->GetState() == State::MOVE)
 		{
 			return false;
 		}
-
 	}
-	else
-		return false;*/
-    return false;
+
+	return true;
 }
+
