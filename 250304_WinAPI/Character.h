@@ -21,7 +21,8 @@ enum class State
 enum ActType
 {
 	IDLE,
-	MOVE,
+	MOVE_F,
+	MOVE_B,
 	DEAD,
 	BIG_KICK,
 	SMALL_KICK,

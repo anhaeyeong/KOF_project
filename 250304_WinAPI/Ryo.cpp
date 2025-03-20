@@ -39,6 +39,7 @@ void Ryo::Init()
 	}
 	animImages.push_back(characterImage);
 	animImages.push_back(nullptr);
+	animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Ryo_high_kick.bmp"), 3843, 370, 10, 1, true, RGB(255, 0, 255))))
 	{
@@ -77,7 +78,17 @@ void Ryo::Render(HDC hdc)
 	if (_state == State::IDLE)
 		animImages[ActType::IDLE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 50, height + 15, isFlip);
 	if (_state == State::MOVE)
-		animImages[ActType::MOVE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 20, height + 20, isFlip);
+	{
+		switch (actType) {
+		case MOVE_F:
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 20, height + 20, isFlip);
+			break;
+
+		case MOVE_B:
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 20, height + 20, isFlip);
+			break;
+		}
+	}
 
 	if (_state == State::ATTACK)
 
@@ -148,7 +159,7 @@ void Ryo::BigKick()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 
 	}
 }
@@ -173,7 +184,7 @@ void Ryo::SmallKick()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 	}
 }
 
@@ -200,7 +211,7 @@ void Ryo::BigPunch()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 
 	}
 }
@@ -223,7 +234,7 @@ void Ryo::SmallPunch()
 		animationFrame = 0;
 		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 		attackRCactivated = false;
 	}
 }

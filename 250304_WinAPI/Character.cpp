@@ -23,9 +23,29 @@ void Character::Update()
 		if (canMove)
 		{
 			if (KeyManager::GetInstance()->IsStayKeyDown('D'))
+			{
 				Move(1);
+				switch (isFlip) {
+				case true:
+					actType = MOVE_B;
+					break;
+				case false:
+					actType = MOVE_F;
+					break;
+				}
+			}
 			else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
+			{
 				Move(-1);
+				switch (isFlip) {
+				case true:
+					actType = MOVE_F;
+					break;
+				case false:
+					actType = MOVE_B;
+					break;
+				}
+			}
 		}
 		switch (_state)
 		{
@@ -112,9 +132,29 @@ void Character::Update()
 		if (canMove)
 		{
 			if (KeyManager::GetInstance()->IsStayKeyDown(VK_RIGHT))
+			{
 				Move(1);
+				switch (isFlip) {
+				case true:
+					actType = MOVE_B;
+					break;
+				case false:
+					actType = MOVE_F;
+					break;
+				}
+			}
 			else if (KeyManager::GetInstance()->IsStayKeyDown(VK_LEFT))
+			{
 				Move(-1);
+				switch (isFlip) {
+				case true:
+					actType = MOVE_F;
+					break;
+				case false:
+					actType = MOVE_B;
+					break;
+				}
+			}
 		}
 		switch (_state)
 		{

@@ -41,6 +41,7 @@ void Mai::Init()
 		MessageBox(g_hWnd, TEXT("Image/Mai_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(characterImage);
+	animImages.push_back(nullptr); // Move_B
 	animImages.push_back(nullptr); // Dead
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Mai_Highkick.bmp"), 2163, 412, 6, 1, true, RGB(255, 0, 255)))) // 360, 412
@@ -81,8 +82,19 @@ void Mai::Render(HDC hdc)
 		animImages[ActType::IDLE]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, isFlip);
 	}
 	if (_state == State::MOVE)
-		animImages[ActType::MOVE]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, isFlip);
+	{
+		switch (actType)
+		{
+		case MOVE_F:
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, isFlip);
+			break;
 
+		case MOVE_B:
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, isFlip);
+			break;
+		}
+	}
+		
 	if (_state == State::ATTACK)
 
 	{

@@ -9,6 +9,9 @@ private:
 	int moveModifiedWidth;
 	int moveModifiedHeight;
 
+	int moveBModifiedWidth;
+	int moveBModifiedHeight;
+
 	int smallPunchModifiedWidth;
 	int smallPunchModifiedHeight;
 

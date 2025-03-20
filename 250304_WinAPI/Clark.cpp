@@ -28,12 +28,19 @@ void Clark::Init()
 	}
 	animImages.push_back(idleImage);
 	
-	Image* characterImage = new Image();
-	if (FAILED(characterImage->Init(TEXT("Image/Clark_Smove_Front.bmp"), 1608, 300, 7, 1, true, RGB(255, 0, 255))))
+	Image* moveFowardImage = new Image();
+	if (FAILED(moveFowardImage->Init(TEXT("Image/Clark_Smove_Front.bmp"), 1608, 300, 7, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(characterImage);
+	animImages.push_back(moveFowardImage);
+
+	Image* moveBackwardImage = new Image();
+	if (FAILED(moveBackwardImage->Init(TEXT("Image/Clark_Smove_Back.bmp"), 1581, 300, 7, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Clark_Smove_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(moveBackwardImage);
 
 	animImages.push_back(nullptr);
 
@@ -70,8 +77,11 @@ void Clark::Init()
 
 	attackRC = GetRectAtCenter(-10, -10, 10, 20); //렉트 조정
 
-	moveModifiedWidth = width * animImages[ActType::MOVE]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
-	moveModifiedHeight = height * animImages[ActType::MOVE]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight;
+	moveModifiedWidth = width * animImages[ActType::MOVE_F]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
+	moveModifiedHeight = height * animImages[ActType::MOVE_F]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight;
+
+	moveBModifiedWidth = width* animImages[ActType::MOVE_B]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
+	moveBModifiedHeight = height * animImages[ActType::MOVE_B]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight;
 
 	smallPunchModifiedWidth = width * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
 	smallPunchModifiedHeight = height * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight;
@@ -92,10 +102,23 @@ void Clark::Render(HDC hdc)
 		animImages[ActType::IDLE]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
 	}
 	if (_state == State::MOVE)
-		animImages[ActType::MOVE]->Render(hdc, pos.x-30, pos.y-5, animationFrame, 
-			moveModifiedWidth,
-			moveModifiedHeight,
-			isFlip);
+	{
+		switch (actType)
+		{
+		case MOVE_F:
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame,
+				moveModifiedWidth,
+				moveModifiedHeight,
+				isFlip);
+			break;
+		case MOVE_B:
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame,
+				moveBModifiedWidth,
+				moveBModifiedHeight,
+				isFlip);
+			break;
+		}
+	}
 
 	if (_state == State::ATTACK)
 
