@@ -12,7 +12,7 @@ Mai::~Mai()
 
 void Mai::Init()
 {
-	team = Team::LEFT;
+	team = Team::RIGHT;
 
 	pos.x = WINSIZE_X - 700;
 	pos.y = WINSIZE_Y - 150;
@@ -22,7 +22,7 @@ void Mai::Init()
 	animationFrame = 0;
 	maxIdlePrame = 12;
 	speed = 10;
-	isFlip = false;
+	isFlip = true;
 	isLeft = true;
 	_state = State::IDLE;
 	actType = IDLE;

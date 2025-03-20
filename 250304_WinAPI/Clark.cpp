@@ -5,7 +5,7 @@
 
 void Clark::Init()
 {
-	team = Team::RIGHT;
+	team = Team::LEFT;
 	pos.x = WINSIZE_X - 300;
 	pos.y = WINSIZE_Y - 150;
 	width = 160;
@@ -13,7 +13,7 @@ void Clark::Init()
 	characterRC = GetRectAtCenter(pos.x, pos.y, 100, 200);
 	animationFrame = 0;
 	speed = 10;
-	isFlip = true;
+	isFlip = false;
 	isLeft = true;
 	_state = State::IDLE;
 	actType = IDLE;
