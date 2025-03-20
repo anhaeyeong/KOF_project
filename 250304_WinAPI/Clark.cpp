@@ -171,7 +171,7 @@ void Clark::Render(HDC hdc)
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
-		RenderRectAtCenter(hdc, pos.x - 20, pos.y, characterRC.right - characterRC.left, characterRC.bottom - characterRC.top);
+		RenderRect(hdc, characterRC);
 	if (attackRCactivated == true && debugRender == true)
 		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 
@@ -185,6 +185,7 @@ void Clark::Move(int dir)
 	if (canMove == false) return;
 	if (animationFrame >= 6)	animationFrame = 0;
 	pos.x += dir * speed;
+	SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
 	//pos.y += dy;
 	animationFrame++;
 }
