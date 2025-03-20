@@ -72,11 +72,20 @@ bool CollisionManager::isValidMove(Character* movingPlayer)
 
 	Character* otherPlayer = (movingPlayer == pLeft) ? pRight : pLeft;
 
-	// 이동 후 예상 위치 계산
 	RECT movingRC = rcLeft;
 	if (movingPlayer == pRight)
 		movingRC = rcRight;
 	
+	if (movingPlayer == pLeft)
+	{
+		movingRC.left += movingPlayer->GetSpeed();
+		movingRC.right += movingPlayer->GetSpeed();
+	}
+	else if (movingPlayer == pRight)
+	{
+		movingRC.left -= movingPlayer->GetSpeed();
+		movingRC.right -= movingPlayer->GetSpeed();
+	}
 
 	if (RectInRect(movingRC, otherPlayer->GetCharacterRC()))
 	{
@@ -84,9 +93,9 @@ bool CollisionManager::isValidMove(Character* movingPlayer)
 		if (movingPlayer->GetState() == State::MOVE && otherPlayer->GetState() == State::IDLE)
 		{
 			if (otherPlayer == pRight)
-				otherPlayer->Move(1);
+				otherPlayer->MovedByEnemy();
 			else if (otherPlayer == pLeft)
-				otherPlayer->Move(-1);
+				otherPlayer->MovedByEnemy();
 			return true;
 		}
 		// 동시에 이동 중이면 이동 불가
@@ -98,4 +107,5 @@ bool CollisionManager::isValidMove(Character* movingPlayer)
 
 	return true;
 }
+
 

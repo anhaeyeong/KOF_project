@@ -156,7 +156,11 @@ void Mai::Move(int dir)
 	{
 		animationFrame = 0;
 	}
-	pos.x += dir * speed;
+	if (CollisionManager::GetInstance()->isValidMove(this))
+	{
+		pos.x += dir * speed;
+		
+	}
 	SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
 	//pos.y += dy;
 	animationFrame++;

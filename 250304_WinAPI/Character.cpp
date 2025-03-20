@@ -144,6 +144,7 @@ void Character::Update()
 		{
 			if (KeyManager::GetInstance()->IsStayKeyDown(VK_RIGHT))
 			{
+					
 				Move(1);
 				switch (isFlip) {
 				case true:
@@ -156,6 +157,7 @@ void Character::Update()
 			}
 			else if (KeyManager::GetInstance()->IsStayKeyDown(VK_LEFT))
 			{
+				
 				Move(-1);
 				switch (isFlip) {
 				case true:
@@ -318,4 +320,18 @@ void Character::SetHP(int hp)
 	if (team == Team::RIGHT)
 		UIManager::GetInstance()->UpdateHP(true, hp);
 	
+}
+
+void Character::MovedByEnemy()
+{
+	if (team == Team::LEFT)
+	{
+		pos.x -= speed;
+		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
+	}
+	else if (team == Team::RIGHT)
+	{
+		pos.x += speed;
+		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
+	}
 }

@@ -141,7 +141,10 @@ void Ryo::Move(int dir)
 	_state = State::MOVE;
 	if (canMove == false) return;
 	if (animationFrame >= 5)	animationFrame = 0;
-	pos.x += dir * speed;
+	if (CollisionManager::GetInstance()->isValidMove(this))
+	{
+		pos.x += dir * speed;
+	}
 	SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
 	//pos.y += dy;
 	animationFrame++;
