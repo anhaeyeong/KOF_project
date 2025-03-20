@@ -28,7 +28,8 @@ void Character::Update()
 	{
 	case State::IDLE:
 		animationFrame++;
-		if (animationFrame >= maxIdlePrame)	animationFrame = 0;
+		if (animationFrame >= maxIdlePrame)	
+			animationFrame = 0;
 		break;
 	case State::MOVE:
 		if (KeyManager::GetInstance()->IsOnceKeyUp('D') || KeyManager::GetInstance()->IsOnceKeyUp('A'))

@@ -18,7 +18,7 @@ void Iori::Init()
 	height = 200;
 	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
 	animationFrame = 0;
-	maxIdlePrame = 10;
+	maxIdlePrame = 9;
 	speed = 10;
 	isFlip = false;
 	isLeft = true;
@@ -27,7 +27,7 @@ void Iori::Init()
 
 	//animImages.resize(9);
 	Image* idleImage = new Image();
-	if (FAILED(idleImage->Init(TEXT("Image/Iori_idle.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
+	if (FAILED(idleImage->Init(TEXT("Image/Iori_idle.bmp"), 612, 96, 9, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_idle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
@@ -40,13 +40,13 @@ void Iori::Init()
 	animImages.push_back(characterImage);
 	animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
-	if (FAILED(bigKickImage->Init(TEXT("Image/Iori_high_kick.bmp"), 1170, 106, 10, 1, true, RGB(169, 139, 150))))
+	if (FAILED(bigKickImage->Init(TEXT("Image/Iori_high_kick.bmp"), 1400, 105, 10, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_high_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(bigKickImage);
 	Image* smallKickImage = new Image();
-	if (FAILED(smallKickImage->Init(TEXT("Image/Iori_middle_kick.bmp"), 524, 104, 6, 1, true, RGB(169, 139, 150))))
+	if (FAILED(smallKickImage->Init(TEXT("Image/Iori_middle_kick.bmp"), 720, 102, 6, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_middle_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
@@ -59,7 +59,7 @@ void Iori::Init()
 	}
 	animImages.push_back(bigPunch);
 	Image* smallPunchImage = new Image();
-	if (FAILED(smallPunchImage->Init(TEXT("Image/Iori_small_punch.bmp"), 516, 104, 9, 1, true, RGB(169, 139, 150))))
+	if (FAILED(smallPunchImage->Init(TEXT("Image/Iori_small_punch.bmp"), 500, 98, 5, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
@@ -75,9 +75,9 @@ void Iori::Render(HDC hdc)
 {
 	//if (!characterImage)	return;
 	if (_state == State::IDLE)
-		animImages[ActType::IDLE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 50, height + 15, isFlip);
+		animImages[ActType::IDLE]->Render(hdc, pos.x, pos.y - 15, animationFrame, width + 20, height + 30, isFlip);
 	if (_state == State::MOVE)
-		animImages[ActType::MOVE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 20, height + 20, isFlip);
+		animImages[ActType::MOVE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 10, height + 20, isFlip);
 
 	if (_state == State::ATTACK)
 
@@ -85,16 +85,16 @@ void Iori::Render(HDC hdc)
 		switch (actType)
 		{
 		case BIG_KICK:
-			animImages[ActType::BIG_KICK]->Render(hdc, pos.x + 40, pos.y - 30, animationFrame, width + 130, height + 65, isFlip);
+			animImages[ActType::BIG_KICK]->Render(hdc, pos.x + 50, pos.y - 15, animationFrame, width + 120, height + 30, isFlip);
 			break;
 		case SMALL_KICK:
-			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x + 55, pos.y - 32, animationFrame, width + 170, height + 70, isFlip);
+			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x + 60, pos.y - 10, animationFrame, width + 90, height + 20, isFlip);
 			break;
 		case BIG_PUNCH:
-			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 90, height + 35, isFlip);
+			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x + 40, pos.y - 15, animationFrame, width + 100, height + 30, isFlip);
 			break;
 		case SMALL_PUNCH:
-			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x + 30, pos.y - 5, animationFrame, width + 110, height + 20, isFlip);
+			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x + 20, pos.y - 10, animationFrame, width + 70, height + 20, isFlip);
 			break;
 		}
 	}

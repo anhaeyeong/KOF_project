@@ -67,6 +67,11 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
+	if (backBuffer == nullptr) {
+		// Handle the error, log it, or initialize backBuffer
+		return;
+	}
+
 	// 백버퍼에 먼저 복사
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 
