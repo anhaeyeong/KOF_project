@@ -13,10 +13,10 @@ Character::~Character()
 void Character::Init()
 {
 	pos.x = WINSIZE_X - 700;
-	pos.y = WINSIZE_Y - 100;
-	width = 40;
-	height = 100;
-	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
+	pos.y = WINSIZE_Y - 150;
+	width = 100;
+	height = 200;
+	characterRC = GetRectAtCenter(pos.x - 20, pos.y, width - 50, height - 50);
 	animationFrame = 0;
 	speed = 10;
 	isFlip = false;
@@ -24,16 +24,35 @@ void Character::Init()
 	_state = State::MOVE;
 	canMove = true;
 
-	characterImage = new Image();
-	if (FAILED(characterImage->Init(TEXT("Image/iori_walk.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
+	//animImages.resize(9);
+	animImages.push_back(nullptr);
+	Image* characterImage = new Image();
+	if (FAILED(characterImage->Init(TEXT("Image/Ryo_Smove_Front.bmp"), 1097, 300, 6, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/iori_walk.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	bigKickImage = new Image();
-	if (FAILED(bigKickImage->Init(TEXT("Image/iori_kick.bmp"), 1170, 106, 10, 1, true, RGB(169, 139, 150))))
+	animImages.push_back(characterImage);
+	animImages.push_back(nullptr);
+	Image* bigKickImage = new Image();
+	if (FAILED(bigKickImage->Init(TEXT("Image/Ryo_high_kick.bmp"), 3843, 370, 10, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/iori_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Ryo_high_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
+	animImages.push_back(bigKickImage);
+	Image* smallKickImage = new Image();
+	if (FAILED(smallKickImage->Init(TEXT("Image/Ryo_middle_kick.bmp"), 2485, 360, 6, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Ryo_middle_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(smallKickImage);
+	animImages.push_back(nullptr);
+	Image* smallPunchImage = new Image();
+	if (FAILED(smallPunchImage->Init(TEXT("Image/Ryo_small_punch.bmp"), 906, 300, 3, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Ryo_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(smallPunchImage);
+
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
 
@@ -58,18 +77,18 @@ void Character::Update()
 		break;
 	case State::ATTACK:
 		animationFrame++;
-		switch (attackType) {
+		switch (actType) {
 		case BIG_KICK:
 			BigKick();
 			break;
 		case SMALL_KICK:
-
+			SmallKick();
 			break;
 		case BIG_PUNCH:
 
 			break;
 		case SMALL_PUNCH:
-
+			SmallPunch();
 			break;
 		default:
 			break;
@@ -86,7 +105,37 @@ void Character::Update()
 			animationFrame = 0;
 			_state = State::ATTACK;
 			canMove = false;
-			attackType = BIG_KICK;
+			actType = SMALL_PUNCH;
+		}
+	}
+	if (KeyManager::GetInstance()->IsOnceKeyDown('I'))
+	{
+		if (_state == State::MOVE)
+		{
+			animationFrame = 0;
+			_state = State::ATTACK;
+			canMove = false;
+			actType = BIG_PUNCH;
+		}
+	}
+	if (KeyManager::GetInstance()->IsOnceKeyDown('J'))
+	{
+		if (_state == State::MOVE)
+		{
+			animationFrame = 0;
+			_state = State::ATTACK;
+			canMove = false;
+			actType = SMALL_KICK;
+		}
+	}
+	if (KeyManager::GetInstance()->IsOnceKeyDown('K'))
+	{
+		if (_state == State::MOVE)
+		{
+			animationFrame = 0;
+			_state = State::ATTACK;
+			canMove = false;
+			actType = BIG_KICK;
 		}
 	}
 	
@@ -94,26 +143,45 @@ void Character::Update()
 
 void Character::Render(HDC hdc)
 {
-	if (!characterImage)	return;
+	//if (!characterImage)	return;
 	
 	if (_state == State::MOVE)
-		characterImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+		animImages[ActType::MOVE]->Render(hdc, pos.x, pos.y, animationFrame, width, height, isFlip);
 
 	if (_state == State::ATTACK)
-		bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+
+	{
+		switch (actType)
+		{
+		case BIG_KICK:
+			animImages[ActType::BIG_KICK]->Render(hdc, pos.x+40, pos.y-18, animationFrame, width+100, height+25, isFlip);
+			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+			break;
+		case SMALL_KICK:
+			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x + 30, pos.y - 20, animationFrame, width + 120, height + 35, isFlip);
+			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+			break;
+		case SMALL_PUNCH:
+			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x, pos.y, animationFrame, width+50, height, isFlip);
+			//smallPunchImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
+			break;
+		}
+	}
+
 	// state에 따른 이미지 렌더링
 	// if(_state == ~~~) 
 	//  animImages[AnimationType::~~~]->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 	// -> AnimationType도 필요없을수도? 그냥 animImages[State::~~]->Render() 가능해보임
+
 
 		
 	
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
-		RenderRectAtCenter(hdc, pos.x, pos.y, width, height);
+		RenderRectAtCenter(hdc, pos.x - 20, pos.y, characterRC.right - characterRC.left, characterRC.bottom - characterRC.top);
 	if(attackRCactivated==true)
-		RenderRect(hdc, attackRC.left, attackRC.top, 20, 20);
+		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 
 	SelectObject(hdc, oldBrush);
 	DeleteObject(myBrush);
@@ -121,12 +189,12 @@ void Character::Render(HDC hdc)
 
 void Character::Release()
 {
-	if (characterImage)
+	/*if (characterImage)
 	{
 		characterImage->Release();
 		delete characterImage;
 		characterImage = nullptr;
-	}
+	}*/
 	/*if (animImages.size() > 0)
 	{
 		for (int i = 0; i < animImages.size(); i++)
@@ -140,7 +208,7 @@ void Character::Release()
 void Character::Move(int dx, int dy)
 {
 	if (canMove == false) return;
-	if (animationFrame > 7)	animationFrame = 0;
+	if (animationFrame >= 5)	animationFrame = 0;
 	pos.x += dx;
 	pos.y += dy;
 	animationFrame++;
@@ -153,7 +221,7 @@ void Character::BigKick()
 		attackRCactivated = true;	
 		nowAttDamage = bigAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x+42, pos.y-21, 20, 20); //렉트 조정
+		SetRectAtCenter(attackRC, pos.x+90, pos.y - 40, 80, 40); //렉트 조정
 	}
 
 	else if(animationFrame < 10 && animationFrame > 5)
@@ -170,13 +238,32 @@ void Character::BigKick()
 		animationFrame = 0;
 		_state = State::MOVE;
 		canMove = true;
-		attackType = NONE;
+		actType = MOVE;
 
 	}
 }
-
 void Character::SmallKick()
 {
+	if (animationFrame == 3) {
+		attackRCactivated = true;
+		nowAttDamage = bigAttDamage;
+
+		SetRectAtCenter(attackRC, pos.x + 100, pos.y + 20, 60, 40); //렉트 조정
+	}
+	else
+	{
+		attackRCactivated = false;
+		nowAttDamage = 0;
+		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로
+	}
+
+	if (animationFrame >= 6)
+	{
+		animationFrame = 0;
+		_state = State::MOVE;
+		canMove = true;
+		actType = MOVE;
+	}
 }
 
 void Character::BigPunch()
@@ -185,4 +272,23 @@ void Character::BigPunch()
 
 void Character::SmallPunch()
 {
+	if (animationFrame == 2) {
+		attackRCactivated = true;
+		nowAttDamage = bigAttDamage;
+
+		SetRectAtCenter(attackRC, pos.x + 60, pos.y - 40, 20, 20); //렉트 조정
+	}
+	else
+	{
+		nowAttDamage = 0;
+		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로
+	}
+	if (animationFrame >= 3)
+	{
+		animationFrame = 0;
+		_state = State::MOVE;
+		canMove = true;
+		actType = MOVE;
+		attackRCactivated = false;
+	}
 }

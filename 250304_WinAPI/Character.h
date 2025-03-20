@@ -10,27 +10,27 @@ enum class State
 	ATTACKED
 };
 
-//enum class AnimationType
-//{
-//	IDLE,
-//	MOVE,
-//	DEAD,
-//	ATTACK,
-//  ATTACK2,
-//  ATTACK3,
-//  ATTACK4,
-//	GUARD,
-//	ATTACKED
-//};
-
-typedef enum AttackedType
+enum ActType
 {
-	NONE,
+	IDLE,
+	MOVE,
+	DEAD,
 	BIG_KICK,
 	SMALL_KICK,
 	BIG_PUNCH,
-	SMALL_PUNCH
-}at;
+	SMALL_PUNCH,
+	GUARD,
+	ATTACKED
+};
+
+//typedef enum AttackedType
+//{
+//	NONE,
+//	BIG_KICK,
+//	SMALL_KICK,
+//	BIG_PUNCH,
+//	SMALL_PUNCH
+//}at;
 
 class Image;
 class Character
@@ -73,14 +73,12 @@ private:
 	RECT characterRC;
 	// hp, damage 필요
 
-	at attackType{ NONE };
+	//at attackType{ NONE };
+	ActType actType{ IDLE };
 
 	// Image 벡터화 필요함
-	// vector<Image> animImages;
+	vector<Image*> animImages;
 	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
-	Image* characterImage;
-	Image* punchImage;
-	Image* bigKickImage;
 	int animationFrame;
 
 	int frameCount{ 0 };
