@@ -93,15 +93,6 @@ void MainGame::Render(HDC hdc)
 	iori->Render(hBackBufferDC);
 	clark->Render(hBackBufferDC);
 
-
-	wsprintf(szText, TEXT("Mouse X : %d, Y : %d"), mousePosX, mousePosY);
-	TextOut(hBackBufferDC, 20, 60, szText, wcslen(szText));
-
-	wsprintf(szText, TEXT("ani : %d"), iori->GetAnimationFrame());
-	TextOut(hBackBufferDC, 200, 60, szText, wcslen(szText));
-	wsprintf(szText, TEXT("frame : %d"), iori->GetFrame());
-	TextOut(hBackBufferDC, 400, 60, szText, wcslen(szText));
-
 	UIManager::GetInstance()->Render(hBackBufferDC);
 
 	// 백버퍼에 있는 내용을 메인 hdc에 복사
