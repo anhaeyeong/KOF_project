@@ -73,6 +73,7 @@ public:
 	// 화면에 출력
 	void Render(HDC hdc, int destX = 0, int destY = 0);
 	void Render(HDC hdc, int destX, int destY, int frameIndex, int width, int height, bool isFlip = false);
+	void RenderUI(HDC hdc, int destX, int destY, int width, int height, bool isFlip = false);
 
 	// 메모리 해제
 	void Release();

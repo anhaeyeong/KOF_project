@@ -51,9 +51,10 @@ HRESULT Image::Init(const wchar_t* filePath, int width, int height,
 
     imageInfo->maxFrameX = 0;
     imageInfo->maxFrameY = 0;
-    imageInfo->frameWidth = 0;
-    imageInfo->frameHeight = 0;
-    imageInfo->currFrameX = imageInfo->currFrameY = 0;
+    imageInfo->frameWidth = width;
+    imageInfo->frameHeight = height;
+    imageInfo->currFrameX = 1;
+    imageInfo->currFrameY = 0;
 
     ReleaseDC(g_hWnd, hdc);
 
@@ -137,8 +138,9 @@ void Image::Render(HDC hdc, int destX, int destY)
 void Image::Render(HDC hdc, int destX, int destY, int frameIndex, int width, int height, bool isFlip)
 {
     imageInfo->currFrameX = frameIndex;
-    int srcX = destX - width / 2;
-    int srcY = destY - height / (2);
+
+    int srcX{ destX - width / 2 }, srcY{ destY - height / 2 };
+    
     if (isFlip && isTransparent)
     {
         StretchBlt(imageInfo->hTempDC, 0, 0,
@@ -180,6 +182,58 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex, int width, int
             imageInfo->height,
             imageInfo->hMemDC,
             imageInfo->width / 9 * frameIndex, 0,
+            SRCCOPY
+        );
+    }
+}
+
+void Image::RenderUI(HDC hdc, int destX, int destY, int width, int height, bool isFlip)
+{
+    int srcX{ destX - width }, srcY{ destY };
+
+    if (isFlip && isTransparent)
+    {
+        SetStretchBltMode(imageInfo->hTempDC, COLORONCOLOR);
+        StretchBlt(imageInfo->hTempDC, 0, 0,
+            imageInfo->frameWidth, imageInfo->frameHeight,
+            imageInfo->hMemDC,
+            imageInfo->frameWidth - 1, 0,
+            -imageInfo->frameWidth, imageInfo->frameHeight,
+            SRCCOPY
+        );
+
+        GdiTransparentBlt(hdc,
+            srcX, srcY,
+            width, imageInfo->frameHeight,
+
+            imageInfo->hTempDC,
+            0, 0,
+            imageInfo->frameWidth, imageInfo->frameHeight,
+            transColor);
+    }
+    else if (isTransparent)
+    {
+        srcX = destX;
+        srcY = destY ;
+        GdiTransparentBlt(hdc,
+            srcX, srcY,
+            width, height,
+
+            imageInfo->hMemDC,
+            0,
+            0,
+            width, imageInfo->frameHeight,
+            transColor);
+    }
+    else
+    {
+        BitBlt(
+            hdc,
+            srcX, srcY,
+            imageInfo->width,
+            imageInfo->height,
+            imageInfo->hMemDC,
+            imageInfo->width, 0,
             SRCCOPY
         );
     }

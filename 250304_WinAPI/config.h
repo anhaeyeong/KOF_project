@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "KeyManager.h"
+#include "UIManager.h"
 
 using namespace std;
 

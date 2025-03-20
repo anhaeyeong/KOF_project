@@ -26,6 +26,8 @@ void MainGame::Init()
 
 	iori = new Character();
 	iori->Init();
+
+	UIManager::GetInstance()->Init();
 }
 
 void MainGame::Release()
@@ -75,6 +77,8 @@ void MainGame::Render(HDC hdc)
 	TextOut(hBackBufferDC, 200, 60, szText, wcslen(szText));
 	wsprintf(szText, TEXT("frame : %d"), iori->GetFrame());
 	TextOut(hBackBufferDC, 400, 60, szText, wcslen(szText));
+
+	UIManager::GetInstance()->Render(hBackBufferDC);
 
 	// 백버퍼에 있는 내용을 메인 hdc에 복사
 	backBuffer->Render(hdc);
