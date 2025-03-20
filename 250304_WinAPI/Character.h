@@ -37,14 +37,14 @@ class Character
 {
 public:
 	Character();
-	~Character();
+	virtual ~Character();
 
-	void Init();
+	virtual void Init();
 	void Update();
-	void Render(HDC hdc);
+	virtual void Render(HDC hdc);
 	void Release();
 
-	void Move(int dx, int dy);
+	virtual void Move(int dir);
 	FPOINT GetPos() { return pos; }
 
 	virtual void BigKick();
@@ -64,7 +64,7 @@ public:
 	int GetCurHP() const { return hp; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
-private:
+protected:
 	FPOINT pos;
 	int width;
 	int height;
@@ -83,6 +83,7 @@ private:
 	vector<Image*> animImages;
 	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
 	int animationFrame;
+	int maxIdlePrame;
 
 	int frameCount{ 0 };
 
