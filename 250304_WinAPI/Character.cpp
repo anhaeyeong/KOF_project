@@ -319,3 +319,15 @@ void Character::SetHP(int hp)
 		UIManager::GetInstance()->UpdateHP(true, hp);
 	
 }
+
+void Character::IsFlipToModifyingValue()
+{
+	if (isFlip)
+	{
+		modifyingValue = -1;
+	}
+	else
+	{
+		modifyingValue = 1;
+	}
+}
