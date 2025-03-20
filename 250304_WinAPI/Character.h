@@ -69,8 +69,8 @@ protected:
 	int width;
 	int height;
 	int speed;
-	int maxHp;
-	int hp;
+	int maxHp{ 100 };
+	int hp{ 100 };
 	RECT attackRC;
 	bool attackRCactivated{ false };
 	RECT characterRC;
