@@ -134,6 +134,7 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="KOF_Iori.cpp" />
+    <ClCompile Include="Mai.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Missile.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="KOF_Iori.h" />
+    <ClInclude Include="Mai.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="Ryo.h" />
