@@ -24,6 +24,9 @@ void Character::Init()
 	_state = State::MOVE;
 	canMove = true;
 
+	maxHp = hp = 100;
+
+
 	//animImages.resize(9);
 	animImages.push_back(nullptr);
 	Image* characterImage = new Image();

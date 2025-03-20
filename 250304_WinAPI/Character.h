@@ -61,6 +61,7 @@ public:
 	int GetAnimationFrame() { return animationFrame; }
 	int GetFrame() { return frameCount; }
 	State GetState() { return _state; }
+	int GetCurHP() const { return hp; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC ÇÊ¿ä
 
 private:
@@ -68,6 +69,8 @@ private:
 	int width;
 	int height;
 	int speed;
+	int maxHp;
+	int hp;
 	RECT attackRC;
 	bool attackRCactivated{ false };
 	RECT characterRC;
@@ -88,10 +91,10 @@ private:
 	bool isFlip;
 	bool isLeft;
 	State _state;
+	
 
-
-	const float bigAttDamage{ 20 };
-	const float smallAttDamage{ 10 };
+	const int bigAttDamage{ 20 };
+	const int smallAttDamage{ 10 };
 	float nowAttDamage{ 0 };
 };
 

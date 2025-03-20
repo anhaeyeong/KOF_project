@@ -22,6 +22,9 @@
     <Filter Include="MainGame\KOF_Character">
       <UniqueIdentifier>{1ad804d6-38d1-4cbd-a326-7d9dbb62c05b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2D Framework\Manager">
+      <UniqueIdentifier>{630ee0a3-066b-4458-aa38-803f0c2966a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -30,16 +33,7 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>2D Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>MainGame</Filter>
-    </ClCompile>
     <ClCompile Include="MainGame.cpp">
-      <Filter>MainGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Missile.cpp">
-      <Filter>MainGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Tank.cpp">
       <Filter>MainGame</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
@@ -48,14 +42,17 @@
     <ClCompile Include="KOF_Iori.cpp">
       <Filter>MainGame\KOF_Character</Filter>
     </ClCompile>
-    <ClCompile Include="KeyManager.cpp">
-      <Filter>2D Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>2D Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>MainGame\KOF_Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>2D Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>2D Framework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>2D Framework\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,16 +65,7 @@
     <ClInclude Include="GameObject.h">
       <Filter>2D Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>MainGame</Filter>
-    </ClInclude>
     <ClInclude Include="MainGame.h">
-      <Filter>MainGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Missile.h">
-      <Filter>MainGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Tank.h">
       <Filter>MainGame</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
@@ -86,17 +74,20 @@
     <ClInclude Include="KOF_Iori.h">
       <Filter>MainGame\KOF_Character</Filter>
     </ClInclude>
-    <ClInclude Include="KeyManager.h">
-      <Filter>2D Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>2D Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager.h">
       <Filter>2D Framework</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>MainGame\KOF_Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>2D Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>2D Framework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>2D Framework\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
