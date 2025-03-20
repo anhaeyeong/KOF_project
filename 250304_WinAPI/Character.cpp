@@ -186,3 +186,11 @@ void Character::BigPunch()
 void Character::SmallPunch()
 {
 }
+
+void Character::isDead()
+{
+	if (_state != State::DEAD && nowHp <= 0)
+	{
+		_state = State::DEAD;
+	}
+}

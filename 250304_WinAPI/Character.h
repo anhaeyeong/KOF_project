@@ -63,6 +63,16 @@ public:
 	State GetState() { return _state; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
+	inline int GetHp() { return nowHp; }
+	inline void SetHp(int hp) { nowHp = hp; }
+	inline void isAttacked(float damage) { nowHp -= damage; }
+	inline float GetDamage() { return nowAttDamage; }
+	inline RECT GetCharacterRC() { return characterRC; }
+	inline RECT GetAttackRC() { return attackRC; }
+
+	void isDead();
+	
+
 private:
 	FPOINT pos;
 	int width;
@@ -71,7 +81,6 @@ private:
 	RECT attackRC;
 	bool attackRCactivated{ false };
 	RECT characterRC;
-	// hp, damage 필요
 
 	at attackType{ NONE };
 
@@ -91,6 +100,8 @@ private:
 	bool isLeft;
 	State _state;
 
+	const int maxHp{ 100 };
+	int nowHp{ 100 };
 
 	const float bigAttDamage{ 20 };
 	const float smallAttDamage{ 10 };

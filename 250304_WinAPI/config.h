@@ -6,7 +6,7 @@
 #include <string>
 #include <iostream>
 #include <bitset>
-
+#include <vector>
 #include "KeyManager.h"
 
 using namespace std;
