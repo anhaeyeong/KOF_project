@@ -186,13 +186,18 @@ void Clark::BigKick()
 	else pos.x +=17;
 
 	if (animationFrame >= 5 && animationFrame <= 7) {
-		attackRCactivated = true;
-		nowAttDamage = bigAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = bigAttDamage;
 
-		if (isFlip == true) {
-			SetRectAtCenter(attackRC, pos.x - 40, pos.y - 70, 80, 40); //렉트 조정
+			if (isFlip == true) {
+				SetRectAtCenter(attackRC, pos.x - 40, pos.y - 70, 80, 40); //렉트 조정
+			}
+			else SetRectAtCenter(attackRC, pos.x + 40, pos.y - 70, 80, 40); //렉트 조정
+			CollisionManager::GetInstance()->isAttacked(this);
 		}
-		else SetRectAtCenter(attackRC, pos.x + 40, pos.y - 70, 80, 40); //렉트 조정
+		
 		
 	}
 
@@ -220,17 +225,22 @@ void Clark::BigKick()
 void Clark::SmallKick()
 {
 	if (animationFrame >= 1 && animationFrame <= 2) {
-		attackRCactivated = true;
-		nowAttDamage = smallAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = smallAttDamage;
 
-		switch (isFlip) {
-		case true:
-			SetRectAtCenter(attackRC, pos.x - 70, pos.y, 30, 40); //렉트 조정
-			break;
-		case false:
-			SetRectAtCenter(attackRC, pos.x + 85, pos.y - 40, 70, 30); //렉트 조정
-			break;
+			switch (isFlip) {
+			case true:
+				SetRectAtCenter(attackRC, pos.x - 70, pos.y, 30, 40); //렉트 조정
+				break;
+			case false:
+				SetRectAtCenter(attackRC, pos.x + 85, pos.y - 40, 70, 30); //렉트 조정
+				break;
+			}
+			CollisionManager::GetInstance()->isAttacked(this);
 		}
+		
 
 		
 	}
@@ -253,17 +263,22 @@ void Clark::SmallKick()
 void Clark::BigPunch()
 {
 	if (animationFrame >= 3 && animationFrame <= 5) {
-		attackRCactivated = true;
-		nowAttDamage = smallAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = smallAttDamage;
 
-		switch (isFlip) {
-		case true:
-			SetRectAtCenter(attackRC, pos.x - 110, pos.y - 40, 70, 30); //렉트 조정
-			break;
-		case false:
-			SetRectAtCenter(attackRC, pos.x + 110, pos.y - 40, 70, 30); //렉트 조정
-			break;
+			switch (isFlip) {
+			case true:
+				SetRectAtCenter(attackRC, pos.x - 110, pos.y - 40, 70, 30); //렉트 조정
+				break;
+			case false:
+				SetRectAtCenter(attackRC, pos.x + 110, pos.y - 40, 70, 30); //렉트 조정
+				break;
+			}
+			CollisionManager::GetInstance()->isAttacked(this);
 		}
+		
 
 	}
 	else
@@ -284,17 +299,22 @@ void Clark::BigPunch()
 void Clark::SmallPunch()
 {
 	if (animationFrame >=2&& animationFrame <=3) {
-		attackRCactivated = true;
-		nowAttDamage = smallAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = smallAttDamage;
 
-		switch (isFlip) {
-		case true:
-			SetRectAtCenter(attackRC, pos.x - 85, pos.y - 40, 70, 30); //렉트 조정
-			break;
-		case false:
-			SetRectAtCenter(attackRC, pos.x + 85, pos.y - 40, 70, 30); //렉트 조정
-			break;
+			switch (isFlip) {
+			case true:
+				SetRectAtCenter(attackRC, pos.x - 85, pos.y - 40, 70, 30); //렉트 조정
+				break;
+			case false:
+				SetRectAtCenter(attackRC, pos.x + 85, pos.y - 40, 70, 30); //렉트 조정
+				break;
+			}
+			CollisionManager::GetInstance()->isAttacked(this);
 		}
+		
 		
 	}
 	else

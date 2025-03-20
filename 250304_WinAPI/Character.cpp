@@ -65,15 +65,19 @@ void Character::Update()
 			switch (actType) {
 			case BIG_KICK:
 				BigKick();
+				
 				break;
 			case SMALL_KICK:
 				SmallKick();
+				
 				break;
 			case BIG_PUNCH:
 				BigPunch();
+				
 				break;
 			case SMALL_PUNCH:
 				SmallPunch();
+				
 				break;
 			default:
 				break;
@@ -85,6 +89,7 @@ void Character::Update()
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
+				SetIsAttacked(false);
 			}
 			break;
 		default:
@@ -180,21 +185,32 @@ void Character::Update()
 			switch (actType) {
 			case BIG_KICK:
 				BigKick();
+				
 				break;
 			case SMALL_KICK:
 				SmallKick();
+				
 				break;
 			case BIG_PUNCH:
 				BigPunch();
+				
 				break;
 			case SMALL_PUNCH:
 				SmallPunch();
+				
 				break;
 			default:
 				break;
 			}
 			break;
 		case State::ATTACKED:
+			animationFrame++;
+			if (animationFrame >= 12)
+			{
+				animationFrame = 0;
+				_state = State::IDLE;
+				SetIsAttacked(false);
+			}
 			break;
 		default:
 			break;

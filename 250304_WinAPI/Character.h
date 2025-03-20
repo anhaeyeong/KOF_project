@@ -68,6 +68,7 @@ public:
 	void SetHP(int hp);
 	void SetState(State state) { this->_state = state; }
 	void SetAnimationFrame(int f) { this->animationFrame = f; }
+	void SetIsAttacked(bool isAttacked) { this->isAttacked = isAttacked; }
 	// SetHP, SetDamage, SetState 필요
 
 	int GetAnimationFrame() { return animationFrame; }
@@ -77,6 +78,8 @@ public:
 	RECT GetAttackRC() { return attackRC; }
 	RECT GetCharacterRC() { return characterRC; }
 	int GetDamage() { return nowAttDamage; }
+	bool GetAttackActivated() { return this->attackRCactivated; }
+	bool GetIsAttacked() { return this->isAttacked; }
 
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
@@ -92,6 +95,7 @@ protected:
 	int hp{ 100 };
 	RECT attackRC;
 	bool attackRCactivated{ false };
+	bool isAttacked{ false };
 	RECT characterRC;
 	// hp, damage 필요
 

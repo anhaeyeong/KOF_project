@@ -74,12 +74,10 @@ void MainGame::Update()
 {
 	if (iori)
 	{
-		
 		iori->Update();
 	}
 	if (clark)
 	{
-		CollisionManager::GetInstance()->isAttacked(clark);
 		clark->Update();
 	}
 	backGroundFrame++;

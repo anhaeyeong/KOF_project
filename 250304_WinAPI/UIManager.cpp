@@ -34,10 +34,10 @@ void UIManager::Release()
 void UIManager::Render(HDC hdc)
 {
 	backGroundHP->RenderUI(hdc, pos[0].first, pos[0].second, 445, 35);
-	hpBar->RenderUI(hdc, pos[0].first, pos[0].second, 445*(hp[0]/100), 35);
+	hpBar->RenderUI(hdc, pos[0].first, pos[0].second, 445*(hp[0]/100.0f), 35);
 
 	backGroundHP->RenderUI(hdc, pos[1].first, pos[1].second, 445, 35, true);
-	hpBar->RenderUI(hdc, pos[1].first, pos[1].second, 445*(hp[1] / 100), 35, true);
+	hpBar->RenderUI(hdc, pos[1].first, pos[1].second, 445*(hp[1] / 100.0f), 35, true);
 }
 
 void UIManager::UpdateHP(bool isLeft, int hp)

@@ -149,10 +149,15 @@ void Ryo::Move(int dir)
 void Ryo::BigKick()
 {
 	if (animationFrame >= 3 && animationFrame <= 5) {
-		attackRCactivated = true;
-		nowAttDamage = bigAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = bigAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 90, pos.y - 40, 120, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 90, pos.y - 40, 120, 40); //렉트 조정
+			CollisionManager::GetInstance()->isAttacked(this);
+		}
+		
 	}
 
 	else if (animationFrame < 10 && animationFrame > 5)
@@ -177,10 +182,15 @@ void Ryo::BigKick()
 void Ryo::SmallKick()
 {
 	if (animationFrame == 3) {
-		attackRCactivated = true;
-		nowAttDamage = smallAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = smallAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 100, pos.y, 140,30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 100, pos.y, 140, 30); //렉트 조정
+			CollisionManager::GetInstance()->isAttacked(this);
+		}
+		
 	}
 	else
 	{
@@ -201,10 +211,15 @@ void Ryo::SmallKick()
 void Ryo::BigPunch()
 {
 	if (animationFrame >= 2 && animationFrame <= 4) {
-		attackRCactivated = true;
-		nowAttDamage = bigAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = bigAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 40, pos.y - 10, 90, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 40, pos.y - 10, 90, 40); //렉트 조정
+			CollisionManager::GetInstance()->isAttacked(this);
+		}
+		
 	}
 
 	else if (animationFrame < 6 && animationFrame > 4)
@@ -229,10 +244,14 @@ void Ryo::BigPunch()
 void Ryo::SmallPunch()
 {
 	if (animationFrame == 2) {
-		attackRCactivated = true;
-		nowAttDamage = smallAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = smallAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 80, pos.y - 40, 100, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 80, pos.y - 40, 100, 30); //렉트 조정
+			CollisionManager::GetInstance()->isAttacked(this);
+		}
 	}
 	else
 	{
