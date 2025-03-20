@@ -1,4 +1,4 @@
-#include "Character.h"
+﻿#include "Character.h"
 #include "CommonFunction.h"
 #include "Image.h"
 

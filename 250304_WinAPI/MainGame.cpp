@@ -1,4 +1,4 @@
-#include "MainGame.h"
+ï»¿#include "MainGame.h"
 #include "CommonFunction.h"
 #include "Image.h"
 #include "KOF_Iori.h"
@@ -8,8 +8,8 @@
 #include "Iori.h"
 
 /*
-	½Ç½À1. ÀÌ¿À¸® Áý¿¡ º¸³»±â
-	½Ç½À2. ¹è°æ ¹Ù²Ù±â (Å·¿ÀÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç ¹è°æ)
+	ì‹¤ìŠµ1. ì´ì˜¤ë¦¬ ì§‘ì— ë³´ë‚´ê¸°
+	ì‹¤ìŠµ2. ë°°ê²½ ë°”ê¾¸ê¸° (í‚¹ì˜¤íŒŒ ì• ë‹ˆë©”ì´ì…˜ ë°°ê²½)
 */
 
 void MainGame::Init()
@@ -18,13 +18,13 @@ void MainGame::Init()
 	if (FAILED(backBuffer->Init(WINSIZE_X, WINSIZE_Y)))
 	{
 		MessageBox(g_hWnd, 
-			TEXT("¹é¹öÆÛ »ý¼º ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+			TEXT("ë°±ë²„í¼ ìƒì„± ì‹¤íŒ¨"), TEXT("ê²½ê³ "), MB_OK);
 	}
 	backGround = new Image();
 	if (FAILED(backGround->Init(TEXT("Image/BackGround.bmp"), WINSIZE_X, WINSIZE_Y)))
 	{
 		MessageBox(g_hWnd,
-			TEXT("Image/backGround.bmp »ý¼º ½ÇÆÐ"), TEXT("°æ°í"), MB_OK);
+			TEXT("Image/backGround.bmp ìƒì„± ì‹¤íŒ¨"), TEXT("ê²½ê³ "), MB_OK);
 	}
 
 	iori = new Iori();
@@ -72,7 +72,7 @@ void MainGame::Render(HDC hdc)
 		return;
 	}
 
-	// ¹é¹öÆÛ¿¡ ¸ÕÀú º¹»ç
+	// ë°±ë²„í¼ì— ë¨¼ì € ë³µì‚¬
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 
 	backGround->Render(hBackBufferDC);
@@ -88,7 +88,7 @@ void MainGame::Render(HDC hdc)
 
 	UIManager::GetInstance()->Render(hBackBufferDC);
 
-	// ¹é¹öÆÛ¿¡ ÀÖ´Â ³»¿ëÀ» ¸ÞÀÎ hdc¿¡ º¹»ç
+	// ë°±ë²„í¼ì— ìžˆëŠ” ë‚´ìš©ì„ ë©”ì¸ hdcì— ë³µì‚¬
 	backBuffer->Render(hdc);
 }
 
