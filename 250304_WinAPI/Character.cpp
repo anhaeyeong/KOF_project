@@ -84,12 +84,15 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACKED:
+			//if(animationFrame == 0) canMove = false;
 			animationFrame++;
+			
 			if (animationFrame >= 12)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
+				canMove = true;
 			}
 			break;
 		default:
@@ -206,12 +209,15 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACKED:
+			//if (animationFrame == 0) canMove = false;
 			animationFrame++;
+
 			if (animationFrame >= 12)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
+				canMove = true;
 			}
 			break;
 		default:

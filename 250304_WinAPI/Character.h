@@ -69,6 +69,8 @@ public:
 	void SetState(State state) { this->_state = state; }
 	void SetAnimationFrame(int f) { this->animationFrame = f; }
 	void SetIsAttacked(bool isAttacked) { this->isAttacked = isAttacked; }
+	inline void SetCanMove(bool _canMove) { this->canMove = _canMove; }
+	//inline void SetAttackActivated(bool _attackRCactivated) { this->attackRCactivated = _attackRCactivated; }
 	void MovedByEnemy();
 	// SetHP, SetDamage, SetState 필요
 
@@ -82,6 +84,7 @@ public:
 	bool GetAttackActivated() { return this->attackRCactivated; }
 	bool GetIsAttacked() { return this->isAttacked; }
 	bool GetSpeed() { return this->speed; }
+	
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
 protected:
