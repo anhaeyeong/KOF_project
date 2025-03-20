@@ -328,6 +328,7 @@ void Character::SetHP(int hp)
 	
 }
 
+
 void Character::MovedByEnemy()
 {
 	if (team == Team::LEFT)
@@ -339,5 +340,16 @@ void Character::MovedByEnemy()
 	{
 		pos.x += speed;
 		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
+
+void Character::IsFlipToModifyingValue()
+{
+	if (isFlip)
+	{
+		modifyingValue = -1;
+	}
+	else
+	{
+		modifyingValue = 1;
+
 	}
 }

@@ -86,18 +86,18 @@ void Mai::Render(HDC hdc)
 {
 	if (_state == State::IDLE)
 	{
-		animImages[ActType::IDLE]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, !isFlip);
+		animImages[ActType::IDLE]->Render(hdc, pos.x - 5, pos.y + 5, animationFrame, (width + 30), height - 10, isFlip);
 	}
 	if (_state == State::MOVE)
 	{
 		switch (actType)
 		{
 		case MOVE_F:
-			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, !isFlip);
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 5, pos.y + 5, animationFrame, (width + 85), height - 10, isFlip);
 			break;
 
 		case MOVE_B:
-			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, !isFlip);
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 5, pos.y + 5, animationFrame, (width + 85), height - 10, isFlip);
 			break;
 		}
 	}
@@ -108,23 +108,19 @@ void Mai::Render(HDC hdc)
 		switch (actType)
 		{
 		case BIG_KICK:
-			animImages[ActType::BIG_KICK]->Render(hdc, pos.x - 45, pos.y - 3, animationFrame, (width + 97), (height + 10), !isFlip);
-			
+			animImages[ActType::BIG_KICK]->Render(hdc, pos.x - 25, pos.y - 3, animationFrame, (width + 97), (height + 10), isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_KICK:
-			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 50, pos.y - 8, animationFrame, (width + 93), (height + 20), !isFlip);
-			
+			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 30, pos.y - 8, animationFrame, (width + 93), (height + 20), isFlip);			
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case BIG_PUNCH:
-			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x - 100, pos.y - 8, animationFrame, (width + 110), (height + 15), !isFlip);
-			
+			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x - 80, pos.y - 8, animationFrame, (width + 110), (height + 15), isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_PUNCH:
-			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x - 70, pos.y + 2, animationFrame, (width + 90), (height - 5), !isFlip);
-			
+			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x - 50, pos.y + 2, animationFrame, (width + 90), (height - 5), isFlip);
 			//smallPunchImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		}
@@ -138,7 +134,7 @@ void Mai::Render(HDC hdc)
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
-		RenderRectAtCenter(hdc, pos.x - 20, pos.y, characterRC.right - characterRC.left, characterRC.bottom - characterRC.top);
+		RenderRect(hdc, characterRC);
 	if (attackRCactivated == true)
 		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 
@@ -162,6 +158,7 @@ void Mai::Move(int dir)
 		
 	}
 	SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
+
 	//pos.y += dy;
 	animationFrame++;
 }
@@ -173,7 +170,7 @@ void Mai::BigKick()
 		{
 			attackRCactivated = true;
 			nowAttDamage = bigAttDamage;
-			SetRectAtCenter(attackRC, pos.x - 110, pos.y - 15, 80, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x - 90, pos.y - 15, 80, 40); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
 		
@@ -207,7 +204,7 @@ void Mai::SmallKick()
 			attackRCactivated = true;
 			nowAttDamage = smallAttDamage;
 
-			SetRectAtCenter(attackRC, pos.x - 110, pos.y, 80, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x - 90, pos.y, 80, 40); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
 		
@@ -239,7 +236,7 @@ void Mai::BigPunch()
 			attackRCactivated = true;
 			nowAttDamage = bigAttDamage;
 
-			SetRectAtCenter(attackRC, pos.x - 150, pos.y + 70, 120, 60); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x - 130, pos.y + 70, 120, 60); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
 		
@@ -271,7 +268,7 @@ void Mai::SmallPunch()
 			attackRCactivated = true;
 			nowAttDamage = smallAttDamage;
 
-			SetRectAtCenter(attackRC, pos.x - 120, pos.y + 20, 80, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x - 100, pos.y + 20, 80, 40); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
 		
