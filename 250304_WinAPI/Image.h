@@ -84,8 +84,5 @@ public:
 		}
 		return NULL;
 	}
-
-	//게터 세터
-	IMAGE_INFO* GetImageInfo() { return imageInfo; }
 };
 

@@ -10,13 +10,6 @@ enum class State
 	ATTACKED
 };
 
-typedef enum class Team
-{
-	NONE,
-	LEFT,
-	RIGHT
-}LR;
-
 enum ActType
 {
 	IDLE,
@@ -63,15 +56,14 @@ public:
 	void SetPos(FPOINT pos) { pos = pos; }
 	void SetIsFlip(bool flip) { isFlip = flip; }
 	void SetFrame(int frame) { animationFrame = frame; }
-	// SetHP, SetDamage, SetState ï¿½Ê¿ï¿½
+	// SetHP, SetDamage, SetState ÇÊ¿ä
 
 	int GetAnimationFrame() { return animationFrame; }
 	int GetFrame() { return frameCount; }
 	State GetState() { return _state; }
-	// GetHP, GetDamage, GetCharacterRC, GetAttackRC ï¿½Ê¿ï¿½
+	// GetHP, GetDamage, GetCharacterRC, GetAttackRC ÇÊ¿ä
 
 protected:
-	Team team{ Team::NONE };
 	FPOINT pos;
 	int width;
 	int height;
@@ -79,14 +71,14 @@ protected:
 	RECT attackRC;
 	bool attackRCactivated{ false };
 	RECT characterRC;
-	// hp, damage ï¿½Ê¿ï¿½
+	// hp, damage ÇÊ¿ä
 
 	//at attackType{ NONE };
 	ActType actType{ IDLE };
 
-	// Image ï¿½ï¿½ï¿½ï¿½È­ ï¿½Ê¿ï¿½ï¿½ï¿½
+	// Image º¤ÅÍÈ­ ÇÊ¿äÇÔ
 	vector<Image*> animImages;
-	// animImages[AnimationType::IDLE] <- ï¿½Ì·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½
+	// animImages[AnimationType::IDLE] <- ÀÌ·± ½ÄÀ¸·Î Á¢±ÙÇØ¼­ »ç¿ë
 	int animationFrame;
 	int maxIdlePrame;
 
