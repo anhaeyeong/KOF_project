@@ -15,11 +15,17 @@ void Clark::Init()
 	speed = 10;
 	isFlip = true;
 	isLeft = true;
-	_state = State::MOVE;
+	_state = State::IDLE;
 	canMove = true;
 
 	//animImages.resize(9);
-	animImages.push_back(nullptr);
+	Image* idleImage = new Image();
+	if (FAILED(idleImage->Init(TEXT("Image/Clark_Endle.bmp"), 4565, 300, 19, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Clark_Endle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(idleImage);
+	
 	Image* characterImage = new Image();
 	if (FAILED(characterImage->Init(TEXT("Image/Clark_Smove_Front.bmp"), 1608, 300, 7, 1, true, RGB(255, 0, 255))))
 	{
@@ -65,6 +71,9 @@ void Clark::Init()
 
 void Clark::Render(HDC hdc)
 {
+	if (_state == State::IDLE) {
+		animImages[ActType::IDLE]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
+	}
 	if (_state == State::MOVE)
 		animImages[ActType::MOVE]->Render(hdc, pos.x-30, pos.y-5, animationFrame, width, height, isFlip);
 
@@ -145,9 +154,9 @@ void Clark::BigKick()
 	else if (animationFrame >= 15)
 	{
 		animationFrame = 0;
-		_state = State::MOVE;
+		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 
 	}
 	
@@ -181,9 +190,9 @@ void Clark::SmallKick()
 	if (animationFrame >= 3)
 	{
 		animationFrame = 0;
-		_state = State::MOVE;
+		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 	}
 }
 
@@ -211,9 +220,9 @@ void Clark::BigPunch()
 	if (animationFrame >= 7)
 	{
 		animationFrame = 0;
-		_state = State::MOVE;
+		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 		attackRCactivated = false;
 	}
 }
@@ -242,9 +251,9 @@ void Clark::SmallPunch()
 	if (animationFrame >= 5)
 	{
 		animationFrame = 0;
-		_state = State::MOVE;
+		_state = State::IDLE;
 		canMove = true;
-		actType = MOVE;
+		actType = IDLE;
 		attackRCactivated = false;
 	}
 }

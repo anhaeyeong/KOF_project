@@ -67,6 +67,13 @@ void Character::Update()
 	case Team::LEFT:
 		switch (_state)
 		{
+		case State::IDLE:
+			//animationFrame = 0;
+			if (animationFrame == 19) {
+				animationFrame = 0;
+			}
+			animationFrame++;
+			break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsStayKeyDown('D'))
 			{
@@ -104,7 +111,7 @@ void Character::Update()
 
 		if (KeyManager::GetInstance()->IsOnceKeyDown('U'))
 		{
-			if (_state == State::MOVE)
+			if (_state == State::IDLE || _state == State::MOVE)
 			{
 				animationFrame = 0;
 				_state = State::ATTACK;
@@ -114,7 +121,7 @@ void Character::Update()
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('I'))
 		{
-			if (_state == State::MOVE)
+			if (_state == State::IDLE || _state == State::MOVE)
 			{
 				animationFrame = 0;
 				_state = State::ATTACK;
@@ -124,7 +131,7 @@ void Character::Update()
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('J'))
 		{
-			if (_state == State::MOVE)
+			if (_state == State::IDLE || _state == State::MOVE)
 			{
 				animationFrame = 0;
 				_state = State::ATTACK;
@@ -134,7 +141,7 @@ void Character::Update()
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('K'))
 		{
-			if (_state == State::MOVE)
+			if (_state == State::IDLE || _state == State::MOVE)
 			{
 				animationFrame = 0;
 				_state = State::ATTACK;
@@ -146,6 +153,13 @@ void Character::Update()
 	case Team::RIGHT:
 		switch (_state)
 		{
+		case State::IDLE:
+			//animationFrame = 0;
+			if (animationFrame == 19) {
+				animationFrame = 0;
+			}
+			animationFrame++;
+			break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsStayKeyDown(VK_LEFT))
 			{
@@ -183,7 +197,7 @@ void Character::Update()
 
 		if (KeyManager::GetInstance()->IsOnceKeyDown('V'))
 		{
-			if (_state == State::MOVE)
+			if (_state == State::IDLE || _state == State::MOVE)
 			{
 				animationFrame = 0;
 				_state = State::ATTACK;
@@ -193,7 +207,7 @@ void Character::Update()
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('B'))
 		{
-			if (_state == State::MOVE)
+			if (_state == State::IDLE || _state == State::MOVE)
 			{
 				animationFrame = 0;
 				_state = State::ATTACK;
@@ -203,7 +217,7 @@ void Character::Update()
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('N'))
 		{
-			if (_state == State::MOVE)
+			if (_state == State::IDLE || _state == State::MOVE)
 			{
 				animationFrame = 0;
 				_state = State::ATTACK;
@@ -213,7 +227,7 @@ void Character::Update()
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('M'))
 		{
-			if (_state == State::MOVE)
+			if (_state == State::IDLE || _state == State::MOVE)
 			{
 				animationFrame = 0;
 				_state = State::ATTACK;
