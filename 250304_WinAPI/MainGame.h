@@ -3,6 +3,7 @@
 
 class Image;
 class KOF_Iori;
+class Character;
 class MainGame : public GameObject
 {
 private:
@@ -15,7 +16,7 @@ private:
 
 	Image* backBuffer;
 	Image* backGround;
-	KOF_Iori* iori;
+	Character* iori;
 
 public:
 	void Init();	// override (부모클래스와 같은 함수이름, 로직을 다르게 구현하고 싶을 때)

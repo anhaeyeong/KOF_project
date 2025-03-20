@@ -2,6 +2,7 @@
 #include "CommonFunction.h"
 #include "Image.h"
 #include "KOF_Iori.h"
+#include "Character.h"
 
 /*
 	실습1. 이오리 집에 보내기
@@ -23,7 +24,7 @@ void MainGame::Init()
 			TEXT("Image/backGround.bmp 생성 실패"), TEXT("경고"), MB_OK);
 	}
 
-	iori = new KOF_Iori();
+	iori = new Character();
 	iori->Init();
 }
 
@@ -70,6 +71,11 @@ void MainGame::Render(HDC hdc)
 	wsprintf(szText, TEXT("Mouse X : %d, Y : %d"), mousePosX, mousePosY);
 	TextOut(hBackBufferDC, 20, 60, szText, wcslen(szText));
 
+	wsprintf(szText, TEXT("ani : %d"), iori->GetAnimationFrame());
+	TextOut(hBackBufferDC, 200, 60, szText, wcslen(szText));
+	wsprintf(szText, TEXT("frame : %d"), iori->GetFrame());
+	TextOut(hBackBufferDC, 400, 60, szText, wcslen(szText));
+
 	// 백버퍼에 있는 내용을 메인 hdc에 복사
 	backBuffer->Render(hdc);
 }
@@ -79,7 +85,7 @@ LRESULT MainGame::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 	switch (iMessage)
 	{
 	case WM_CREATE:
-		hTimer = (HANDLE)SetTimer(hWnd, 0, 10, NULL);
+		hTimer = (HANDLE)SetTimer(hWnd, 0, 100, NULL);
 
 		break;
 	case WM_TIMER:

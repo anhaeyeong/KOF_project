@@ -134,10 +134,11 @@ void Image::Render(HDC hdc, int destX, int destY)
     }
 }
 
-void Image::Render(HDC hdc, int destX, int destY, int frameIndex, bool isFlip)
+void Image::Render(HDC hdc, int destX, int destY, int frameIndex, int width, int height, bool isFlip)
 {
     imageInfo->currFrameX = frameIndex;
-
+    int srcX = destX - width / 2;
+    int srcY = destY - height / (2);
     if (isFlip && isTransparent)
     {
         StretchBlt(imageInfo->hTempDC, 0, 0,
@@ -150,7 +151,7 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex, bool isFlip)
         );
 
         GdiTransparentBlt(hdc,
-            destX, destY,
+            srcX, srcY,
             imageInfo->frameWidth, imageInfo->frameHeight,
 
             imageInfo->hTempDC,
@@ -161,8 +162,8 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex, bool isFlip)
     else if (isTransparent)
     {
         GdiTransparentBlt(hdc,
-            destX, destY,
-            imageInfo->frameWidth, imageInfo->frameHeight,
+            srcX, srcY,
+            width, height,
 
             imageInfo->hMemDC,
             imageInfo->frameWidth * imageInfo->currFrameX,
@@ -174,7 +175,7 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex, bool isFlip)
     {
         BitBlt(
             hdc,
-            destX, destY,
+            srcX, srcY,
             imageInfo->width / 9,
             imageInfo->height,
             imageInfo->hMemDC,
