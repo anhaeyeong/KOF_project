@@ -103,7 +103,7 @@ void Clark::Render(HDC hdc)
 		switch (actType)
 		{
 		case BIG_KICK:
-			animImages[ActType::BIG_KICK]->Render(hdc, pos.x + 40, pos.y - 18, animationFrame, 
+			animImages[ActType::BIG_KICK]->Render(hdc, pos.x - 20, pos.y - 18, animationFrame, 
 				bigKickModifiedWidth, 
 				bigKickModifiedHeight,
 				isFlip);

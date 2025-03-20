@@ -4,7 +4,6 @@
 class Image;
 class KOF_Iori;
 class Character;
-class Ryo;
 class MainGame : public GameObject
 {
 private:
