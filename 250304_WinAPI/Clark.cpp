@@ -69,6 +69,21 @@ void Clark::Init()
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
 
 	attackRC = GetRectAtCenter(-10, -10, 10, 20); //렉트 조정
+
+	moveModifiedWidth = width * animImages[ActType::MOVE]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
+	moveModifiedHeight = height * animImages[ActType::MOVE]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight;
+
+	smallPunchModifiedWidth = width * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
+	smallPunchModifiedHeight = height * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight;
+
+	bigPunchModifiedWidth = width * animImages[ActType::BIG_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
+	bigPunchModifiedHeight = (height * animImages[ActType::BIG_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight) - 5;
+
+	smallKickModifiedWidth = width * animImages[ActType::SMALL_KICK]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
+	smallKickModifiedHeight = height * animImages[ActType::SMALL_KICK]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight;
+
+	bigKickModifiedWidth = width * animImages[ActType::BIG_KICK]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth;
+	bigKickModifiedHeight = height * animImages[ActType::BIG_KICK]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight;
 }
 
 void Clark::Render(HDC hdc)
@@ -78,8 +93,8 @@ void Clark::Render(HDC hdc)
 	}
 	if (_state == State::MOVE)
 		animImages[ActType::MOVE]->Render(hdc, pos.x-30, pos.y-5, animationFrame, 
-			width * animImages[ActType::MOVE]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth,
-			height * animImages[ActType::MOVE]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight,
+			moveModifiedWidth,
+			moveModifiedHeight,
 			isFlip);
 
 	if (_state == State::ATTACK)
@@ -89,29 +104,29 @@ void Clark::Render(HDC hdc)
 		{
 		case BIG_KICK:
 			animImages[ActType::BIG_KICK]->Render(hdc, pos.x + 40, pos.y - 18, animationFrame, 
-				width*animImages[ActType::BIG_KICK]->GetImageInfo()->frameWidth/ animImages[ActType::IDLE]->GetImageInfo()->frameWidth, 
-				height* animImages[ActType::BIG_KICK]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight,
+				bigKickModifiedWidth, 
+				bigKickModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_KICK:
 			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x-80, pos.y +5, animationFrame, 
-				width * animImages[ActType::SMALL_KICK]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth,
-				height * animImages[ActType::SMALL_KICK]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight,
+				smallKickModifiedWidth,
+				smallKickModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case BIG_PUNCH:
 			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x - 60, pos.y-20, animationFrame,
-				width * animImages[ActType::BIG_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth,
-				(height * animImages[ActType::BIG_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight)-5,
+				bigPunchModifiedWidth,
+				bigPunchModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_PUNCH:
 			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x -62, pos.y, animationFrame,
-				width * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameWidth / animImages[ActType::IDLE]->GetImageInfo()->frameWidth,
-				height * animImages[ActType::SMALL_PUNCH]->GetImageInfo()->frameHeight / animImages[ActType::IDLE]->GetImageInfo()->frameHeight,
+				smallPunchModifiedWidth,
+				smallPunchModifiedHeight,
 				isFlip);
 			//smallPunchImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
