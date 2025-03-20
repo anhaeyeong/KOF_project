@@ -17,6 +17,11 @@ void Character::Init()
 
 void Character::Update()
 {
+	if (hp <= 0)
+	{
+		_state = State::DEAD;
+		return;
+	}
 	switch (team)
 	{
 	case Team::LEFT:
@@ -283,7 +288,11 @@ void Character::Release()
 	{
 		for (int i = 0; i < animImages.size(); i++)
 		{
-			animImages[i]->Release();
+			if (animImages[i])
+			{
+				animImages[i]->Release();
+				animImages[i] = nullptr;
+			}
 		}
 		animImages.clear();
 	}
