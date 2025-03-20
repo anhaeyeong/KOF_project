@@ -80,6 +80,12 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACKED:
+			animationFrame++;
+			if (animationFrame >= 12)
+			{
+				animationFrame = 0;
+				_state = State::IDLE;
+			}
 			break;
 		default:
 			break;
@@ -285,5 +291,15 @@ void Character::BigPunch()
 
 void Character::SmallPunch()
 {
+	
+}
+
+void Character::SetHP(int hp)
+{
+	this->hp = hp;
+	if(team == Team::LEFT)
+		UIManager::GetInstance()->UpdateHP(false, hp);
+	if (team == Team::RIGHT)
+		UIManager::GetInstance()->UpdateHP(true, hp);
 	
 }

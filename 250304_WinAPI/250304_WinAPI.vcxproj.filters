@@ -57,6 +57,9 @@
     <ClCompile Include="UIManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Clark.cpp">
+      <Filter>MainGame\KOF_Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Clark.h">
+      <Filter>MainGame\KOF_Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

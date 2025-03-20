@@ -191,7 +191,7 @@ void Image::RenderUI(HDC hdc, int destX, int destY, int width, int height, bool 
 {
     int srcX{ destX - width }, srcY{ destY };
 
-    if (isFlip && isTransparent)
+    if (isTransparent && isFlip)
     {
         SetStretchBltMode(imageInfo->hTempDC, COLORONCOLOR);
         StretchBlt(imageInfo->hTempDC, 0, 0,

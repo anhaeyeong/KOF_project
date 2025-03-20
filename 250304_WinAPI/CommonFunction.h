@@ -88,30 +88,3 @@ inline bool RectInRect(RECT rc1, RECT rc2)
 	}
 	return true;
 }
-
-inline void UpdateRect(RECT& rc, FPOINT pt)
-{
-	int width = rc.right - rc.left;
-	int height = rc.bottom - rc.top;
-
-	rc.left = pt.x - (width / 2);
-	rc.right = rc.left + width;
-	rc.top = pt.y - (height / 2);
-	rc.bottom = rc.top + height;
-}
-
-inline float GetAngle(FPOINT start, FPOINT end)
-{
-	float x = end.x - start.x;
-	float y = end.y - start.y;
-
-	 return -atan2f(y, x);	// ¶óµð¾È
-}
-
-inline float GetDistance(FPOINT p1, FPOINT p2)
-{
-	float x = p1.x - p2.x;
-	float y = p1.y - p2.y;
-
-	 return sqrtf(x * x + y * y);
-}

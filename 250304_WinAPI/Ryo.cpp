@@ -12,6 +12,7 @@ Ryo::~Ryo()
 
 void Ryo::Init()
 {
+	team = Team::LEFT;
 	pos.x = WINSIZE_X - 700;
 	pos.y = WINSIZE_Y - 150;
 	width = 100;
@@ -41,15 +42,14 @@ void Ryo::Init()
 	animImages.push_back(moveFowardImage);
 
 	Image* moveBackwardImage = new Image();
-	if (FAILED(moveBackwardImage->Init(TEXT("Ryo_Smove_Back.bmp"), 1047, 305, 6, 1, true, RGB(255, 0, 255))))
+	if (FAILED(moveBackwardImage->Init(TEXT("Image/Ryo_Smove_Back.bmp"), 1047, 305, 6, 1, true, RGB(255, 0, 255))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(moveBackwardImage);
 
-
 	animImages.push_back(nullptr);
-	animImages.push_back(nullptr);
+	//animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Ryo_high_kick.bmp"), 3843, 370, 10, 1, true, RGB(255, 0, 255))))
 	{

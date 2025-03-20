@@ -31,34 +31,41 @@ void CollisionManager::set(Character* player)
 {
 }
 
-bool CollisionManager::isAttacked(Character& atkplayer, Character& atkedplayer)
+void CollisionManager::isAttacked(Character* atkplayer)
 {
-	/*RECT atkRC = atkplayer.GetRect();
-	RECT atkedRC = atkedplayer.GetRect();
-	int atkDmg = atkplayer.GetDamage();
-	if (RectInRect(atkRC, atkedRC) && atkedplayer.GetState() != State::ATTACKED)
+	RECT atkRC = atkplayer->GetAttackRC();
+	if (atkplayer == pLeft)
 	{
-		if (atkedplayer.GetState() == STATE::DEFENSE)
+		RECT atkedRC = pRight->GetCharacterRC();
+		int atkDmg = pLeft->GetDamage();
+		if (RectInRect(atkRC, atkedRC))
 		{
-			if (atkplayer.GetIsFilp())
+			if (pRight->GetState() != State::ATTACKED)
 			{
-				atkedplayer.Move(-2, 0);
+				pRight->SetHP(pRight->GetCurHP() - atkDmg);
+				pRight->SetState(State::ATTACKED);
 			}
 			else
 			{
-				atkedplayer.Move(2, 0);
-			}
-			return false;
-		}
-		else
-		{
-			atkedplayer.SetHp(atkedplayer.GetHp() - atkDmg);
-			atkedplayer.SetState(STATE::ATTACKED);
 
-			return true;
+			}
 		}
-	}*/
-    return false;
+
+	}
+	else if (atkplayer == pRight)
+	{
+		RECT atkedRC = pLeft->GetCharacterRC();
+		int atkDmg = pRight->GetDamage();
+		if (RectInRect(atkRC, atkedRC))
+		{
+			if (pLeft->GetState() != State::ATTACKED)
+			{
+				pLeft->SetAnimationFrame(0);
+				pLeft->SetHP(pLeft->GetCurHP() - atkDmg);
+				pLeft->SetState(State::ATTACKED);
+			}
+		}
+	}
 }
 
 bool CollisionManager::isValidMove()

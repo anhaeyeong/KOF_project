@@ -15,6 +15,8 @@
 
 void MainGame::Init()
 {
+	UIManager::GetInstance()->Init();
+	
 	backBuffer = new Image();
 	if (FAILED(backBuffer->Init(WINSIZE_X, WINSIZE_Y)))
 	{
@@ -31,10 +33,10 @@ void MainGame::Init()
 	iori = new Mai();
 	iori->Init();
 
-	clark = new Clark();
+	clark = new Ryo();
 	clark->Init();
 
-	UIManager::GetInstance()->Init();
+	CollisionManager::GetInstance()->Init(clark, iori);
 }
 
 void MainGame::Release()
@@ -71,14 +73,20 @@ void MainGame::Release()
 void MainGame::Update()
 {
 	if (iori)
+	{
+		
 		iori->Update();
-
-
+	}
+	if (clark)
+	{
+		CollisionManager::GetInstance()->isAttacked(clark);
+		clark->Update();
+	}
 	backGroundFrame++;
 	if (backGroundFrame >= 36)	backGroundFrame = 0;
 
-	if (clark)
-		clark->Update();
+	
+		
 
 
 	InvalidateRect(g_hWnd, NULL, false);
