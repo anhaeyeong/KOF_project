@@ -28,8 +28,8 @@ public:
 		// 애니메이션 관련
 		int maxFrameX;
 		int maxFrameY;
-		int frameWidth;
-		int frameHeight;
+		float frameWidth;
+		float frameHeight;
 		int currFrameX;
 		int currFrameY;
 

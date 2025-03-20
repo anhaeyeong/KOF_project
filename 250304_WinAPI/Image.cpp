@@ -86,8 +86,8 @@ HRESULT Image::Init(const wchar_t* filePath, int width, int height, int maxFrame
 
     imageInfo->maxFrameX = maxFrameX;
     imageInfo->maxFrameY = maxFrameY;
-    imageInfo->frameWidth = width / maxFrameX;
-    imageInfo->frameHeight = height / maxFrameY;
+    imageInfo->frameWidth = (float)width / maxFrameX;
+    imageInfo->frameHeight = (float)height / maxFrameY;
     imageInfo->currFrameX = imageInfo->currFrameY = 0;
 
     imageInfo->hTempDC = CreateCompatibleDC(hdc);
