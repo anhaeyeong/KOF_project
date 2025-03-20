@@ -37,14 +37,14 @@ class Character
 {
 public:
 	Character();
-	~Character();
+	virtual ~Character();
 
 	virtual void Init();
 	void Update();
 	virtual void Render(HDC hdc);
 	void Release();
 
-	void Move(int dx, int dy);
+	virtual void Move(int dir);
 	FPOINT GetPos() { return pos; }
 
 	virtual void BigKick();
@@ -63,7 +63,7 @@ public:
 	State GetState() { return _state; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC ÇÊ¿ä
 
-private:
+protected:
 	FPOINT pos;
 	int width;
 	int height;
