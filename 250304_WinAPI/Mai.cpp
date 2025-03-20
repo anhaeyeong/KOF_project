@@ -18,7 +18,7 @@ void Mai::Init()
 	pos.y = WINSIZE_Y - 150;
 	width = 100;
 	height = 200;
-	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
+	characterRC = GetRectAtCenter(pos.x-20, pos.y, width, height);
 	animationFrame = 0;
 	maxIdlePrame = 12;
 	speed = 10;
@@ -157,6 +157,7 @@ void Mai::Move(int dir)
 		animationFrame = 0;
 	}
 		pos.x += dir * speed;
+		SetRectAtCenter(characterRC, pos.x-20, pos.y, width, height);
 	//pos.y += dy;
 	animationFrame++;
 }

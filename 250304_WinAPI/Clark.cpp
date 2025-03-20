@@ -10,7 +10,7 @@ void Clark::Init()
 	pos.y = WINSIZE_Y - 150;
 	width = 165;
 	height = 230;
-	characterRC = GetRectAtCenter(pos.x, pos.y, 100, 200);
+	characterRC = GetRectAtCenter(pos.x-20, pos.y, 100, 200);
 	animationFrame = 0;
 	speed = 10;
 	isFlip = false;
@@ -185,7 +185,7 @@ void Clark::Move(int dir)
 	if (canMove == false) return;
 	if (animationFrame >= 6)	animationFrame = 0;
 	pos.x += dir * speed;
-	SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
+	SetRectAtCenter(characterRC, pos.x-20, pos.y, 100, 200);
 	//pos.y += dy;
 	animationFrame++;
 }
