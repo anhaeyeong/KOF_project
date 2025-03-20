@@ -12,10 +12,11 @@ Character::~Character()
 
 void Character::Init()
 {
+	team = Team::LEFT;
 	pos.x = WINSIZE_X - 700;
 	pos.y = WINSIZE_Y - 150;
-	width = 100;
-	height = 200;
+	width = 150;
+	height = 250;
 	characterRC = GetRectAtCenter(pos.x - 20, pos.y, width - 50, height - 50);
 	animationFrame = 0;
 	speed = 10;
@@ -61,82 +62,170 @@ void Character::Init()
 
 void Character::Update()
 {
-	switch (_state)
+	switch (team)
 	{
-	case State::MOVE:
-		if (KeyManager::GetInstance()->IsStayKeyDown('D'))
+	case Team::LEFT:
+		switch (_state)
 		{
-			Move(10, 0);
-			//isFlip = false;
-		}
-		else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
-		{
-			Move(-10, 0);
-			//isFlip = true;
-		}
-		break;
-	case State::ATTACK:
-		animationFrame++;
-		switch (actType) {
-		case BIG_KICK:
-			BigKick();
+		case State::MOVE:
+			if (KeyManager::GetInstance()->IsStayKeyDown('D'))
+			{
+				Move(1);
+				//isFlip = false;
+			}
+			else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
+			{
+				Move(-1);
+				//isFlip = true;
+			}
 			break;
-		case SMALL_KICK:
-			SmallKick();
-			break;
-		case BIG_PUNCH:
+		case State::ATTACK:
+			animationFrame++;
+			switch (actType) {
+			case BIG_KICK:
+				BigKick();
+				break;
+			case SMALL_KICK:
+				SmallKick();
+				break;
+			case BIG_PUNCH:
 
+				break;
+			case SMALL_PUNCH:
+				SmallPunch();
+				break;
+			default:
+				break;
+			}
 			break;
-		case SMALL_PUNCH:
-			SmallPunch();
-			break;
-		default:
+		case State::ATTACKED:
 			break;
 		}
-		break;
-	case State::ATTACKED:
-		break;
-	}
 
-	if (KeyManager::GetInstance()->IsOnceKeyDown('U'))
-	{
-		if (_state == State::MOVE)
+		if (KeyManager::GetInstance()->IsOnceKeyDown('U'))
 		{
-			animationFrame = 0;
-			_state = State::ATTACK;
-			canMove = false;
-			actType = SMALL_PUNCH;
+			if (_state == State::MOVE)
+			{
+				animationFrame = 0;
+				_state = State::ATTACK;
+				canMove = false;
+				actType = SMALL_PUNCH;
+			}
 		}
-	}
-	if (KeyManager::GetInstance()->IsOnceKeyDown('I'))
-	{
-		if (_state == State::MOVE)
+		if (KeyManager::GetInstance()->IsOnceKeyDown('I'))
 		{
-			animationFrame = 0;
-			_state = State::ATTACK;
-			canMove = false;
-			actType = BIG_PUNCH;
+			if (_state == State::MOVE)
+			{
+				animationFrame = 0;
+				_state = State::ATTACK;
+				canMove = false;
+				actType = BIG_PUNCH;
+			}
 		}
-	}
-	if (KeyManager::GetInstance()->IsOnceKeyDown('J'))
-	{
-		if (_state == State::MOVE)
+		if (KeyManager::GetInstance()->IsOnceKeyDown('J'))
 		{
-			animationFrame = 0;
-			_state = State::ATTACK;
-			canMove = false;
-			actType = SMALL_KICK;
+			if (_state == State::MOVE)
+			{
+				animationFrame = 0;
+				_state = State::ATTACK;
+				canMove = false;
+				actType = SMALL_KICK;
+			}
 		}
-	}
-	if (KeyManager::GetInstance()->IsOnceKeyDown('K'))
-	{
-		if (_state == State::MOVE)
+		if (KeyManager::GetInstance()->IsOnceKeyDown('K'))
 		{
-			animationFrame = 0;
-			_state = State::ATTACK;
-			canMove = false;
-			actType = BIG_KICK;
+			if (_state == State::MOVE)
+			{
+				animationFrame = 0;
+				_state = State::ATTACK;
+				canMove = false;
+				actType = BIG_KICK;
+			}
 		}
+		break;
+	case Team::RIGHT:
+		switch (_state)
+		{
+		case State::MOVE:
+			if (KeyManager::GetInstance()->IsStayKeyDown(VK_LEFT))
+			{
+				Move(-1);
+				//isFlip = false;
+			}
+			else if (KeyManager::GetInstance()->IsStayKeyDown(VK_RIGHT))
+			{
+				Move(1);
+				//isFlip = true;
+			}
+			break;
+		case State::ATTACK:
+			animationFrame++;
+			switch (actType) {
+			case BIG_KICK:
+				BigKick();
+				break;
+			case SMALL_KICK:
+				SmallKick();
+				break;
+			case BIG_PUNCH:
+				BigPunch();
+				break;
+			case SMALL_PUNCH:
+				SmallPunch();
+				break;
+			default:
+				break;
+			}
+			break;
+		case State::ATTACKED:
+			break;
+		}
+
+		if (KeyManager::GetInstance()->IsOnceKeyDown('V'))
+		{
+			if (_state == State::MOVE)
+			{
+				animationFrame = 0;
+				_state = State::ATTACK;
+				canMove = false;
+				actType = SMALL_PUNCH;
+			}
+		}
+		if (KeyManager::GetInstance()->IsOnceKeyDown('B'))
+		{
+			if (_state == State::MOVE)
+			{
+				animationFrame = 0;
+				_state = State::ATTACK;
+				canMove = false;
+				actType = BIG_PUNCH;
+			}
+		}
+		if (KeyManager::GetInstance()->IsOnceKeyDown('N'))
+		{
+			if (_state == State::MOVE)
+			{
+				animationFrame = 0;
+				_state = State::ATTACK;
+				canMove = false;
+				actType = SMALL_KICK;
+			}
+		}
+		if (KeyManager::GetInstance()->IsOnceKeyDown('M'))
+		{
+			if (_state == State::MOVE)
+			{
+				animationFrame = 0;
+				_state = State::ATTACK;
+				canMove = false;
+				actType = BIG_KICK;
+			}
+		}
+		break;
+	default:
+
+		break;
+
 	}
 	
 }
@@ -180,7 +269,7 @@ void Character::Render(HDC hdc)
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
 		RenderRectAtCenter(hdc, pos.x - 20, pos.y, characterRC.right - characterRC.left, characterRC.bottom - characterRC.top);
-	if(attackRCactivated==true)
+	if(attackRCactivated==true && debugRender == true)
 		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 
 	SelectObject(hdc, oldBrush);
@@ -205,12 +294,12 @@ void Character::Release()
 	}*/
 }
 
-void Character::Move(int dx, int dy)
+void Character::Move(int dir)
 {
 	if (canMove == false) return;
 	if (animationFrame >= 5)	animationFrame = 0;
-	pos.x += dx;
-	pos.y += dy;
+	pos.x += dir*speed;
+	//pos.y += dy;
 	animationFrame++;
 }
 

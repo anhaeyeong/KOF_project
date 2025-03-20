@@ -10,6 +10,13 @@ enum class State
 	ATTACKED
 };
 
+typedef enum class Team
+{
+	NONE,
+	LEFT,
+	RIGHT
+}LR;
+
 enum ActType
 {
 	IDLE,
@@ -44,7 +51,7 @@ public:
 	virtual void Render(HDC hdc);
 	void Release();
 
-	void Move(int dx, int dy);
+	virtual void Move(int dir);
 	FPOINT GetPos() { return pos; }
 
 	virtual void BigKick();
@@ -63,7 +70,8 @@ public:
 	State GetState() { return _state; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC ÇÊ¿ä
 
-private:
+protected:
+	Team team{ Team::NONE };
 	FPOINT pos;
 	int width;
 	int height;
