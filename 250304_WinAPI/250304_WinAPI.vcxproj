@@ -129,26 +129,34 @@
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="KOF_Iori.cpp" />
+    <ClCompile Include="Mai.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
-    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="Ryo.cpp" />
+    <ClCompile Include="Tank.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CommonFunction.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="KOF_Iori.h" />
+    <ClInclude Include="Mai.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Missile.h" />
+    <ClInclude Include="Ryo.h" />
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="Tank.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
