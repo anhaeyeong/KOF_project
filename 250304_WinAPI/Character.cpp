@@ -159,17 +159,25 @@ void Character::Update()
 				animationFrame = 0;
 			}
 			animationFrame++;
-			break;
+			//break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsStayKeyDown(VK_LEFT))
 			{
+				
+				_state = State::MOVE;
 				Move(-1);
 				//isFlip = false;
 			}
 			else if (KeyManager::GetInstance()->IsStayKeyDown(VK_RIGHT))
 			{
+				
+				_state = State::MOVE;
 				Move(1);
 				//isFlip = true;
+			}
+
+			if (KeyManager::GetInstance()->IsOnceKeyUp(VK_LEFT) || KeyManager::GetInstance()->IsOnceKeyUp(VK_RIGHT)) {
+				_state = State::IDLE;
 			}
 			break;
 		case State::ATTACK:
