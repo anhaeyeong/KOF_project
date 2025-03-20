@@ -75,6 +75,7 @@ void MainGame::Update()
 	if (mai)
 	{
 		mai->Update();
+		// mai가 죽으면 null로 밀어주고 clark 생성
 		if (mai->GetState() == State::DEAD)
 		{
 			mai->Release();
@@ -117,7 +118,10 @@ void MainGame::Render(HDC hdc)
 
 	backGround->RenderBackGround(hBackBufferDC, backGroundFrame);
 	if (mai) mai->Render(hBackBufferDC);
-	if (ryo) ryo->Render(hBackBufferDC);
+	if (ryo)
+	{
+		ryo->Render(hBackBufferDC);
+	}
 	if (clark) clark->Render(hBackBufferDC);
 
 	UIManager::GetInstance()->Render(hBackBufferDC);

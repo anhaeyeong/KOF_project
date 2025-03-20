@@ -75,6 +75,14 @@ void Mai::Init()
 		MessageBox(g_hWnd, TEXT("Mai_Wpunch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(smallPunchImage);
+	animImages.push_back(nullptr);
+
+	Image* attackedImage = new Image();
+	if (FAILED(attackedImage->Init(TEXT("Image/Mai_Attacked.bmp"), 480, 99, 6, 1, true, RGB(255, 0, 255)))) // 326, 370
+	{
+		MessageBox(g_hWnd, TEXT("Mai_Attacked.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(attackedImage);
 
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
@@ -128,6 +136,10 @@ void Mai::Render(HDC hdc)
 			//smallPunchImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		}
+	}
+	if (_state == State::ATTACKED)
+	{
+		animImages[ActType::ATTACKED]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, isFlip);
 	}
 
 	// state에 따른 이미지 렌더링
