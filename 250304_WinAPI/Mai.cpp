@@ -25,6 +25,7 @@ void Mai::Init()
 	isFlip = false;
 	isLeft = true;
 	_state = State::IDLE;
+	actType = IDLE;
 	canMove = true;
 
 	//animImages.resize(9);
@@ -35,13 +36,19 @@ void Mai::Init()
 		MessageBox(g_hWnd, TEXT("Image/Mai_Endle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(IdleImage);
-	Image* characterImage = new Image();
-	if (FAILED(characterImage->Init(TEXT("Image/Mai_Smove_Front.bmp"), 1901, 300, 6, 1, true, RGB(255, 0, 255)))) // 316, 300
+	Image* moveFowardImage = new Image();
+	if (FAILED(moveFowardImage->Init(TEXT("Image/Mai_Smove_Front.bmp"), 1901, 300, 6, 1, true, RGB(255, 0, 255)))) // 316, 300
 	{
 		MessageBox(g_hWnd, TEXT("Image/Mai_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(characterImage);
-	animImages.push_back(nullptr); // Move_B
+	animImages.push_back(moveFowardImage);
+
+	Image* moveBackwardImage = new Image();
+	if (FAILED(moveBackwardImage->Init(TEXT("Image/Mai_Smove_Back.bmp"), 1677, 300, 6, 1, true, RGB(255, 0, 255)))) // 316, 300
+	{
+		MessageBox(g_hWnd, TEXT("Mai_Smove_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(moveBackwardImage);
 	animImages.push_back(nullptr); // Dead
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Mai_Highkick.bmp"), 2163, 412, 6, 1, true, RGB(255, 0, 255)))) // 360, 412
@@ -79,18 +86,18 @@ void Mai::Render(HDC hdc)
 {
 	if (_state == State::IDLE)
 	{
-		animImages[ActType::IDLE]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, isFlip);
+		animImages[ActType::IDLE]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, !isFlip);
 	}
 	if (_state == State::MOVE)
 	{
 		switch (actType)
 		{
 		case MOVE_F:
-			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, isFlip);
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, !isFlip);
 			break;
 
 		case MOVE_B:
-			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, isFlip);
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 85), height - 10, !isFlip);
 			break;
 		}
 	}
@@ -101,19 +108,19 @@ void Mai::Render(HDC hdc)
 		switch (actType)
 		{
 		case BIG_KICK:
-			animImages[ActType::BIG_KICK]->Render(hdc, pos.x - 45, pos.y - 3, animationFrame, (width + 97), (height + 10), isFlip);
+			animImages[ActType::BIG_KICK]->Render(hdc, pos.x - 45, pos.y - 3, animationFrame, (width + 97), (height + 10), !isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_KICK:
-			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 50, pos.y - 8, animationFrame, (width + 93), (height + 20), isFlip);
+			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 50, pos.y - 8, animationFrame, (width + 93), (height + 20), !isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case BIG_PUNCH:
-			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x - 100, pos.y - 8, animationFrame, (width + 110), (height + 15), isFlip);
+			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x - 100, pos.y - 8, animationFrame, (width + 110), (height + 15), !isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_PUNCH:
-			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x - 70, pos.y + 2, animationFrame, (width + 90), (height - 5), isFlip);
+			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x - 70, pos.y + 2, animationFrame, (width + 90), (height - 5), !isFlip);
 			//smallPunchImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		}
@@ -137,6 +144,8 @@ void Mai::Render(HDC hdc)
 
 void Mai::Move(int dir)
 {
+	_state = State::MOVE;
+
 	if (canMove == false) return;
 	
 	if (animationFrame >= 5)

@@ -30,6 +30,7 @@ void MainGame::Init()
 
 	iori = new Mai();
 	iori->Init();
+
 	clark = new Clark();
 	clark->Init();
 

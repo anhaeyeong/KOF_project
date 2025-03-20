@@ -16,6 +16,7 @@ void Clark::Init()
 	isFlip = true;
 	isLeft = true;
 	_state = State::IDLE;
+	actType = IDLE;
 	canMove = true;
 	maxIdlePrame = 19;
 
