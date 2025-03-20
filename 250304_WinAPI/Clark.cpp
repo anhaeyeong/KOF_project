@@ -5,15 +5,15 @@
 
 void Clark::Init()
 {
-	team = Team::LEFT;
+	team = Team::RIGHT;
 	pos.x = WINSIZE_X - 300;
 	pos.y = WINSIZE_Y - 150;
 	width = 165;
 	height = 230;
-	characterRC = GetRectAtCenter(pos.x-20, pos.y, 100, 200);
+	characterRC = GetRectAtCenter(pos.x, pos.y, 100, 200);
 	animationFrame = 0;
 	speed = 10;
-	isFlip = false;
+	isFlip = true;
 	isLeft = true;
 	_state = State::IDLE;
 	actType = IDLE;
@@ -102,7 +102,7 @@ void Clark::Init()
 void Clark::Render(HDC hdc)
 {
 	if (_state == State::IDLE) {
-		animImages[ActType::IDLE]->Render(hdc, pos.x - 20 + modifyingValue * idleModifiedX, pos.y - 5, animationFrame, width, height, isFlip);
+		animImages[ActType::IDLE]->Render(hdc, pos.x + modifyingValue * idleModifiedX, pos.y - 5, animationFrame, width, height, isFlip);
 		/*switch (isFlip) {
 		case true:
 			animImages[ActType::IDLE]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
@@ -118,13 +118,13 @@ void Clark::Render(HDC hdc)
 		switch (actType)
 		{
 		case MOVE_F:
-			animImages[ActType::MOVE_F]->Render(hdc, pos.x - 20 + modifyingValue * idleModifiedX, pos.y - 5, animationFrame,
+			animImages[ActType::MOVE_F]->Render(hdc, pos.x + modifyingValue * idleModifiedX, pos.y - 5, animationFrame,
 				moveModifiedWidth,
 				moveModifiedHeight,
 				isFlip);
 			break;
 		case MOVE_B:
-			animImages[ActType::MOVE_B]->Render(hdc, pos.x - 20 + modifyingValue * idleModifiedX, pos.y - 5, animationFrame,
+			animImages[ActType::MOVE_B]->Render(hdc, pos.x + modifyingValue * idleModifiedX, pos.y - 5, animationFrame,
 				moveBModifiedWidth,
 				moveBModifiedHeight,
 				isFlip);
@@ -138,28 +138,28 @@ void Clark::Render(HDC hdc)
 		switch (actType)
 		{
 		case BIG_KICK:
-			animImages[ActType::BIG_KICK]->Render(hdc, pos.x - 15 + modifyingValue * bigKickModifiedX, pos.y - 18, animationFrame,
+			animImages[ActType::BIG_KICK]->Render(hdc, pos.x +5 + modifyingValue * bigKickModifiedX, pos.y - 18, animationFrame,
 				bigKickModifiedWidth,
 				bigKickModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_KICK:
-			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 20 + modifyingValue * smallKickModifiedX, pos.y, animationFrame,
+			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x  + modifyingValue * smallKickModifiedX, pos.y, animationFrame,
 				smallKickModifiedWidth,
 				smallKickModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case BIG_PUNCH:
-			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x - 25 + modifyingValue * bigPunchModifiedX, pos.y - 20, animationFrame,
+			animImages[ActType::BIG_PUNCH]->Render(hdc, pos.x -5 + modifyingValue * bigPunchModifiedX, pos.y - 20, animationFrame,
 				bigPunchModifiedWidth,
 				bigPunchModifiedHeight,
 				isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_PUNCH:
-			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x - 13 + modifyingValue * smallPunchModifiedX, pos.y, animationFrame,
+			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x +7 + modifyingValue * smallPunchModifiedX, pos.y, animationFrame,
 				smallPunchModifiedWidth,
 				smallPunchModifiedHeight,
 				isFlip);
@@ -185,7 +185,7 @@ void Clark::Move(int dir)
 	if (canMove == false) return;
 	if (animationFrame >= 6)	animationFrame = 0;
 	pos.x += dir * speed;
-	SetRectAtCenter(characterRC, pos.x-20, pos.y, 100, 200);
+	SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
 	//pos.y += dy;
 	animationFrame++;
 }
@@ -194,17 +194,21 @@ void Clark::BigKick()
 {
 	if (isFlip == true) {
 		pos.x -= 17;
+		SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
 	}
-	else pos.x += 17;
+	else {
+		pos.x += 17;
+		SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
+	}
 
 	if (animationFrame >= 5 && animationFrame <= 7) {
 		attackRCactivated = true;
 		nowAttDamage = bigAttDamage;
 
 		if (isFlip == true) {
-			SetRectAtCenter(attackRC, pos.x - 40, pos.y - 70, 80, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x-70, pos.y - 70, 100, 40); //렉트 조정
 		}
-		else SetRectAtCenter(attackRC, pos.x + 70, pos.y - 70, 80, 40); //렉트 조정
+		else SetRectAtCenter(attackRC, pos.x + 90, pos.y - 70, 100, 40); //렉트 조정
 
 	}
 
@@ -237,10 +241,10 @@ void Clark::SmallKick()
 
 		switch (isFlip) {
 		case true:
-			SetRectAtCenter(attackRC, pos.x - 70, pos.y, 30, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x - 50, pos.y, 30, 40); //렉트 조정
 			break;
 		case false:
-			SetRectAtCenter(attackRC, pos.x + 35, pos.y, 30, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 55, pos.y, 30, 40); //렉트 조정
 			break;
 		}
 
@@ -270,10 +274,10 @@ void Clark::BigPunch()
 
 		switch (isFlip) {
 		case true:
-			SetRectAtCenter(attackRC, pos.x - 110, pos.y - 40, 70, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x - 90, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		case false:
-			SetRectAtCenter(attackRC, pos.x + 50, pos.y - 40, 70, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 70, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		}
 
@@ -301,10 +305,10 @@ void Clark::SmallPunch()
 
 		switch (isFlip) {
 		case true:
-			SetRectAtCenter(attackRC, pos.x - 85, pos.y - 40, 70, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x - 65, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		case false:
-			SetRectAtCenter(attackRC, pos.x + 60, pos.y - 40, 70, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 80, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		}
 
