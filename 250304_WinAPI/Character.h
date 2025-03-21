@@ -69,7 +69,7 @@ public:
 	void SetState(State state) { this->_state = state; }
 	void SetAnimationFrame(int f) { this->animationFrame = f; }
 	void SetIsAttacked(bool isAttacked) { this->isAttacked = isAttacked; }
-	void MovedByEnemy();
+	virtual void MovedByEnemy();
 	// SetHP, SetDamage, SetState ÇÊ¿ä
 
 	int GetAnimationFrame() { return animationFrame; }

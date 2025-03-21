@@ -37,7 +37,7 @@ void MainGame::Init()
 	clark = new Mai();
 	clark->Init();
 
-	CollisionManager::GetInstance()->Init(clark, iori);
+	CollisionManager::GetInstance()->Init(iori, clark); // (pLeft, pRight)
 }
 
 void MainGame::Release()

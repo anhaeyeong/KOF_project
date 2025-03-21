@@ -41,7 +41,13 @@ void Iori::Init()
 	}
 	
 	animImages.push_back(characterImage);
-	animImages.push_back(nullptr); // move_B
+	Image* characterImage_b = new Image();
+	if (FAILED(characterImage_b->Init(TEXT("Image/Iori_move_Front.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Iori_move_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+
+	animImages.push_back(characterImage_b);
 	animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Iori_high_kick.bmp"), 1400, 105, 10, 1, true, RGB(255, 0, 255))))
