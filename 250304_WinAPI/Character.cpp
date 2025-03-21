@@ -17,10 +17,6 @@ void Character::Init()
 
 void Character::Update()
 {
-	if (hp <= 0)
-	{
-		_state = State::DEAD;
-	}
 	switch (team)
 	{
 	case Team::LEFT:
@@ -28,7 +24,11 @@ void Character::Update()
 		{
 			if (KeyManager::GetInstance()->IsStayKeyDown('D'))
 			{
-				Move(1);
+				if (_state != State::ATTACKED)
+				{
+					direction = 1;
+					Move(direction);
+				}
 				switch (isFlip) {
 				case true:
 					actType = MOVE_B;
@@ -40,7 +40,11 @@ void Character::Update()
 			}
 			else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
 			{
-				Move(-1);
+				if (_state != State::ATTACKED)
+				{
+					direction = -1;
+					Move(direction);
+				}
 				switch (isFlip) {
 				case true:
 					actType = MOVE_F;
@@ -55,7 +59,7 @@ void Character::Update()
 		{
 		case State::IDLE:
 			animationFrame++;
-			if (animationFrame >= maxIdlePrame)	animationFrame = 0;
+			if (animationFrame >= maxIdleFrame)	animationFrame = 0;
 			break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsOnceKeyUp('D') || KeyManager::GetInstance()->IsOnceKeyUp('A'))
@@ -88,18 +92,18 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACKED:
-
-			//if(animationFrame == 0) canMove = false;
 			animationFrame++;
-			MovedByEnemy(5);
-			if (animationFrame >= 9)
+			if (animationFrame < 4)
+				MovedByEnemy(6);
+			if (animationFrame >= 12)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
-				canMove = true;
+				SetCanMove(true);
 			}
 			break;
+
 		case State::GUARD:
 			actType = GUARD;
 			animationFrame++;
@@ -115,6 +119,7 @@ void Character::Update()
 			break;
 		case State::DEAD:
 			animationFrame++;
+
 		default:
 			break;
 		}
@@ -167,8 +172,11 @@ void Character::Update()
 		{
 			if (KeyManager::GetInstance()->IsStayKeyDown(VK_RIGHT))
 			{
-					
-				Move(1);
+				if (_state != State::ATTACKED)
+				{
+					direction = 1;
+					Move(direction);
+				}
 				switch (isFlip) {
 				case true:
 					actType = MOVE_B;
@@ -181,7 +189,11 @@ void Character::Update()
 			else if (KeyManager::GetInstance()->IsStayKeyDown(VK_LEFT))
 			{
 				
-				Move(-1);
+				if (_state != State::ATTACKED)
+				{
+					direction = -1;
+					Move(direction);
+				}
 				switch (isFlip) {
 				case true:
 					actType = MOVE_F;
@@ -196,7 +208,7 @@ void Character::Update()
 		{
 		case State::IDLE:
 			animationFrame++;
-			if (animationFrame >= maxIdlePrame)	animationFrame = 0;
+			if (animationFrame >= maxIdleFrame)	animationFrame = 0;
 			break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsOnceKeyUp(VK_RIGHT) || KeyManager::GetInstance()->IsOnceKeyUp(VK_LEFT))
@@ -229,16 +241,15 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACKED:
-			//if (animationFrame == 0) canMove = false;
 			animationFrame++;
-
-			MovedByEnemy(5);
-			if (animationFrame >= 6)
+			if(animationFrame < 4)
+				MovedByEnemy(6);
+			if (animationFrame >= 12)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
-				canMove = true;
+				SetCanMove(true);
 			}
 			break;
 		case State::GUARD:
@@ -325,11 +336,7 @@ void Character::Release()
 	{
 		for (int i = 0; i < animImages.size(); i++)
 		{
-			if (animImages[i])
-			{
-				animImages[i]->Release();
-				animImages[i] = nullptr;
-			}
+			animImages[i]->Release();
 		}
 		animImages.clear();
 	}
@@ -381,7 +388,6 @@ void Character::IsFlipToModifyingValue()
 	}
 }
 
-
 void Character::MovedByEnemy()
 {
 	if (team == Team::LEFT)
@@ -396,7 +402,6 @@ void Character::MovedByEnemy()
 	}
 }
 
-
 void Character::MovedByEnemy(int speed)
 {
 	if (team == Team::LEFT)
@@ -410,4 +415,3 @@ void Character::MovedByEnemy(int speed)
 		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
 	}
 }
-

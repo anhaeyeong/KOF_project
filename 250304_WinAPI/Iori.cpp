@@ -19,7 +19,8 @@ void Iori::Init()
 	height = 200;
 	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
 	animationFrame = 0;
-	maxIdlePrame = 9;
+	maxIdleFrame = 9;
+	maxAttackedFrame = 4;
 	speed = 10;
 	isFlip = false;
 	isLeft = true;
@@ -43,7 +44,7 @@ void Iori::Init()
 	
 	animImages.push_back(characterImage);
 	Image* characterImage_b = new Image();
-	if (FAILED(characterImage_b->Init(TEXT("Image/Iori_move_Back.bmp"), 630, 106, 9, 1, true, RGB(255, 0, 254))))
+	if (FAILED(characterImage_b->Init(TEXT("Image/Iori_move_Back.bmp"), 630, 106, 9, 1, true, RGB(0, 255, 123))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_move_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
@@ -51,7 +52,7 @@ void Iori::Init()
 	animImages.push_back(characterImage_b);
 
 	Image* deadImg = new Image();
-	if (FAILED(deadImg->Init(TEXT("Image/Iori_Dead.bmp"), 1410, 112, 10, 1, true, RGB(255, 0, 255))))
+	if (FAILED(deadImg->Init(TEXT("Image/Iori_Dead.bmp"), 1410, 112, 10, 1, true, RGB(0, 255, 123))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_Dead.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
@@ -85,6 +86,7 @@ void Iori::Init()
 		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(smallPunchImage);
+	animImages.push_back(nullptr);
 
 	Image* guardImage = new Image();
 	if (FAILED(guardImage->Init(TEXT("Image/Iori_idle.bmp"), 612, 96, 9, 1, true, RGB(255, 0, 255))))
@@ -144,6 +146,10 @@ void Iori::Render(HDC hdc)
 			break;
 		}
 	}
+	if (_state == State::ATTACKED)
+		animImages[ActType::ATTACKED]->Render(hdc, pos.x, pos.y - 15, animationFrame, width + 60, height + 30, isFlip);
+	if (_state == State::DEAD)
+		animImages[ActType::DEAD]->Render(hdc, pos.x, pos.y - 15, animationFrame, width + 120, height + 30, isFlip);
 
 	if (_state == State::GUARD)
 
@@ -159,7 +165,7 @@ void Iori::Render(HDC hdc)
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
-		RenderRectAtCenter(hdc, pos.x, pos.y, characterRC.right - characterRC.left, characterRC.bottom - characterRC.top);
+		RenderRectAtCenter(hdc, pos.x, pos.y, width, height);
 	if (attackRCactivated == true)
 		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 
@@ -175,7 +181,6 @@ void Iori::Move(int dir)
 	if (CollisionManager::GetInstance()->isValidMove(this))
 	{
 		pos.x += dir * speed;
-
 	}
 	SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
 	//pos.y += dy;

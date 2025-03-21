@@ -69,12 +69,10 @@ public:
 	void SetState(State state) { this->_state = state; }
 	void SetAnimationFrame(int f) { this->animationFrame = f; }
 	void SetIsAttacked(bool isAttacked) { this->isAttacked = isAttacked; }
-
-	inline void SetCanMove(bool _canMove) { this->canMove = _canMove; }
-	//inline void SetAttackActivated(bool _attackRCactivated) { this->attackRCactivated = _attackRCactivated; }
+	void SetCanMove(bool canMove) { this->canMove = canMove; }
+	void IsFlipToModifyingValue();
 	virtual void MovedByEnemy();
 	virtual void MovedByEnemy(int speed);
-
 	// SetHP, SetDamage, SetState 필요
 
 	int GetAnimationFrame() { return animationFrame; }
@@ -86,11 +84,10 @@ public:
 	int GetDamage() { return nowAttDamage; }
 	bool GetAttackActivated() { return this->attackRCactivated; }
 	bool GetIsAttacked() { return this->isAttacked; }
-	bool GetSpeed() { return this->speed; }
+	bool GetSpeed() { return this->speed;}
 	inline ActType GetActType() { return actType; }
+	int GetDirection() { return this->direction; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
-
-	void IsFlipToModifyingValue();
 
 protected:
 
@@ -106,6 +103,8 @@ protected:
 	bool attackRCactivated{ false };
 	bool isAttacked{ false };
 	RECT characterRC;
+	int direction{ 0 };
+
 	// hp, damage 필요
 
 	//at attackType{ NONE };
@@ -115,9 +114,10 @@ protected:
 	vector<Image*> animImages;
 	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
 	int animationFrame;
-	int maxIdlePrame;
+	int maxIdleFrame;
 	int maxGuardFrame;
 	int modifyingValue{ 0 };
+	int maxAttackedFrame;
 
 	int frameCount{ 0 };
 

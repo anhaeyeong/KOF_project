@@ -19,7 +19,8 @@ void Ryo::Init()
 	height = 200;
 	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
 	animationFrame = 0;
-	maxIdlePrame = 10;
+	maxIdleFrame = 10;
+	maxAttackedFrame = 9;
 	maxGuardFrame = 4;
 	speed = 10;
 	isFlip = false;

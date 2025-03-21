@@ -12,13 +12,14 @@ void Clark::Init()
 	height = 230;
 	characterRC = GetRectAtCenter(pos.x, pos.y, 100, 200);
 	animationFrame = 0;
+	maxAttackedFrame = 5;
 	speed = 10;
 	isFlip = true;
 	isLeft = true;
 	_state = State::IDLE;
 	actType = IDLE;
 	canMove = true;
-	maxIdlePrame = 19;
+	maxIdleFrame = 19;
 	maxGuardFrame = 8;
 
 	IsFlipToModifyingValue();

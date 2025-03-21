@@ -20,8 +20,11 @@ void Mai::Init()
 	height = 200;
 	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
 	animationFrame = 0;
-	maxIdlePrame = 12;
+
+	maxIdleFrame = 12;
 	maxGuardFrame = 6;
+	maxAttackedFrame = 6;
+
 	speed = 10;
 	isFlip = true;
 	isLeft = true;
@@ -121,7 +124,7 @@ void Mai::Render(HDC hdc)
 			break;
 		}
 	}
-		
+
 	if (_state == State::ATTACK)
 
 	{
@@ -132,7 +135,7 @@ void Mai::Render(HDC hdc)
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case SMALL_KICK:
-			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 30, pos.y - 8, animationFrame, (width + 93), (height + 20), !isFlip);			
+			animImages[ActType::SMALL_KICK]->Render(hdc, pos.x - 30, pos.y - 8, animationFrame, (width + 93), (height + 20), !isFlip);
 			//bigKickImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		case BIG_PUNCH:
@@ -190,7 +193,7 @@ void Mai::Move(int dir)
 	if (CollisionManager::GetInstance()->isValidMove(this))
 	{
 		pos.x += dir * speed;
-		
+
 	}
 	SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
 
@@ -208,7 +211,7 @@ void Mai::BigKick()
 			SetRectAtCenter(attackRC, pos.x - 90, pos.y - 15, 80, 40); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
-		
+
 	}
 
 	else if (animationFrame < 6 && animationFrame > 4)
@@ -242,7 +245,7 @@ void Mai::SmallKick()
 			SetRectAtCenter(attackRC, pos.x - 90, pos.y, 80, 40); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
-		
+
 	}
 
 	else if (animationFrame < 6 && animationFrame > 2)
@@ -274,7 +277,7 @@ void Mai::BigPunch()
 			SetRectAtCenter(attackRC, pos.x - 130, pos.y + 70, 120, 60); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
-		
+
 	}
 
 	else if (animationFrame < 5 && animationFrame > 2)
@@ -306,7 +309,7 @@ void Mai::SmallPunch()
 			SetRectAtCenter(attackRC, pos.x - 100, pos.y + 20, 80, 40); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
-		
+
 	}
 	else if (animationFrame >= 4)
 	{
