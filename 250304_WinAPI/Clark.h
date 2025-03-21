@@ -8,19 +8,19 @@ class Clark : public Character
 private:
 	//좌표 조정값
 	const int idleModifiedX{ 10 };
-	int idleModifiedY;
+	//int idleModifiedY;
 
 	const int smallPunchModifiedX{ 49 };
-	int smallPunchModifiedY;
+	//int smallPunchModifiedY;
 
 	const int bigPunchModifiedX{ 35 };
-	int bigPunchModifiedY;
+	//int bigPunchModifiedY;
 
 	const int smallKickModifiedX{ 70 };
-	int smallKickModifiedY;
+	//int smallKickModifiedY;
 
 	const int bigKickModifiedX{ 5 };
-	int bigKickModifiedY;
+	//int bigKickModifiedY;
 
 	//너비, 높이 조정값
 	int moveModifiedWidth;
