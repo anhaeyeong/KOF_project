@@ -76,7 +76,7 @@ void MainGame::Update()
 	{
 		mai->Update();
 		// mai가 죽으면 null로 밀어주고 clark 생성
-		if (mai->GetState() == State::DEAD)
+		if (mai->GetState() == State::DEAD && mai->GetAnimationFrame() == 10)
 		{
 			mai->Release();
 			delete mai;

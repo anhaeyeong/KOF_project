@@ -20,7 +20,6 @@ void Character::Update()
 	if (hp <= 0)
 	{
 		_state = State::DEAD;
-		return;
 	}
 	switch (team)
 	{
@@ -100,7 +99,7 @@ void Character::Update()
 			}
 			break;
 		case State::DEAD:
-			
+			animationFrame++;
 		default:
 			break;
 		}
@@ -225,6 +224,8 @@ void Character::Update()
 				canMove = true;;
 			}
 			break;
+		case State::DEAD:
+			animationFrame++;
 		default:
 			break;
 		}
