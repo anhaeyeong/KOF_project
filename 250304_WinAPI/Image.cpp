@@ -247,9 +247,9 @@ void Image::RenderBackGround(HDC hdc, int frameIndex)
         WINSIZE_X,
         WINSIZE_Y,
         imageInfo->hMemDC,
-        0,
+        201,
         imageInfo->frameHeight * frameIndex,
-        imageInfo->width, imageInfo->frameHeight,
+        imageInfo->width-402, imageInfo->frameHeight,
         SRCCOPY
     );
 }
