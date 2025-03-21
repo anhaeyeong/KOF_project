@@ -41,7 +41,6 @@ void CollisionManager::isAttacked(Character* atkplayer)
 		int atkDmg = pLeft->GetDamage();
 		if (RectInRect(atkRC, atkedRC))
 		{
-			
 			if (!pRight->GetIsAttacked() && pRight->GetState() != State::ATTACKED)
 			{
 				pRight->SetAnimationFrame(0);

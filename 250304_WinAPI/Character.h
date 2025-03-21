@@ -70,6 +70,7 @@ public:
 	void SetAnimationFrame(int f) { this->animationFrame = f; }
 	void SetIsAttacked(bool isAttacked) { this->isAttacked = isAttacked; }
 	virtual void MovedByEnemy();
+	virtual void MovedByEnemy(int speed);
 	// SetHP, SetDamage, SetState ÇÊ¿ä
 
 	int GetAnimationFrame() { return animationFrame; }

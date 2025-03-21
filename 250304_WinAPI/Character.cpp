@@ -85,6 +85,7 @@ void Character::Update()
 			break;
 		case State::ATTACKED:
 			animationFrame++;
+			MovedByEnemy(5);
 			if (animationFrame >= 12)
 			{
 				animationFrame = 0;
@@ -207,6 +208,7 @@ void Character::Update()
 			break;
 		case State::ATTACKED:
 			animationFrame++;
+			MovedByEnemy(5);
 			if (animationFrame >= 12)
 			{
 				animationFrame = 0;
@@ -323,6 +325,20 @@ void Character::SetHP(int hp)
 }
 
 void Character::MovedByEnemy()
+{
+	if (team == Team::LEFT)
+	{
+		pos.x -= speed;
+		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
+	}
+	else if (team == Team::RIGHT)
+	{
+		pos.x += speed;
+		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
+	}
+}
+
+void Character::MovedByEnemy(int speed)
 {
 	if (team == Team::LEFT)
 	{
