@@ -76,7 +76,7 @@ void MainGame::Update()
 	{
 		mai->Update();
 		// mai가 죽으면 null로 밀어주고 clark 생성
-		if (mai->GetState() == State::DEAD && mai->GetAnimationFrame() == 10)
+		if (mai->GetState() == State::DEAD && mai->GetAnimationFrame() == 20)
 		{
 			mai->Release();
 			delete mai;
@@ -90,7 +90,7 @@ void MainGame::Update()
 	if (clark)
 	{
 		clark->Update();
-		if (clark->GetState() == State::DEAD)
+		if (clark->GetState() == State::DEAD && clark->GetAnimationFrame() == 20)
 		{
 			clark->Release();
 			delete clark;
@@ -100,6 +100,26 @@ void MainGame::Update()
 	if (ryo)
 	{
 		ryo->Update();
+		if (ryo->GetState() == State::DEAD && ryo->GetAnimationFrame() == 20)
+		{
+			ryo->Release();
+			delete ryo;
+			ryo = nullptr;
+			iori = new Ryo();
+			iori->Init();
+			iori->SetHP(100);
+			CollisionManager::GetInstance()->set(iori, true);
+		}
+	}
+	if (iori)
+	{
+		iori->Update();
+		if (iori->GetState() == State::DEAD && iori->GetAnimationFrame() == 20)
+		{
+			iori->Release();
+			delete iori;
+			iori = nullptr;
+		}
 	}
 	backGroundFrame++;
 	if (backGroundFrame >= 36)	backGroundFrame = 0;
@@ -123,6 +143,7 @@ void MainGame::Render(HDC hdc)
 		ryo->Render(hBackBufferDC);
 	}
 	if (clark) clark->Render(hBackBufferDC);
+	if (iori) iori->Render(hBackBufferDC);
 
 	UIManager::GetInstance()->Render(hBackBufferDC);
 

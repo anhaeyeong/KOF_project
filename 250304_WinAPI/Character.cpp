@@ -95,7 +95,7 @@ void Character::Update()
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
-				canMove = true;;
+				canMove = true;
 			}
 			break;
 		case State::DEAD:
@@ -221,7 +221,7 @@ void Character::Update()
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
-				canMove = true;;
+				canMove = true;
 			}
 			break;
 		case State::DEAD:

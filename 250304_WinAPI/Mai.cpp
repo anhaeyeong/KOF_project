@@ -50,9 +50,9 @@ void Mai::Init()
 	}
 	animImages.push_back(moveBackwardImage);
 	Image* deadImage = new Image(); // 실행 확인용 이미지 -> 마이로 수정해야함
-	if (FAILED(deadImage->Init(TEXT("Image/Ryo_fall_down.bmp"), 1278, 111, 9, 1, true, RGB(255, 0, 255)))) // 360, 412
+	if (FAILED(deadImage->Init(TEXT("Image/Mai_dead.bmp"), 1300, 100, 10, 1, true, RGB(255, 0, 255)))) // 360, 412
 	{
-		MessageBox(g_hWnd, TEXT("Image/Ryo_fall_down.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Mai_dead.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(deadImage); // Dead
 	Image* bigKickImage = new Image();
@@ -148,7 +148,8 @@ void Mai::Render(HDC hdc)
 	}
 	if (_state == State::DEAD)
 	{
-		animImages[ActType::DEAD]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, !isFlip);
+		if (animationFrame < 10)
+			animImages[ActType::DEAD]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 120), height + 10, isFlip);
 	}
 
 	// state에 따른 이미지 렌더링
