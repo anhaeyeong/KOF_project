@@ -53,5 +53,6 @@ public:
 	void BigPunch()override;
 	void SmallPunch()override;
 
+	void MovedByEnemy() override;
 };
 

@@ -196,7 +196,11 @@ void Clark::Move(int dir)
 	if (canMove == false) return;
 
 	if (animationFrame >= 6)	animationFrame = 0;
-	pos.x += dir * speed;
+	if (CollisionManager::GetInstance()->isValidMove(this))
+	{
+		pos.x += dir * speed;
+
+	}
 	SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
 
 	//pos.y += dy;
@@ -342,5 +346,19 @@ void Clark::SmallPunch()
 		canMove = true;
 		actType = IDLE;
 		attackRCactivated = false;
+	}
+}
+
+void Clark::MovedByEnemy()
+{
+	if (team == Team::LEFT)
+	{
+		pos.x -= speed;
+		SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
+	}
+	else if (team == Team::RIGHT)
+	{
+		pos.x += speed;
+		SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
 	}
 }

@@ -71,7 +71,7 @@ public:
 	void SetIsAttacked(bool isAttacked) { this->isAttacked = isAttacked; }
 	inline void SetCanMove(bool _canMove) { this->canMove = _canMove; }
 	//inline void SetAttackActivated(bool _attackRCactivated) { this->attackRCactivated = _attackRCactivated; }
-	void MovedByEnemy();
+	virtual void MovedByEnemy();
 	// SetHP, SetDamage, SetState ÇÊ¿ä
 
 	int GetAnimationFrame() { return animationFrame; }
