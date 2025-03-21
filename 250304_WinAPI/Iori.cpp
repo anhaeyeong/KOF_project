@@ -25,6 +25,7 @@ void Iori::Init()
 	isLeft = true;
 	_state = State::IDLE;
 	canMove = true;
+	maxGuardFrame = 5; //임시임
 
 	//animImages.resize(9);
 	Image* idleImage = new Image();
@@ -85,6 +86,14 @@ void Iori::Init()
 	}
 	animImages.push_back(smallPunchImage);
 
+	Image* guardImage = new Image();
+	if (FAILED(guardImage->Init(TEXT("Image/Iori_idle.bmp"), 612, 96, 9, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Iori_idle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(guardImage);
+
+
 	Image* hitImg = new Image();
 	if (FAILED(hitImg->Init(TEXT("Image/Iori_hit.bmp"), 360, 100, 4, 1, true, RGB(255, 0, 255))))
 	{
@@ -134,6 +143,12 @@ void Iori::Render(HDC hdc)
 			animImages[ActType::SMALL_PUNCH]->Render(hdc, pos.x + 20, pos.y - 10, animationFrame, width + 70, height + 20, isFlip);
 			break;
 		}
+	}
+
+	if (_state == State::GUARD)
+
+	{
+		animImages[ActType::GUARD]->Render(hdc, pos.x, pos.y - 15, animationFrame, width + 20, height + 30, isFlip);
 	}
 
 	// state에 따른 이미지 렌더링

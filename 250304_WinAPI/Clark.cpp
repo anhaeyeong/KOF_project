@@ -19,6 +19,7 @@ void Clark::Init()
 	actType = IDLE;
 	canMove = true;
 	maxIdlePrame = 19;
+	maxGuardFrame = 8;
 
 	IsFlipToModifyingValue();
 
@@ -79,7 +80,13 @@ void Clark::Init()
 		MessageBox(g_hWnd, TEXT("Clark_Wpunch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(smallPunchImage);
-	animImages.push_back(nullptr);
+
+	Image* guardImage = new Image();
+	if (FAILED(guardImage->Init(TEXT("Image/Clark_Block_Up.bmp"), 1982, 300, maxGuardFrame, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Clark_Block_Up.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(guardImage);
 
 	Image* attackedImage = new Image();
 	if (FAILED(attackedImage->Init(TEXT("Image/Clark_attacked.bmp"), 450, 107, 5, 1, true, RGB(255, 0, 255))))
@@ -183,6 +190,11 @@ void Clark::Render(HDC hdc)
 	if (_state == State::ATTACKED) {
 		animImages[ActType::ATTACKED]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
 	}
+
+	if (_state == State::GUARD) {
+		animImages[ActType::GUARD]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
+	}
+
 	if (_state == State::DEAD) {
 		if (animationFrame <= 10)
 			animImages[ActType::DEAD]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width + 100, height, isFlip);

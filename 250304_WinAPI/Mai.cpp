@@ -21,6 +21,7 @@ void Mai::Init()
 	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
 	animationFrame = 0;
 	maxIdlePrame = 12;
+	maxGuardFrame = 6;
 	speed = 10;
 	isFlip = true;
 	isLeft = true;
@@ -80,7 +81,13 @@ void Mai::Init()
 		MessageBox(g_hWnd, TEXT("Mai_Wpunch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(smallPunchImage);
-	animImages.push_back(nullptr);
+
+	Image* guardImage = new Image();
+	if (FAILED(guardImage->Init(TEXT("Image/Mai_Block_Up.bmp"), 1515, 300, maxGuardFrame, 1, true, RGB(255, 0, 255)))) // 326, 370
+	{
+		MessageBox(g_hWnd, TEXT("Mai_Block_Up.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(guardImage);
 
 	Image* attackedImage = new Image();
 	if (FAILED(attackedImage->Init(TEXT("Image/Mai_Attacked.bmp"), 480, 99, 6, 1, true, RGB(255, 0, 255)))) // 326, 370
@@ -142,6 +149,12 @@ void Mai::Render(HDC hdc)
 	{
 		animImages[ActType::ATTACKED]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, isFlip);
 	}
+
+	if (_state == State::GUARD)
+	{
+		animImages[ActType::GUARD]->Render(hdc, pos.x - 25, pos.y + 5, animationFrame, (width + 30), height - 10, !isFlip);
+	}
+
 	if (_state == State::DEAD)
 	{
 		if (animationFrame < 10)

@@ -100,6 +100,19 @@ void Character::Update()
 				canMove = true;
 			}
 			break;
+		case State::GUARD:
+			actType = GUARD;
+			animationFrame++;
+			if (animationFrame >= maxGuardFrame)
+			{
+				animationFrame = 0;
+				_state = State::IDLE;
+				actType = IDLE;
+				canMove = true;
+				isAttacked = false;
+
+			}
+			break;
 		case State::DEAD:
 			animationFrame++;
 		default:
@@ -226,6 +239,19 @@ void Character::Update()
 				_state = State::IDLE;
 				SetIsAttacked(false);
 				canMove = true;
+			}
+			break;
+		case State::GUARD:
+			actType = GUARD;
+			animationFrame++;
+			if (animationFrame >= maxGuardFrame)
+			{
+				animationFrame = 0;
+				_state = State::IDLE;
+				actType = IDLE;
+				canMove = true;
+				isAttacked = false;
+
 			}
 			break;
 		case State::DEAD:

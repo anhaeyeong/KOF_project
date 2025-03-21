@@ -20,6 +20,7 @@ void Ryo::Init()
 	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
 	animationFrame = 0;
 	maxIdlePrame = 10;
+	maxGuardFrame = 4;
 	speed = 10;
 	isFlip = false;
 	isLeft = true;
@@ -80,6 +81,13 @@ void Ryo::Init()
 	}
 	animImages.push_back(smallPunchImage);
 
+	Image* guardImage = new Image();
+	if (FAILED(guardImage->Init(TEXT("Image/ryo_block.bmp"), 1281, 300, maxGuardFrame, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("ryo_block.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(guardImage);
+
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
 
@@ -127,6 +135,11 @@ void Ryo::Render(HDC hdc)
 	if (_state == State::ATTACKED)
 	{
 		animImages[ActType::DEAD]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 100, height + 15, !isFlip);
+	}
+
+	if (_state == State::GUARD)
+	{
+		animImages[ActType::GUARD]->Render(hdc, pos.x, pos.y - 5, animationFrame, (width + 100), height + 15, isFlip);
 	}
 
 	// state에 따른 이미지 렌더링

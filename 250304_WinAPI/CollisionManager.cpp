@@ -46,11 +46,21 @@ void CollisionManager::isAttacked(Character* atkplayer)
 
 			if (!pRight->GetIsAttacked() && pRight->GetState() != State::ATTACKED)
 			{
-				pRight->SetCanMove(false);
-				pRight->SetAnimationFrame(0);
-				pRight->SetHP(pRight->GetCurHP() - atkDmg);
-				pRight->SetState(State::ATTACKED);
-				pRight->SetIsAttacked(true);
+				if (pRight->GetActType() != MOVE_B) {
+					pRight->SetCanMove(false);
+					pRight->SetAnimationFrame(0);
+					pRight->SetHP(pRight->GetCurHP() - atkDmg);
+					pRight->SetState(State::ATTACKED);
+					pRight->SetIsAttacked(true);
+				}
+				else
+				{
+					pRight->SetCanMove(false);
+					pRight->SetAnimationFrame(0);;
+					pRight->SetState(State::GUARD);
+					pRight->SetIsAttacked(true);
+				}
+				
 			}
 
 		}
@@ -63,12 +73,20 @@ void CollisionManager::isAttacked(Character* atkplayer)
 		{
 			if (!pLeft->GetIsAttacked() && pLeft->GetState() != State::ATTACKED)
 			{
-				pLeft->SetCanMove(false);
-				pLeft->SetAnimationFrame(0);
-				pLeft->SetHP(pLeft->GetCurHP() - atkDmg);
-				pLeft->SetState(State::ATTACKED);
-				pLeft->SetIsAttacked(true);
-				//pRight->SetAttackActivated(false);
+				if (pLeft->GetActType() != MOVE_B) {
+					pLeft->SetCanMove(false);
+					pLeft->SetAnimationFrame(0);
+					pLeft->SetHP(pRight->GetCurHP() - atkDmg);
+					pLeft->SetState(State::ATTACKED);
+					pLeft->SetIsAttacked(true);
+				}
+				else
+				{
+					pLeft->SetCanMove(false);
+					pLeft->SetAnimationFrame(0);;
+					pLeft->SetState(State::GUARD);
+					pLeft->SetIsAttacked(true);
+				}
 				
 			}
 		}
