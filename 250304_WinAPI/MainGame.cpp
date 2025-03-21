@@ -31,29 +31,30 @@ void MainGame::Init()
 			TEXT("Image/backGround.bmp 생성 실패"), TEXT("경고"), MB_OK);
 	}
 
-	iori = new Iori();
-	iori->Init();
 
-	clark = new Mai();
-	clark->Init();
+	mai = new Mai();
+	mai->Init();
 
-	CollisionManager::GetInstance()->Init(iori, clark); // (pLeft, pRight)
+	ryo = new Ryo();
+	ryo->Init();
+
+	CollisionManager::GetInstance()->Init(ryo, mai);
 }
 
 void MainGame::Release()
 {
-	if (iori)
+	if (mai)
 	{
-		iori->Release();
-		delete iori;
-		iori = nullptr;
+		mai->Release();
+		delete mai;
+		mai = nullptr;
 	}
 
-	if (clark)
+	if (ryo)
 	{
-		clark->Release();
-		delete clark;
-		clark = nullptr;
+		ryo->Release();
+		delete ryo;
+		ryo = nullptr;
 	}
 
 	if (backGround)
@@ -73,13 +74,54 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-	if (iori)
+	if (mai)
 	{
-		iori->Update();
+		mai->Update();
+		// mai�� ������ null�� �о��ְ� clark ����
+		if (mai->GetState() == State::DEAD && mai->GetAnimationFrame() == 20)
+		{
+			mai->Release();
+			delete mai;
+			mai = nullptr;
+			clark = new Clark();
+			clark->Init();
+			clark->SetHP(100);
+			CollisionManager::GetInstance()->set(clark, false);
+		}
 	}
 	if (clark)
 	{
 		clark->Update();
+		if (clark->GetState() == State::DEAD && clark->GetAnimationFrame() == 20)
+		{
+			clark->Release();
+			delete clark;
+			clark = nullptr;
+		}
+	}
+	if (ryo)
+	{
+		ryo->Update();
+		if (ryo->GetState() == State::DEAD && ryo->GetAnimationFrame() == 20)
+		{
+			ryo->Release();
+			delete ryo;
+			ryo = nullptr;
+			iori = new Iori();
+			iori->Init();
+			iori->SetHP(100);
+			CollisionManager::GetInstance()->set(iori, true);
+		}
+	}
+	if (iori)
+	{
+		iori->Update();
+		if (iori->GetState() == State::DEAD && iori->GetAnimationFrame() == 20)
+		{
+			iori->Release();
+			delete iori;
+			iori = nullptr;
+		}
 	}
 	backGroundFrame++;
 	if (backGroundFrame >= 36)	backGroundFrame = 0;
@@ -102,8 +144,13 @@ void MainGame::Render(HDC hdc)
 	HDC hBackBufferDC = backBuffer->GetMemDC();
 
 	backGround->RenderBackGround(hBackBufferDC, backGroundFrame);
-	iori->Render(hBackBufferDC);
-	clark->Render(hBackBufferDC);
+	if (mai) mai->Render(hBackBufferDC);
+	if (ryo)
+	{
+		ryo->Render(hBackBufferDC);
+	}
+	if (clark) clark->Render(hBackBufferDC);
+	if (iori) iori->Render(hBackBufferDC);
 
 	UIManager::GetInstance()->Render(hBackBufferDC);
 

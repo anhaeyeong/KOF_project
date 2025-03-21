@@ -27,8 +27,10 @@ void CollisionManager::Release()
 	ReleaseInstance();
 }
 
-void CollisionManager::set(Character* player)
+void CollisionManager::set(Character* player, bool isLeft)
 {
+	if (isLeft)	pLeft = player;
+	else pRight = player;
 }
 
 void CollisionManager::isAttacked(Character* atkplayer)
@@ -41,6 +43,7 @@ void CollisionManager::isAttacked(Character* atkplayer)
 		int atkDmg = pLeft->GetDamage();
 		if (RectInRect(atkRC, atkedRC))
 		{
+
 			if (!pRight->GetIsAttacked() && pRight->GetState() != State::ATTACKED)
 			{
 				pRight->SetCanMove(false);
@@ -49,6 +52,7 @@ void CollisionManager::isAttacked(Character* atkplayer)
 				pRight->SetState(State::ATTACKED);
 				pRight->SetIsAttacked(true);
 			}
+
 		}
 	}
 	else if (atkplayer == pRight)
@@ -64,6 +68,8 @@ void CollisionManager::isAttacked(Character* atkplayer)
 				pLeft->SetHP(pLeft->GetCurHP() - atkDmg);
 				pLeft->SetState(State::ATTACKED);
 				pLeft->SetIsAttacked(true);
+				//pRight->SetAttackActivated(false);
+				
 			}
 		}
 	}

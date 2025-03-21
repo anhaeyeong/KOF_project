@@ -19,7 +19,8 @@ void Ryo::Init()
 	height = 200;
 	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
 	animationFrame = 0;
-	maxIdlePrame = 10;
+	maxIdleFrame = 10;
+	maxAttackedFrame = 9;
 	speed = 10;
 	isFlip = false;
 	isLeft = true;
@@ -46,9 +47,13 @@ void Ryo::Init()
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(moveBackwardImage);
-
-	animImages.push_back(nullptr);
+	animImages.push_back(moveBackwardImage); //Ryo_fall_down
+	Image* deadImage = new Image();
+	if (FAILED(deadImage->Init(TEXT("Image/Ryo_fall_down.bmp"), 1278, 111, 9, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Ryo_fall_down.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(deadImage);
 	//animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Ryo_high_kick.bmp"), 3843, 370, 10, 1, true, RGB(255, 0, 255))))
@@ -85,6 +90,7 @@ void Ryo::Init()
 void Ryo::Render(HDC hdc)
 {
 	//if (!characterImage)	return;
+	
 	if (_state == State::IDLE)
 		animImages[ActType::IDLE]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 50, height + 15, isFlip);
 	if (_state == State::MOVE)
@@ -119,6 +125,10 @@ void Ryo::Render(HDC hdc)
 			break;
 		}
 	}
+	if (_state == State::ATTACKED)
+	{
+		animImages[ActType::DEAD]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 100, height + 15, !isFlip);
+	}
 
 	// state에 따른 이미지 렌더링
 	// if(_state == ~~~) 
@@ -128,7 +138,7 @@ void Ryo::Render(HDC hdc)
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
-		RenderRectAtCenter(hdc, pos.x, pos.y, characterRC.right - characterRC.left, characterRC.bottom - characterRC.top);
+		RenderRect(hdc, characterRC);
 	if (attackRCactivated == true)
 		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 	
