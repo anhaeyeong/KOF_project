@@ -30,7 +30,7 @@ void MainGame::Init()
 			TEXT("Image/kof_animBackground.bmp 생성 실패"), TEXT("경고"), MB_OK);
 	}
 
-	iori = new Mai();
+	iori = new Clark();
 	iori->Init();
 
 	clark = new Ryo();

@@ -211,6 +211,7 @@ void Clark::BigKick()
 			SetRectAtCenter(attackRC, pos.x-70, pos.y - 70, 100, 40); //렉트 조정
 		}
 		else SetRectAtCenter(attackRC, pos.x + 90, pos.y - 70, 100, 40); //렉트 조정
+		CollisionManager::GetInstance()->isAttacked(this);
 
 	}
 
@@ -249,6 +250,7 @@ void Clark::SmallKick()
 			SetRectAtCenter(attackRC, pos.x + 55, pos.y, 30, 40); //렉트 조정
 			break;
 		}
+		CollisionManager::GetInstance()->isAttacked(this);
 
 
 	}
@@ -282,6 +284,7 @@ void Clark::BigPunch()
 			SetRectAtCenter(attackRC, pos.x + 70, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		}
+		CollisionManager::GetInstance()->isAttacked(this);
 
 	}
 	else
@@ -313,6 +316,7 @@ void Clark::SmallPunch()
 			SetRectAtCenter(attackRC, pos.x + 80, pos.y - 40, 70, 30); //렉트 조정
 			break;
 		}
+		CollisionManager::GetInstance()->isAttacked(this);
 
 	}
 	else
