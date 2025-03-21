@@ -115,7 +115,7 @@ protected:
 	vector<Image*> animImages;
 	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
 	int animationFrame;
-	int maxIdlePrame;
+	int maxIdleFrame;
 	int modifyingValue{ 0 };
 	int maxAttackedFrame;
 
