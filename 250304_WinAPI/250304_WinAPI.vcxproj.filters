@@ -59,6 +59,8 @@
     </ClCompile>
     <ClCompile Include="Clark.cpp">
       <Filter>MainGame\KOF_Character</Filter>
+    <ClCompile Include="Iori.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +105,8 @@
     </ClInclude>
     <ClInclude Include="Clark.h">
       <Filter>MainGame\KOF_Character</Filter>
+    <ClInclude Include="Iori.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
