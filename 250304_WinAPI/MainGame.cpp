@@ -106,7 +106,7 @@ void MainGame::Update()
 			ryo->Release();
 			delete ryo;
 			ryo = nullptr;
-			iori = new Ryo();
+			iori = new Iori();
 			iori->Init();
 			iori->SetHP(100);
 			CollisionManager::GetInstance()->set(iori, true);
