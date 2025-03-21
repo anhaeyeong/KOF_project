@@ -69,6 +69,7 @@ public:
 	void SetState(State state) { this->_state = state; }
 	void SetAnimationFrame(int f) { this->animationFrame = f; }
 	void SetIsAttacked(bool isAttacked) { this->isAttacked = isAttacked; }
+	void SetCanMove(bool canMove) { this->canMove = canMove; }
 	virtual void MovedByEnemy();
 	virtual void MovedByEnemy(int speed);
 	// SetHP, SetDamage, SetState 필요
@@ -83,6 +84,7 @@ public:
 	bool GetAttackActivated() { return this->attackRCactivated; }
 	bool GetIsAttacked() { return this->isAttacked; }
 	bool GetSpeed() { return this->speed; }
+	int GetDirection() { return this->direction; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
 protected:
@@ -99,6 +101,7 @@ protected:
 	bool attackRCactivated{ false };
 	bool isAttacked{ false };
 	RECT characterRC;
+	int direction{ 0 };
 	// hp, damage 필요
 
 	//at attackType{ NONE };

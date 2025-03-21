@@ -43,6 +43,7 @@ void CollisionManager::isAttacked(Character* atkplayer)
 		{
 			if (!pRight->GetIsAttacked() && pRight->GetState() != State::ATTACKED)
 			{
+				pRight->SetCanMove(false);
 				pRight->SetAnimationFrame(0);
 				pRight->SetHP(pRight->GetCurHP() - atkDmg);
 				pRight->SetState(State::ATTACKED);
@@ -58,6 +59,7 @@ void CollisionManager::isAttacked(Character* atkplayer)
 		{
 			if (!pLeft->GetIsAttacked() && pLeft->GetState() != State::ATTACKED)
 			{
+				pLeft->SetCanMove(false);
 				pLeft->SetAnimationFrame(0);
 				pLeft->SetHP(pLeft->GetCurHP() - atkDmg);
 				pLeft->SetState(State::ATTACKED);
@@ -71,7 +73,7 @@ bool CollisionManager::isValidMove(Character* movingPlayer)
 {
 	RECT rcLeft = pLeft->GetCharacterRC();
 	RECT rcRight = pRight->GetCharacterRC();
-
+	
 	Character* otherPlayer = (movingPlayer == pLeft) ? pRight : pLeft;
 
 	RECT movingRC = rcLeft;
@@ -103,6 +105,8 @@ bool CollisionManager::isValidMove(Character* movingPlayer)
 		// 동시에 이동 중이면 이동 불가
 		else if (movingPlayer->GetState() == State::MOVE && otherPlayer->GetState() == State::MOVE)
 		{
+			if (movingPlayer->GetDirection() == otherPlayer->GetDirection())
+				return true;
 			return false;
 		}
 	}

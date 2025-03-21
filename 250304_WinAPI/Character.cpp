@@ -24,7 +24,11 @@ void Character::Update()
 		{
 			if (KeyManager::GetInstance()->IsStayKeyDown('D'))
 			{
-				Move(1);
+				if (_state != State::ATTACKED)
+				{
+					direction = 1;
+					Move(direction);
+				}
 				switch (isFlip) {
 				case true:
 					actType = MOVE_B;
@@ -36,7 +40,11 @@ void Character::Update()
 			}
 			else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
 			{
-				Move(-1);
+				if (_state != State::ATTACKED)
+				{
+					direction = -1;
+					Move(direction);
+				}
 				switch (isFlip) {
 				case true:
 					actType = MOVE_F;
@@ -85,12 +93,14 @@ void Character::Update()
 			break;
 		case State::ATTACKED:
 			animationFrame++;
-			MovedByEnemy(5);
+			if (animationFrame < 4)
+				MovedByEnemy(6);
 			if (animationFrame >= 12)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
+				SetCanMove(true);
 			}
 			break;
 		default:
@@ -145,8 +155,11 @@ void Character::Update()
 		{
 			if (KeyManager::GetInstance()->IsStayKeyDown(VK_RIGHT))
 			{
-					
-				Move(1);
+				if (_state != State::ATTACKED)
+				{
+					direction = 1;
+					Move(direction);
+				}
 				switch (isFlip) {
 				case true:
 					actType = MOVE_B;
@@ -159,7 +172,11 @@ void Character::Update()
 			else if (KeyManager::GetInstance()->IsStayKeyDown(VK_LEFT))
 			{
 				
-				Move(-1);
+				if (_state != State::ATTACKED)
+				{
+					direction = -1;
+					Move(direction);
+				}
 				switch (isFlip) {
 				case true:
 					actType = MOVE_F;
@@ -208,12 +225,14 @@ void Character::Update()
 			break;
 		case State::ATTACKED:
 			animationFrame++;
-			MovedByEnemy(5);
+			if(animationFrame < 4)
+				MovedByEnemy(6);
 			if (animationFrame >= 12)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
+				SetCanMove(true);
 			}
 			break;
 		default:

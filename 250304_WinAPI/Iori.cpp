@@ -127,7 +127,7 @@ void Iori::Render(HDC hdc)
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
-		RenderRectAtCenter(hdc, pos.x, pos.y, characterRC.right - characterRC.left, characterRC.bottom - characterRC.top);
+		RenderRectAtCenter(hdc, pos.x, pos.y, width, height);
 	if (attackRCactivated == true)
 		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 
@@ -143,7 +143,6 @@ void Iori::Move(int dir)
 	if (CollisionManager::GetInstance()->isValidMove(this))
 	{
 		pos.x += dir * speed;
-
 	}
 	SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
 	//pos.y += dy;
