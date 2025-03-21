@@ -55,7 +55,7 @@ void Character::Update()
 		{
 		case State::IDLE:
 			animationFrame++;
-			if (animationFrame >= maxIdlePrame)	animationFrame = 0;
+			if (animationFrame >= maxIdleFrame)	animationFrame = 0;
 			break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsOnceKeyUp('D') || KeyManager::GetInstance()->IsOnceKeyUp('A'))
@@ -92,7 +92,7 @@ void Character::Update()
 			//if(animationFrame == 0) canMove = false;
 			animationFrame++;
 			MovedByEnemy(5);
-			if (animationFrame >= 9)
+			if (animationFrame >= maxAttackedFrame)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
@@ -183,7 +183,7 @@ void Character::Update()
 		{
 		case State::IDLE:
 			animationFrame++;
-			if (animationFrame >= maxIdlePrame)	animationFrame = 0;
+			if (animationFrame >= maxIdleFrame)	animationFrame = 0;
 			break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsOnceKeyUp(VK_RIGHT) || KeyManager::GetInstance()->IsOnceKeyUp(VK_LEFT))
@@ -220,7 +220,7 @@ void Character::Update()
 			animationFrame++;
 
 			MovedByEnemy(5);
-			if (animationFrame >= 6)
+			if (animationFrame >= maxAttackedFrame)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;

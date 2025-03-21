@@ -117,6 +117,8 @@ protected:
 	int animationFrame;
 	int maxIdlePrame;
 	int modifyingValue{ 0 };
+	int maxAttackedFrame;
+
 
 	int frameCount{ 0 };
 
