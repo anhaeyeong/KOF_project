@@ -59,7 +59,7 @@ void Character::Update()
 		{
 		case State::IDLE:
 			animationFrame++;
-			if (animationFrame >= maxIdlePrame)	animationFrame = 0;
+			if (animationFrame >= maxIdleFrame)	animationFrame = 0;
 			break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsOnceKeyUp('D') || KeyManager::GetInstance()->IsOnceKeyUp('A'))
@@ -191,7 +191,7 @@ void Character::Update()
 		{
 		case State::IDLE:
 			animationFrame++;
-			if (animationFrame >= maxIdlePrame)	animationFrame = 0;
+			if (animationFrame >= maxIdleFrame)	animationFrame = 0;
 			break;
 		case State::MOVE:
 			if (KeyManager::GetInstance()->IsOnceKeyUp(VK_RIGHT) || KeyManager::GetInstance()->IsOnceKeyUp(VK_LEFT))
@@ -341,6 +341,19 @@ void Character::SetHP(int hp)
 	if (team == Team::RIGHT)
 		UIManager::GetInstance()->UpdateHP(true, hp);
 	
+}
+
+void Character::IsFlipToModifyingValue()
+{
+	switch (isFlip) {
+	case true:
+		modifyingValue = -1;
+		break;
+
+	case false:
+		modifyingValue = 1;
+		break;
+	}
 }
 
 void Character::MovedByEnemy()

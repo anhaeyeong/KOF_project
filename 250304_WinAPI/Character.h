@@ -70,6 +70,7 @@ public:
 	void SetAnimationFrame(int f) { this->animationFrame = f; }
 	void SetIsAttacked(bool isAttacked) { this->isAttacked = isAttacked; }
 	void SetCanMove(bool canMove) { this->canMove = canMove; }
+	void IsFlipToModifyingValue();
 	virtual void MovedByEnemy();
 	virtual void MovedByEnemy(int speed);
 	// SetHP, SetDamage, SetState 필요
@@ -102,6 +103,7 @@ protected:
 	bool isAttacked{ false };
 	RECT characterRC;
 	int direction{ 0 };
+
 	// hp, damage 필요
 
 	//at attackType{ NONE };
@@ -111,7 +113,9 @@ protected:
 	vector<Image*> animImages;
 	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
 	int animationFrame;
-	int maxIdlePrame;
+	int maxIdleFrame;
+	int modifyingValue{ 0 };
+	int maxAttackedFrame;
 
 	int frameCount{ 0 };
 
