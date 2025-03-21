@@ -27,8 +27,10 @@ void CollisionManager::Release()
 	ReleaseInstance();
 }
 
-void CollisionManager::set(Character* player)
+void CollisionManager::set(Character* player, bool isLeft)
 {
+	if (isLeft)	pLeft = player;
+	else pRight = player;
 }
 
 void CollisionManager::isAttacked(Character* atkplayer)

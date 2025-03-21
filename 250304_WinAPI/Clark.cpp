@@ -74,6 +74,14 @@ void Clark::Init()
 		MessageBox(g_hWnd, TEXT("Clark_Wpunch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(smallPunchImage);
+	animImages.push_back(nullptr);
+
+	Image* attackedImage = new Image();
+	if (FAILED(attackedImage->Init(TEXT("Image/Clark_attacked.bmp"), 450, 107, 5, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Clark_attacked.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(attackedImage);
 
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
@@ -166,6 +174,9 @@ void Clark::Render(HDC hdc)
 			//smallPunchImage->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 			break;
 		}
+	}
+	if (_state == State::ATTACKED) {
+		animImages[ActType::ATTACKED]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
 	}
 
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);

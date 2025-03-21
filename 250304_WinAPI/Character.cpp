@@ -17,6 +17,10 @@ void Character::Init()
 
 void Character::Update()
 {
+	if (hp <= 0)
+	{
+		_state = State::DEAD;
+	}
 	switch (team)
 	{
 	case Team::LEFT:
@@ -84,10 +88,10 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACKED:
+
 			//if(animationFrame == 0) canMove = false;
 			animationFrame++;
-			
-			if (animationFrame >= 12)
+			if (animationFrame >= 9)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
@@ -95,6 +99,8 @@ void Character::Update()
 				canMove = true;
 			}
 			break;
+		case State::DEAD:
+			animationFrame++;
 		default:
 			break;
 		}
@@ -212,14 +218,16 @@ void Character::Update()
 			//if (animationFrame == 0) canMove = false;
 			animationFrame++;
 
-			if (animationFrame >= 12)
+			if (animationFrame >= 9)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
-				canMove = true;
+				canMove = true;;
 			}
 			break;
+		case State::DEAD:
+			animationFrame++;
 		default:
 			break;
 		}
@@ -289,7 +297,11 @@ void Character::Release()
 	{
 		for (int i = 0; i < animImages.size(); i++)
 		{
-			animImages[i]->Release();
+			if (animImages[i])
+			{
+				animImages[i]->Release();
+				animImages[i] = nullptr;
+			}
 		}
 		animImages.clear();
 	}
