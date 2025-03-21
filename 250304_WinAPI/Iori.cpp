@@ -12,6 +12,7 @@ Iori::~Iori()
 
 void Iori::Init()
 {
+	team = Team::LEFT;
 	pos.x = WINSIZE_X - 700;
 	pos.y = WINSIZE_Y - 150;
 	width = 100;
@@ -32,12 +33,15 @@ void Iori::Init()
 		MessageBox(g_hWnd, TEXT("Image/Iori_idle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(idleImage);
+	
 	Image* characterImage = new Image();
 	if (FAILED(characterImage->Init(TEXT("Image/Iori_move_Front.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_move_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
+	
 	animImages.push_back(characterImage);
+	animImages.push_back(nullptr); // move_B
 	animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Iori_high_kick.bmp"), 1400, 105, 10, 1, true, RGB(255, 0, 255))))
@@ -138,10 +142,14 @@ void Iori::Move(int dir)
 void Iori::BigKick()
 {
 	if (animationFrame >= 3 && animationFrame <= 5) {
-		attackRCactivated = true;
-		nowAttDamage = bigAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = bigAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 90, pos.y - 40, 120, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 90, pos.y - 40, 120, 40); //렉트 조정
+			CollisionManager::GetInstance()->isAttacked(this);
+		}
 	}
 
 	else if (animationFrame < 10 && animationFrame > 5)
@@ -166,10 +174,15 @@ void Iori::BigKick()
 void Iori::SmallKick()
 {
 	if (animationFrame == 3) {
-		attackRCactivated = true;
-		nowAttDamage = smallAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = smallAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 100, pos.y, 140, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 100, pos.y, 140, 30); //렉트 조정
+
+			CollisionManager::GetInstance()->isAttacked(this);
+		}
 	}
 	else
 	{
@@ -190,10 +203,15 @@ void Iori::SmallKick()
 void Iori::BigPunch()
 {
 	if (animationFrame >= 2 && animationFrame <= 4) {
-		attackRCactivated = true;
-		nowAttDamage = bigAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = bigAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 40, pos.y - 10, 90, 40); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 40, pos.y - 10, 90, 40); //렉트 조정
+
+			CollisionManager::GetInstance()->isAttacked(this);
+		}
 	}
 
 	else if (animationFrame < 6 && animationFrame > 4)
@@ -216,10 +234,14 @@ void Iori::BigPunch()
 void Iori::SmallPunch()
 {
 	if (animationFrame == 2) {
-		attackRCactivated = true;
-		nowAttDamage = smallAttDamage;
+		if (!attackRCactivated)
+		{
+			attackRCactivated = true;
+			nowAttDamage = smallAttDamage;
 
-		SetRectAtCenter(attackRC, pos.x + 80, pos.y - 40, 100, 30); //렉트 조정
+			SetRectAtCenter(attackRC, pos.x + 80, pos.y - 40, 100, 30); //렉트 조정
+			CollisionManager::GetInstance()->isAttacked(this);
+		}
 	}
 	else
 	{

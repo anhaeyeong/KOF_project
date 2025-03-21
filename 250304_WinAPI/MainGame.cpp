@@ -34,7 +34,7 @@ void MainGame::Init()
 	iori = new Iori();
 	iori->Init();
 
-	clark = new Ryo();
+	clark = new Mai();
 	clark->Init();
 
 	CollisionManager::GetInstance()->Init(clark, iori);
