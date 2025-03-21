@@ -164,7 +164,7 @@ LRESULT MainGame::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 	switch (iMessage)
 	{
 	case WM_CREATE:
-		hTimer = (HANDLE)SetTimer(hWnd, 0, 100, NULL);
+		hTimer = (HANDLE)SetTimer(hWnd, 0, 65, NULL);
 
 		break;
 	case WM_TIMER:

@@ -166,16 +166,18 @@ void Mai::Render(HDC hdc)
 	// if(_state == ~~~) 
 	//  animImages[AnimationType::~~~]->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 	// -> AnimationType도 필요없을수도? 그냥 animImages[State::~~]->Render() 가능해보임
-
-	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
+	{
+		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
+	
 		RenderRect(hdc, characterRC);
-	if (attackRCactivated == true)
-		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
+		if (attackRCactivated == true)
+			RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
 
-	SelectObject(hdc, oldBrush);
-	DeleteObject(myBrush);
+		SelectObject(hdc, oldBrush);
+		DeleteObject(myBrush);
+	}
 }
 
 void Mai::Move(int dir)

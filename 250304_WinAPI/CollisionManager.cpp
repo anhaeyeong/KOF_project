@@ -76,7 +76,7 @@ void CollisionManager::isAttacked(Character* atkplayer)
 				if (pLeft->GetActType() != MOVE_B) {
 					pLeft->SetCanMove(false);
 					pLeft->SetAnimationFrame(0);
-					pLeft->SetHP(pRight->GetCurHP() - atkDmg);
+					pLeft->SetHP(pLeft->GetCurHP() - atkDmg);
 					pLeft->SetState(State::ATTACKED);
 					pLeft->SetIsAttacked(true);
 				}

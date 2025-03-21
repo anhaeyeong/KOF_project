@@ -126,7 +126,7 @@ protected:
 
 	int frameCount{ 0 };
 
-	bool debugRender = true;
+	bool debugRender = false;
 	bool canMove;
 	bool isFlip;
 	bool isLeft;

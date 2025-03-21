@@ -25,7 +25,7 @@ void Clark::Init()
 	IsFlipToModifyingValue();
 
 
-	animImages.reserve(9);
+	//animImages.reserve(9);
 	Image* idleImage = new Image();
 	if (FAILED(idleImage->Init(TEXT("Image/Clark_Endle.bmp"), 4565, 300, 19, 1, true, RGB(255, 0, 255))))
 	{
@@ -201,15 +201,18 @@ void Clark::Render(HDC hdc)
 			animImages[ActType::DEAD]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width + 100, height, isFlip);
 	}
 
-	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 	if (debugRender)
-		RenderRect(hdc, characterRC);
-	if (attackRCactivated == true && debugRender == true)
-		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
+	{
+		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 
-	SelectObject(hdc, oldBrush);
-	DeleteObject(myBrush);
+		RenderRect(hdc, characterRC);
+		if (attackRCactivated == true)
+			RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
+
+		SelectObject(hdc, oldBrush);
+		DeleteObject(myBrush);
+	}
 }
 
 void Clark::Move(int dir)

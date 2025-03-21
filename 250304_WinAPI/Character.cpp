@@ -99,7 +99,7 @@ void Character::Update()
 			animationFrame++;
 			if (animationFrame < 4)
 				MovedByEnemy(6);
-			if (animationFrame >= 12)
+			if (animationFrame >= maxAttackedFrame)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
@@ -251,7 +251,7 @@ void Character::Update()
 			animationFrame++;
 			if(animationFrame < 4)
 				MovedByEnemy(6);
-			if (animationFrame >= 12)
+			if (animationFrame >= maxAttackedFrame)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;

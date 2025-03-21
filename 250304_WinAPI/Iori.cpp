@@ -87,7 +87,6 @@ void Iori::Init()
 		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(smallPunchImage);
-	animImages.push_back(nullptr);
 
 	Image* guardImage = new Image();
 	if (FAILED(guardImage->Init(TEXT("Image/Iori_idle.bmp"), 612, 96, 9, 1, true, RGB(255, 0, 255))))
@@ -171,16 +170,20 @@ void Iori::Render(HDC hdc)
 	// if(_state == ~~~) 
 	//  animImages[AnimationType::~~~]->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
 	// -> AnimationType도 필요없을수도? 그냥 animImages[State::~~]->Render() 가능해보임
-	RenderEllipseAtCenter(hdc, pos.x, pos.y, 10, 10);
-	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
+	 
+	
 	if (debugRender)
-		RenderRectAtCenter(hdc, pos.x, pos.y, width, height);
-	if (attackRCactivated == true)
-		RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
+	{
+		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, myBrush);
 
-	SelectObject(hdc, oldBrush);
-	DeleteObject(myBrush);
+		RenderRect(hdc, characterRC);
+		if (attackRCactivated == true)
+			RenderRect(hdc, attackRC.left, attackRC.top, attackRC.right - attackRC.left, attackRC.top - attackRC.bottom);
+
+		SelectObject(hdc, oldBrush);
+		DeleteObject(myBrush);
+	}
 }
 
 void Iori::Move(int dir)
