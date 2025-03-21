@@ -43,9 +43,14 @@ void Clark::Init()
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_Smove_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(moveBackwardImage);
+	animImages.push_back(moveBackwardImage); //Clark_dead
 
-	animImages.push_back(nullptr);
+	Image* deadImage = new Image();
+	if (FAILED(deadImage->Init(TEXT("Image/Clark_dead.bmp"), 1400, 104, 10, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Clark_dead.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(deadImage);
 
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Clark_Highkick.bmp"), 5737, 356, 16, 1, true, RGB(255, 0, 255))))
@@ -177,6 +182,10 @@ void Clark::Render(HDC hdc)
 	}
 	if (_state == State::ATTACKED) {
 		animImages[ActType::ATTACKED]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width, height, isFlip);
+	}
+	if (_state == State::DEAD) {
+		if (animationFrame <= 10)
+			animImages[ActType::DEAD]->Render(hdc, pos.x - 30, pos.y - 5, animationFrame, width + 100, height, isFlip);
 	}
 
 	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);

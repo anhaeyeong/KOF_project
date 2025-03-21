@@ -41,17 +41,19 @@ void CollisionManager::isAttacked(Character* atkplayer)
 	{
 		RECT atkedRC = pRight->GetCharacterRC();
 		int atkDmg = pLeft->GetDamage();
-		if (!pRight->GetIsAttacked() && RectInRect(atkRC, atkedRC))
+		if (RectInRect(atkRC, atkedRC))
 		{
-			pRight->SetCanMove(false);
-			pRight->SetAnimationFrame(0);
-			pRight->SetHP(pRight->GetCurHP() - atkDmg);
-			pRight->SetState(State::ATTACKED);
-			pRight->SetIsAttacked(true);
-			//pLeft->SetAttackActivated(false);
-			
-		}
 
+			if (!pRight->GetIsAttacked() && pRight->GetState() != State::ATTACKED)
+			{
+				pRight->SetCanMove(false);
+				pRight->SetAnimationFrame(0);
+				pRight->SetHP(pRight->GetCurHP() - atkDmg);
+				pRight->SetState(State::ATTACKED);
+				pRight->SetIsAttacked(true);
+			}
+
+		}
 	}
 	else if (atkplayer == pRight)
 	{

@@ -1,4 +1,4 @@
-#include "Character.h"
+﻿#include "Character.h"
 #include "CommonFunction.h"
 #include "Image.h"
 
@@ -91,6 +91,7 @@ void Character::Update()
 
 			//if(animationFrame == 0) canMove = false;
 			animationFrame++;
+			MovedByEnemy(5);
 			if (animationFrame >= 9)
 			{
 				animationFrame = 0;
@@ -218,12 +219,13 @@ void Character::Update()
 			//if (animationFrame == 0) canMove = false;
 			animationFrame++;
 
-			if (animationFrame >= 9)
+			MovedByEnemy(5);
+			if (animationFrame >= 6)
 			{
 				animationFrame = 0;
 				_state = State::IDLE;
 				SetIsAttacked(false);
-				canMove = true;;
+				canMove = true;
 			}
 			break;
 		case State::DEAD:
@@ -355,6 +357,21 @@ void Character::IsFlipToModifyingValue()
 
 
 void Character::MovedByEnemy()
+{
+	if (team == Team::LEFT)
+	{
+		pos.x -= speed;
+		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
+	}
+	else if (team == Team::RIGHT)
+	{
+		pos.x += speed;
+		SetRectAtCenter(characterRC, pos.x, pos.y, width, height);
+	}
+}
+
+
+void Character::MovedByEnemy(int speed)
 {
 	if (team == Team::LEFT)
 	{
