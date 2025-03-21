@@ -19,7 +19,7 @@ void Clark::Init()
 	_state = State::IDLE;
 	actType = IDLE;
 	canMove = true;
-	maxIdleFrame = 19;
+	maxIdlePrame = 19;
 	maxGuardFrame = 8;
 
 	IsFlipToModifyingValue();

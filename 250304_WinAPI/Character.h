@@ -84,9 +84,9 @@ public:
 	int GetDamage() { return nowAttDamage; }
 	bool GetAttackActivated() { return this->attackRCactivated; }
 	bool GetIsAttacked() { return this->isAttacked; }
-	bool GetSpeed() { return this->speed;}
-	inline ActType GetActType() { return actType; }
+	bool GetSpeed() { return this->speed; }
 	int GetDirection() { return this->direction; }
+	inline ActType GetActType() { return actType; }
 	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
 protected:
@@ -114,8 +114,9 @@ protected:
 	vector<Image*> animImages;
 	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
 	int animationFrame;
-	int maxIdleFrame;
+
 	int maxGuardFrame;
+	int maxIdleFrame;
 	int modifyingValue{ 0 };
 	int maxAttackedFrame;
 

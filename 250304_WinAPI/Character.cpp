@@ -17,6 +17,10 @@ void Character::Init()
 
 void Character::Update()
 {
+	if (hp <= 0)
+	{
+		_state = State::DEAD;
+	}
 	switch (team)
 	{
 	case Team::LEFT:
@@ -103,7 +107,6 @@ void Character::Update()
 				SetCanMove(true);
 			}
 			break;
-
 		case State::GUARD:
 			actType = GUARD;
 			animationFrame++;
@@ -119,7 +122,6 @@ void Character::Update()
 			break;
 		case State::DEAD:
 			animationFrame++;
-
 		default:
 			break;
 		}

@@ -20,11 +20,9 @@ void Mai::Init()
 	height = 200;
 	characterRC = GetRectAtCenter(pos.x, pos.y, width, height);
 	animationFrame = 0;
-
 	maxIdleFrame = 12;
-	maxGuardFrame = 6;
 	maxAttackedFrame = 6;
-
+	maxGuardFrame = 6;
 	speed = 10;
 	isFlip = true;
 	isLeft = true;
