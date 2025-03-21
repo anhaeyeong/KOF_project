@@ -94,6 +94,7 @@ void MainGame::Update()
 		clark->Update();
 		if (clark->GetState() == State::DEAD && clark->GetAnimationFrame() == 20)
 		{
+			if (iori) iori->SetState(State::WIN);
 			clark->Release();
 			delete clark;
 			clark = nullptr;

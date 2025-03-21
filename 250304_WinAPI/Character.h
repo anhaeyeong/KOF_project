@@ -15,7 +15,8 @@ enum class State
 	DEAD,
 	ATTACK,
 	GUARD,
-	ATTACKED
+	ATTACKED,
+	WIN
 };
 
 enum ActType
@@ -29,7 +30,8 @@ enum ActType
 	BIG_PUNCH,
 	SMALL_PUNCH,
 	GUARD,
-	ATTACKED
+	ATTACKED,
+	WIN
 };
 
 //typedef enum AttackedType
@@ -51,6 +53,7 @@ public:
 	virtual void Init();
 	void Update();
 	virtual void Render(HDC hdc);
+	virtual void Win(HDC hdc);
 	void Release();
 
 	virtual void Move(int dir);
@@ -119,6 +122,7 @@ protected:
 	int maxIdleFrame;
 	int modifyingValue{ 0 };
 	int maxAttackedFrame;
+	int winAnimationFrame;
 
 	int frameCount{ 0 };
 

@@ -135,7 +135,11 @@ void Ryo::Render(HDC hdc)
 	}
 	if (_state == State::ATTACKED)
 	{
-		animImages[ActType::DEAD]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 100, height + 15, !isFlip);
+		animImages[ActType::DEAD]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 130, height + 15, !isFlip);
+	}
+	if (_state == State::DEAD)
+	{
+		animImages[ActType::DEAD]->Render(hdc, pos.x, pos.y - 5, animationFrame, width + 130, height + 15, !isFlip);
 	}
 
 	if (_state == State::GUARD)
@@ -157,6 +161,11 @@ void Ryo::Render(HDC hdc)
 	
 	SelectObject(hdc, oldBrush);
 	DeleteObject(myBrush);
+}
+
+void Ryo::Win(HDC hdc)
+{
+
 }
 
 void Ryo::Move(int dir)

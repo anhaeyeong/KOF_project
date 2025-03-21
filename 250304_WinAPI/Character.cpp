@@ -122,6 +122,11 @@ void Character::Update()
 			break;
 		case State::DEAD:
 			animationFrame++;
+			break;
+		case State::WIN:
+			animationFrame++;
+			if (animationFrame >= winAnimationFrame) animationFrame = 0;
+			break;
 		default:
 			break;
 		}
@@ -269,6 +274,11 @@ void Character::Update()
 			break;
 		case State::DEAD:
 			animationFrame++;
+			break;
+		case State::WIN:
+			animationFrame++;
+			if (animationFrame >= winAnimationFrame) animationFrame = 0;
+			break;
 		default:
 			break;
 		}
@@ -324,6 +334,10 @@ void Character::Update()
 void Character::Render(HDC hdc)
 {
 	
+}
+
+void Character::Win(HDC hdc)
+{
 }
 
 void Character::Release()

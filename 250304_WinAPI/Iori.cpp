@@ -21,6 +21,7 @@ void Iori::Init()
 	animationFrame = 0;
 	maxIdleFrame = 9;
 	maxAttackedFrame = 4;
+	winAnimationFrame = 9;
 	speed = 10;
 	isFlip = false;
 	isLeft = true;
@@ -102,6 +103,13 @@ void Iori::Init()
 		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(hitImg);
+	//
+	Image* winImg = new Image();
+	if (FAILED(winImg->Init(TEXT("Image/Iori_win.bmp"), 720, 120, 9, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Iori_win.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(winImg);
 
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
@@ -150,6 +158,8 @@ void Iori::Render(HDC hdc)
 		animImages[ActType::ATTACKED]->Render(hdc, pos.x, pos.y - 15, animationFrame, width + 60, height + 30, isFlip);
 	if (_state == State::DEAD)
 		animImages[ActType::DEAD]->Render(hdc, pos.x, pos.y - 15, animationFrame, width + 120, height + 30, isFlip);
+	if (_state == State::WIN)
+		animImages[ActType::WIN]->Render(hdc, pos.x, pos.y - 15, animationFrame, width + 30, height + 20, isFlip);
 
 	if (_state == State::GUARD)
 
