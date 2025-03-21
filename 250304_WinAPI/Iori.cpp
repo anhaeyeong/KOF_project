@@ -42,19 +42,28 @@ void Iori::Init()
 	
 	animImages.push_back(characterImage);
 	Image* characterImage_b = new Image();
-	if (FAILED(characterImage_b->Init(TEXT("Image/Iori_move_Front.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
+	if (FAILED(characterImage_b->Init(TEXT("Image/Iori_move_Back.bmp"), 630, 106, 9, 1, true, RGB(255, 0, 254))))
 	{
-		MessageBox(g_hWnd, TEXT("Image/Iori_move_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+		MessageBox(g_hWnd, TEXT("Image/Iori_move_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 
 	animImages.push_back(characterImage_b);
-	animImages.push_back(nullptr);
+
+	Image* deadImg = new Image();
+	if (FAILED(deadImg->Init(TEXT("Image/Iori_Dead.bmp"), 1410, 112, 10, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Image/Iori_Dead.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+
+	animImages.push_back(deadImg);
+
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Iori_high_kick.bmp"), 1400, 105, 10, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_high_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(bigKickImage);
+
 	Image* smallKickImage = new Image();
 	if (FAILED(smallKickImage->Init(TEXT("Image/Iori_middle_kick.bmp"), 720, 102, 6, 1, true, RGB(255, 0, 255))))
 	{
@@ -68,12 +77,20 @@ void Iori::Init()
 		MessageBox(g_hWnd, TEXT("Image/Iori_big_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(bigPunch);
+
 	Image* smallPunchImage = new Image();
 	if (FAILED(smallPunchImage->Init(TEXT("Image/Iori_small_punch.bmp"), 500, 98, 5, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	animImages.push_back(smallPunchImage);
+
+	Image* hitImg = new Image();
+	if (FAILED(hitImg->Init(TEXT("Image/Iori_hit.bmp"), 360, 100, 4, 1, true, RGB(255, 0, 255))))
+	{
+		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
+	}
+	animImages.push_back(hitImg);
 
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
