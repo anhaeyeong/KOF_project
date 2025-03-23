@@ -35,22 +35,22 @@ void Iori::Init()
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_idle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(idleImage);
+	animImages[IDLE] = idleImage;
 	
-	Image* characterImage = new Image();
-	if (FAILED(characterImage->Init(TEXT("Image/Iori_move_Front.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
+	Image* moveForwardImage = new Image();
+	if (FAILED(moveForwardImage->Init(TEXT("Image/Iori_move_Front.bmp"), 612, 104, 9, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_move_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 	
-	animImages.push_back(characterImage);
-	Image* characterImage_b = new Image();
-	if (FAILED(characterImage_b->Init(TEXT("Image/Iori_move_Back.bmp"), 630, 106, 9, 1, true, RGB(0, 255, 123))))
+	animImages[MOVE_F] = moveForwardImage;
+	Image* moveBackImage = new Image();
+	if (FAILED(moveBackImage->Init(TEXT("Image/Iori_move_Back.bmp"), 630, 106, 9, 1, true, RGB(0, 255, 123))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_move_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 
-	animImages.push_back(characterImage_b);
+	animImages[MOVE_B] = moveBackImage;
 
 	Image* deadImg = new Image();
 	if (FAILED(deadImg->Init(TEXT("Image/Iori_Dead.bmp"), 1410, 112, 10, 1, true, RGB(0, 255, 123))))
@@ -58,60 +58,57 @@ void Iori::Init()
 		MessageBox(g_hWnd, TEXT("Image/Iori_Dead.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
 
-	animImages.push_back(deadImg);
+	animImages[DEAD] = deadImg;
 
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Iori_high_kick.bmp"), 1400, 105, 10, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_high_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(bigKickImage);
+	animImages[BIG_KICK] = bigKickImage;
 
 	Image* smallKickImage = new Image();
 	if (FAILED(smallKickImage->Init(TEXT("Image/Iori_middle_kick.bmp"), 720, 102, 6, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_middle_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(smallKickImage);
+	animImages[SMALL_KICK] = smallKickImage;
 
 	Image* bigPunch = new Image();
 	if (FAILED(bigPunch->Init(TEXT("Image/Iori_big_punch.bmp"), 1080, 114, 9, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Iori_big_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(bigPunch);
+	animImages[BIG_PUNCH] = bigPunch;
 
 	Image* smallPunchImage = new Image();
 	if (FAILED(smallPunchImage->Init(TEXT("Image/Iori_small_punch.bmp"), 500, 98, 5, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(smallPunchImage);
+	animImages[SMALL_PUNCH] = smallPunchImage;
 
 	Image* guardImage = new Image();
 	if (FAILED(guardImage->Init(TEXT("Image/Iori_idle.bmp"), 612, 96, 9, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Iori_idle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(guardImage);
+	animImages[GUARD] = guardImage;
 
 
-	Image* hitImg = new Image();
-	if (FAILED(hitImg->Init(TEXT("Image/Iori_hit.bmp"), 360, 100, 4, 1, true, RGB(255, 0, 255))))
+	Image* hitImage = new Image();
+	if (FAILED(hitImage->Init(TEXT("Image/Iori_hit.bmp"), 360, 100, 4, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Iori_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(hitImg);
+	animImages[ATTACKED] = hitImage;
 	//
-	Image* winImg = new Image();
-	if (FAILED(winImg->Init(TEXT("Image/Iori_win.bmp"), 720, 120, 9, 1, true, RGB(255, 0, 255))))
+	Image* winImage = new Image();
+	if (FAILED(winImage->Init(TEXT("Image/Iori_win.bmp"), 720, 120, 9, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Iori_win.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(winImg);
-
-	// animImages.resize(애니메이션 개수);
-	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
+	animImages[WIN] = winImage;
 
 	attackRC = GetRectAtCenter(-10, -10, 10, 20); //렉트 조정
 }

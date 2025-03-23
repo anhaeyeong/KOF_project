@@ -17,10 +17,9 @@ void Character::Init()
 
 void Character::Update()
 {
-	if (hp <= 0)
-	{
-		_state = State::DEAD;
-	}
+	if (hp <= 0) _state = State::DEAD;
+	animationFrame++;
+
 	switch (team)
 	{
 	case Team::LEFT:
@@ -33,14 +32,7 @@ void Character::Update()
 					direction = 1;
 					Move(direction);
 				}
-				switch (isFlip) {
-				case true:
-					actType = MOVE_B;
-					break;
-				case false:
-					actType = MOVE_F;
-					break;
-				}
+				actType = isFlip ? MOVE_B : MOVE_F;
 			}
 			else if (KeyManager::GetInstance()->IsStayKeyDown('A'))
 			{
@@ -49,20 +41,13 @@ void Character::Update()
 					direction = -1;
 					Move(direction);
 				}
-				switch (isFlip) {
-				case true:
-					actType = MOVE_F;
-					break;
-				case false:
-					actType = MOVE_B;
-					break;
-				}
+				actType = isFlip ? MOVE_F : MOVE_B;
 			}
 		}
 		switch (_state)
 		{
 		case State::IDLE:
-			animationFrame++;
+			//animationFrame++;
 			if (animationFrame >= maxIdleFrame)	animationFrame = 0;
 			break;
 		case State::MOVE:
@@ -73,104 +58,64 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACK:
-			animationFrame++;
+			//animationFrame++;
 			switch (actType) {
 			case BIG_KICK:
 				BigKick();
-				
 				break;
 			case SMALL_KICK:
 				SmallKick();
-				
 				break;
 			case BIG_PUNCH:
 				BigPunch();
-				
 				break;
 			case SMALL_PUNCH:
 				SmallPunch();
-				
 				break;
 			default:
 				break;
 			}
 			break;
 		case State::ATTACKED:
-			animationFrame++;
-			if (animationFrame < 4)
-				MovedByEnemy(6);
-			if (animationFrame >= maxAttackedFrame)
-			{
-				animationFrame = 0;
-				_state = State::IDLE;
-				SetIsAttacked(false);
-				SetCanMove(true);
-			}
+			//animationFrame++;
+			if (animationFrame < 4)	MovedByEnemy(6);
+			if (animationFrame >= maxAttackedFrame)	ChangeStateToIdle();
 			break;
 		case State::GUARD:
 			actType = GUARD;
-			animationFrame++;
-			if (animationFrame >= maxGuardFrame)
-			{
-				animationFrame = 0;
-				_state = State::IDLE;
-				actType = IDLE;
-				canMove = true;
-				isAttacked = false;
-
-			}
+			//animationFrame++;
+			if (animationFrame >= maxGuardFrame) ChangeStateToIdle();
 			break;
 		case State::DEAD:
-			animationFrame++;
+			//animationFrame++;
 			break;
 		case State::WIN:
-			animationFrame++;
+			//animationFrame++;
 			if (animationFrame >= winAnimationFrame) animationFrame = 0;
 			break;
 		default:
 			break;
 		}
 
-
 		if (KeyManager::GetInstance()->IsOnceKeyDown('U'))
 		{
 			if (_state == State::MOVE || _state == State::IDLE)
-			{
-				animationFrame = 0;
-				_state = State::ATTACK;
-				canMove = false;
-				actType = SMALL_PUNCH;
-			}
+				ChangeStateToAttack(SMALL_PUNCH);
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('I'))
 		{
 			if (_state == State::MOVE || _state == State::IDLE)
-			{
-				animationFrame = 0;
-				_state = State::ATTACK;
-				canMove = false;
-				actType = BIG_PUNCH;
-			}
+				ChangeStateToAttack(BIG_PUNCH);
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('J'))
 		{
 			if (_state == State::MOVE || _state == State::IDLE)
-			{
-				animationFrame = 0;
-				_state = State::ATTACK;
-				canMove = false;
-				actType = SMALL_KICK;
-			}
+				ChangeStateToAttack(SMALL_KICK);
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown('K'))
 		{
 			if (_state == State::MOVE || _state == State::IDLE)
-			{
-				animationFrame = 0;
-				_state = State::ATTACK;
-				canMove = false;
-				actType = BIG_KICK;
-			}
+				ChangeStateToAttack(BIG_KICK);
 		}
 
 		break;
@@ -184,37 +129,22 @@ void Character::Update()
 					direction = 1;
 					Move(direction);
 				}
-				switch (isFlip) {
-				case true:
-					actType = MOVE_B;
-					break;
-				case false:
-					actType = MOVE_F;
-					break;
-				}
+				actType = isFlip ? MOVE_B : MOVE_F;
 			}
 			else if (KeyManager::GetInstance()->IsStayKeyDown(VK_LEFT))
 			{
-				
 				if (_state != State::ATTACKED)
 				{
 					direction = -1;
 					Move(direction);
 				}
-				switch (isFlip) {
-				case true:
-					actType = MOVE_F;
-					break;
-				case false:
-					actType = MOVE_B;
-					break;
-				}
+				actType = isFlip ? MOVE_F : MOVE_B;
 			}
 		}
 		switch (_state)
 		{
 		case State::IDLE:
-			animationFrame++;
+			//animationFrame++;
 			if (animationFrame >= maxIdleFrame)	animationFrame = 0;
 			break;
 		case State::MOVE:
@@ -225,104 +155,65 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACK:
-			animationFrame++;
+			//animationFrame++;
 			switch (actType) {
 			case BIG_KICK:
 				BigKick();
-				
 				break;
 			case SMALL_KICK:
 				SmallKick();
-				
 				break;
 			case BIG_PUNCH:
 				BigPunch();
-				
 				break;
 			case SMALL_PUNCH:
 				SmallPunch();
-				
 				break;
 			default:
 				break;
 			}
 			break;
 		case State::ATTACKED:
-			animationFrame++;
+			//animationFrame++;
 			if(animationFrame < 4)
 				MovedByEnemy(6);
-			if (animationFrame >= maxAttackedFrame)
-			{
-				animationFrame = 0;
-				_state = State::IDLE;
-				SetIsAttacked(false);
-				SetCanMove(true);
-			}
+			if (animationFrame >= maxAttackedFrame) ChangeStateToIdle();
 			break;
 		case State::GUARD:
 			actType = GUARD;
-			animationFrame++;
-			if (animationFrame >= maxGuardFrame)
-			{
-				animationFrame = 0;
-				_state = State::IDLE;
-				actType = IDLE;
-				canMove = true;
-				isAttacked = false;
-
-			}
+			//animationFrame++;
+			if (animationFrame >= maxGuardFrame) ChangeStateToIdle();
 			break;
 		case State::DEAD:
-			animationFrame++;
+			//animationFrame++;
 			break;
 		case State::WIN:
-			animationFrame++;
+			//animationFrame++;
 			if (animationFrame >= winAnimationFrame) animationFrame = 0;
 			break;
 		default:
 			break;
 		}
 
-
 		if (KeyManager::GetInstance()->IsOnceKeyDown(VK_NUMPAD5))
 		{
 			if (_state == State::MOVE || _state == State::IDLE)
-			{
-				animationFrame = 0;
-				_state = State::ATTACK;
-				canMove = false;
-				actType = SMALL_PUNCH;
-			}
+				ChangeStateToAttack(SMALL_PUNCH);
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown(VK_NUMPAD6))
 		{
 			if (_state == State::MOVE || _state == State::IDLE)
-			{
-				animationFrame = 0;
-				_state = State::ATTACK;
-				canMove = false;
-				actType = BIG_PUNCH;
-			}
+				ChangeStateToAttack(BIG_PUNCH);
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown(VK_NUMPAD2))
 		{
 			if (_state == State::MOVE || _state == State::IDLE)
-			{
-				animationFrame = 0;
-				_state = State::ATTACK;
-				canMove = false;
-				actType = SMALL_KICK;
-			}
+				ChangeStateToAttack(SMALL_KICK);
 		}
 		if (KeyManager::GetInstance()->IsOnceKeyDown(VK_NUMPAD3))
 		{
 			if (_state == State::MOVE || _state == State::IDLE)
-			{
-				animationFrame = 0;
-				_state = State::ATTACK;
-				canMove = false;
-				actType = BIG_KICK;
-			}
+				ChangeStateToAttack(BIG_KICK);
 		}
 
 		break;
@@ -352,7 +243,12 @@ void Character::Release()
 	{
 		for (int i = 0; i < animImages.size(); i++)
 		{
-			animImages[i]->Release();
+			if (animImages[i])
+			{
+				animImages[i]->Release();
+				delete animImages[i];
+				animImages[i] = nullptr;
+			}
 		}
 		animImages.clear();
 	}
@@ -379,6 +275,23 @@ void Character::BigPunch()
 void Character::SmallPunch()
 {
 	
+}
+
+void Character::ChangeStateToAttack(ActType type)
+{
+	animationFrame = 0;
+	_state = State::ATTACK;
+	canMove = false;
+	actType = type;
+}
+
+void Character::ChangeStateToIdle()
+{
+	animationFrame = 0;
+	_state = State::IDLE;
+	actType = IDLE;
+	canMove = true;
+	isAttacked = false;
 }
 
 void Character::SetHP(int hp)

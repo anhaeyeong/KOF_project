@@ -28,66 +28,66 @@ void Ryo::Init()
 	_state = State::IDLE;
 	actType = IDLE;
 	canMove = true;
-
-	//animImages.resize(9);
+	
+	//animImages.resize(STATE_LENGTH);
 	Image* idleImage = new Image();
 	if (FAILED(idleImage->Init(TEXT("Image/Ryo_idle.bmp"), 2417, 300, 10, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_idle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(idleImage);
+	animImages[IDLE] = idleImage;
 	Image* moveFowardImage = new Image();
 	if (FAILED(moveFowardImage->Init(TEXT("Image/Ryo_Smove_Front.bmp"), 1097, 300, 6, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(moveFowardImage);
+	animImages[MOVE_F] = moveFowardImage;
 
 	Image* moveBackwardImage = new Image();
 	if (FAILED(moveBackwardImage->Init(TEXT("Image/Ryo_Smove_Back.bmp"), 1047, 305, 6, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_Smove_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(moveBackwardImage); //Ryo_fall_down
+	animImages[MOVE_B] = moveBackwardImage;
 	Image* deadImage = new Image();
 	if (FAILED(deadImage->Init(TEXT("Image/Ryo_fall_down.bmp"), 1278, 111, 9, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_fall_down.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(deadImage);
+	animImages[DEAD] = deadImage;
 	//animImages.push_back(nullptr);
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Ryo_high_kick.bmp"), 3843, 370, 10, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_high_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(bigKickImage);
+	animImages[BIG_KICK] = bigKickImage;
 	Image* smallKickImage = new Image();
 	if (FAILED(smallKickImage->Init(TEXT("Image/Ryo_middle_kick.bmp"), 2485, 360, 6, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_middle_kick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(smallKickImage);
+	animImages[SMALL_KICK] = smallKickImage;
 
 	Image* bigPunch = new Image();
 	if (FAILED(bigPunch->Init(TEXT("Image/Ryo_big_punch.bmp"), 2485, 360, 6, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Ryo_big_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(bigPunch);
+	animImages[BIG_PUNCH] = bigPunch;
 	Image* smallPunchImage = new Image();
 	if (FAILED(smallPunchImage->Init(TEXT("Image/Ryo_small_punch.bmp"), 906, 300, 3, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Ryo_small_punch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(smallPunchImage);
+	animImages[SMALL_PUNCH] = smallPunchImage;
 
 	Image* guardImage = new Image();
 	if (FAILED(guardImage->Init(TEXT("Image/ryo_block.bmp"), 1281, 300, maxGuardFrame, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("ryo_block.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(guardImage);
+	animImages[GUARD] = guardImage;
 
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
@@ -147,10 +147,6 @@ void Ryo::Render(HDC hdc)
 		animImages[ActType::GUARD]->Render(hdc, pos.x, pos.y - 5, animationFrame, (width + 100), height + 15, isFlip);
 	}
 
-	// state에 따른 이미지 렌더링
-	// if(_state == ~~~) 
-	//  animImages[AnimationType::~~~]->Render(hdc, pos.x, pos.y, animationFrame, isFlip);
-	// -> AnimationType도 필요없을수도? 그냥 animImages[State::~~]->Render() 가능해보임
 	if (debugRender)
 	{
 		HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
@@ -195,7 +191,6 @@ void Ryo::BigKick()
 			SetRectAtCenter(attackRC, pos.x + 90, pos.y - 40, 120, 40); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
-		
 	}
 
 	else if (animationFrame < 10 && animationFrame > 5)
@@ -204,7 +199,6 @@ void Ryo::BigKick()
 		nowAttDamage = 0;
 
 		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로
-
 	}
 
 	else if (animationFrame >= 10)
@@ -213,7 +207,6 @@ void Ryo::BigKick()
 		_state = State::IDLE;
 		canMove = true;
 		actType = IDLE;
-
 	}
 }
 
@@ -228,9 +221,8 @@ void Ryo::SmallKick()
 			SetRectAtCenter(attackRC, pos.x + 100, pos.y, 140, 30); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
-		
 	}
-	else
+	else if (animationFrame < 6)
 	{
 		attackRCactivated = false;
 		nowAttDamage = 0;
@@ -257,7 +249,6 @@ void Ryo::BigPunch()
 			SetRectAtCenter(attackRC, pos.x + 40, pos.y - 10, 90, 40); //렉트 조정
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
-		
 	}
 
 	else if (animationFrame < 6 && animationFrame > 4)
@@ -266,7 +257,6 @@ void Ryo::BigPunch()
 		nowAttDamage = 0;
 		
 		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로
-
 	}
 
 	else if (animationFrame >= 6)
@@ -275,7 +265,6 @@ void Ryo::BigPunch()
 		_state = State::IDLE;
 		canMove = true;
 		actType = IDLE;
-
 	}
 }
 
@@ -291,7 +280,7 @@ void Ryo::SmallPunch()
 			CollisionManager::GetInstance()->isAttacked(this);
 		}
 	}
-	else
+	else if (animationFrame < 3)
 	{
 		nowAttDamage = 0;
 		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로

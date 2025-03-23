@@ -37,65 +37,65 @@ void Mai::Init()
 	{
 		MessageBox(g_hWnd, TEXT("Image/Mai_Endle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(IdleImage);
+	animImages[IDLE] = IdleImage;
 	Image* moveFowardImage = new Image();
 	if (FAILED(moveFowardImage->Init(TEXT("Image/Mai_Smove_Front.bmp"), 1901, 300, 6, 1, true, RGB(255, 0, 255)))) // 316, 300
 	{
 		MessageBox(g_hWnd, TEXT("Image/Mai_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(moveFowardImage);
+	animImages[MOVE_F] = moveFowardImage;
 
 	Image* moveBackwardImage = new Image();
 	if (FAILED(moveBackwardImage->Init(TEXT("Image/Mai_Smove_Back.bmp"), 1677, 300, 6, 1, true, RGB(255, 0, 255)))) // 316, 300
 	{
 		MessageBox(g_hWnd, TEXT("Mai_Smove_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(moveBackwardImage);
+	animImages[MOVE_B] = moveBackwardImage;
 	Image* deadImage = new Image(); // 실행 확인용 이미지 -> 마이로 수정해야함
 	if (FAILED(deadImage->Init(TEXT("Image/Mai_dead.bmp"), 1300, 100, 10, 1, true, RGB(255, 0, 255)))) // 360, 412
 	{
 		MessageBox(g_hWnd, TEXT("Image/Mai_dead.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(deadImage); // Dead
+	animImages[DEAD] = deadImage;
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Mai_Highkick.bmp"), 2163, 412, 6, 1, true, RGB(255, 0, 255)))) // 360, 412
 	{
 		MessageBox(g_hWnd, TEXT("Image/Mai_Highkick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(bigKickImage);
+	animImages[BIG_KICK] = bigKickImage;
 	Image* smallKickImage = new Image();
 	if (FAILED(smallKickImage->Init(TEXT("Image/Mai_Middlekick.bmp"), 2249, 372, 6, 1, true, RGB(255, 0, 255)))) // 374, 372
 	{
 		MessageBox(g_hWnd, TEXT("Image/Mai_Middlekick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(smallKickImage);
+	animImages[SMALL_KICK] = smallKickImage;
 	//animImages.push_back(nullptr); // High punch
 	Image* HighPunchImage = new Image();
 	if (FAILED(HighPunchImage->Init(TEXT("Image/Mai_Spunch.bmp"), 1634, 370, 5, 1, true, RGB(255, 0, 255)))) // 400,300
 	{
 		MessageBox(g_hWnd, TEXT("Mai_Spunch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(HighPunchImage);
+	animImages[BIG_PUNCH] = HighPunchImage;
 	Image* smallPunchImage = new Image();
 	if (FAILED(smallPunchImage->Init(TEXT("Image/Mai_Wpunch.bmp"), 1600, 300, 4, 1, true, RGB(255, 0, 255)))) // 326, 370
 	{
 		MessageBox(g_hWnd, TEXT("Mai_Wpunch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(smallPunchImage);
+	animImages[SMALL_PUNCH] = smallPunchImage;
 
 	Image* guardImage = new Image();
 	if (FAILED(guardImage->Init(TEXT("Image/Mai_Block_Up.bmp"), 1515, 300, maxGuardFrame, 1, true, RGB(255, 0, 255)))) // 326, 370
 	{
 		MessageBox(g_hWnd, TEXT("Mai_Block_Up.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(guardImage);
+	animImages[GUARD] = guardImage;
 
 	Image* attackedImage = new Image();
 	if (FAILED(attackedImage->Init(TEXT("Image/Mai_Attacked.bmp"), 480, 99, 6, 1, true, RGB(255, 0, 255)))) // 326, 370
 	{
 		MessageBox(g_hWnd, TEXT("Mai_Attacked.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(attackedImage);
+	animImages[ATTACKED] = attackedImage;
 
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));

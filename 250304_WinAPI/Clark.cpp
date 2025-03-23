@@ -31,70 +31,70 @@ void Clark::Init()
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_Endle.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(idleImage);
+	animImages[IDLE] = idleImage;
 
 	Image* moveFowardImage = new Image();
 	if (FAILED(moveFowardImage->Init(TEXT("Image/Clark_Smove_Front.bmp"), 1608, 300, 7, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_Smove_Front.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(moveFowardImage);
+	animImages[MOVE_F] = moveFowardImage;
 
 	Image* moveBackwardImage = new Image();
 	if (FAILED(moveBackwardImage->Init(TEXT("Image/Clark_Smove_Back.bmp"), 1581, 300, 7, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_Smove_Back.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(moveBackwardImage); //Clark_dead
+	animImages[MOVE_B] = moveBackwardImage;
 
 	Image* deadImage = new Image();
 	if (FAILED(deadImage->Init(TEXT("Image/Clark_dead.bmp"), 1400, 104, 10, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_dead.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(deadImage);
+	animImages[DEAD] = deadImage;
 
 	Image* bigKickImage = new Image();
 	if (FAILED(bigKickImage->Init(TEXT("Image/Clark_Highkick.bmp"), 5737, 356, 16, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_Highkick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(bigKickImage);
+	animImages[BIG_KICK] = bigKickImage;
 
 	Image* smallKickImage = new Image();
 	if (FAILED(smallKickImage->Init(TEXT("Image/Clark_Middlekick.bmp"), 1401, 300, 4, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_Middlekick.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(smallKickImage);
+	animImages[SMALL_KICK] = smallKickImage;
 
 	Image* bigPunchImage = new Image();
 	if (FAILED(bigPunchImage->Init(TEXT("Image/Clark_Spunch.bmp"), 2870, 356, 8, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Image/Clark_Spunch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(bigPunchImage);
+	animImages[BIG_PUNCH] = bigPunchImage;
 
 	Image* smallPunchImage = new Image();
 	if (FAILED(smallPunchImage->Init(TEXT("Image/Clark_Wpunch.bmp"), 1917, 300, 5, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Clark_Wpunch.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(smallPunchImage);
+	animImages[SMALL_PUNCH] = smallPunchImage;
 
 	Image* guardImage = new Image();
 	if (FAILED(guardImage->Init(TEXT("Image/Clark_Block_Up.bmp"), 1982, 300, maxGuardFrame, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Clark_Block_Up.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(guardImage);
+	animImages[GUARD] = guardImage;
 
 	Image* attackedImage = new Image();
 	if (FAILED(attackedImage->Init(TEXT("Image/Clark_attacked.bmp"), 450, 107, 5, 1, true, RGB(255, 0, 255))))
 	{
 		MessageBox(g_hWnd, TEXT("Clark_attacked.bmp 파일 로드에 실패"), TEXT("경고"), MB_OK);
 	}
-	animImages.push_back(attackedImage);
+	animImages[ATTACKED] = attackedImage;
 
 	// animImages.resize(애니메이션 개수);
 	// if(FAILED(animImages[AnimationType::IDLE].Init(~~~));
@@ -224,7 +224,6 @@ void Clark::Move(int dir)
 	if (CollisionManager::GetInstance()->isValidMove(this))
 	{
 		pos.x += dir * speed;
-
 	}
 	SetRectAtCenter(characterRC, pos.x, pos.y, 100, 200);
 
@@ -252,7 +251,6 @@ void Clark::BigKick()
 		}
 		else SetRectAtCenter(attackRC, pos.x + 90, pos.y - 70, 100, 40); //렉트 조정
 		CollisionManager::GetInstance()->isAttacked(this);
-
 	}
 
 	else if (animationFrame < 15 && animationFrame > 7)
@@ -261,7 +259,6 @@ void Clark::BigKick()
 		nowAttDamage = 0;
 
 		SetRectAtCenter(attackRC, -10, -10, 20, 20); //렉트 원래대로
-
 	}
 
 	else if (animationFrame >= 15)
@@ -272,8 +269,6 @@ void Clark::BigKick()
 		actType = IDLE;
 
 	}
-
-
 }
 
 void Clark::SmallKick()

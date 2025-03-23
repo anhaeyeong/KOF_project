@@ -31,17 +31,9 @@ enum ActType
 	SMALL_PUNCH,
 	GUARD,
 	ATTACKED,
-	WIN
+	WIN,
+	STATE_LENGTH
 };
-
-//typedef enum AttackedType
-//{
-//	NONE,
-//	BIG_KICK,
-//	SMALL_KICK,
-//	BIG_PUNCH,
-//	SMALL_PUNCH
-//}at;
 
 class Image;
 class Character
@@ -63,6 +55,8 @@ public:
 	virtual void SmallKick();
 	virtual void BigPunch();
 	virtual void SmallPunch();
+	void ChangeStateToAttack(ActType type);
+	void ChangeStateToIdle();
 
 	
 	void SetPos(FPOINT pos) { pos = pos; }
@@ -76,7 +70,6 @@ public:
 	void IsFlipToModifyingValue();
 	virtual void MovedByEnemy();
 	virtual void MovedByEnemy(int speed);
-	// SetHP, SetDamage, SetState 필요
 
 	int GetAnimationFrame() { return animationFrame; }
 	int GetFrame() { return frameCount; }
@@ -90,7 +83,6 @@ public:
 	bool GetSpeed() { return this->speed; }
 	int GetDirection() { return this->direction; }
 	inline ActType GetActType() { return actType; }
-	// GetHP, GetDamage, GetCharacterRC, GetAttackRC 필요
 
 protected:
 
@@ -108,14 +100,10 @@ protected:
 	RECT characterRC;
 	int direction{ 0 };
 
-	// hp, damage 필요
-
-	//at attackType{ NONE };
 	ActType actType{ IDLE };
 
-	// Image 벡터화 필요함
-	vector<Image*> animImages;
-	// animImages[AnimationType::IDLE] <- 이런 식으로 접근해서 사용
+	vector<Image*> animImages{STATE_LENGTH, nullptr};
+
 	int animationFrame;
 
 	int maxGuardFrame;
@@ -131,7 +119,6 @@ protected:
 	bool isFlip;
 	bool isLeft;
 	State _state;
-	
 
 	const int bigAttDamage{ 20 };
 	const int smallAttDamage{ 10 };
