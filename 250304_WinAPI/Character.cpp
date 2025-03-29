@@ -60,8 +60,8 @@ void Character::Update()
 		case State::ATTACK:
 			//animationFrame++;
 			switch (actType) {
-			case BIG_KICK:
-				BigKick();
+			case BIG_KICK: 
+				BigKick(); 
 				break;
 			case SMALL_KICK:
 				SmallKick();
@@ -77,20 +77,16 @@ void Character::Update()
 			}
 			break;
 		case State::ATTACKED:
-			//animationFrame++;
 			if (animationFrame < 4)	MovedByEnemy(6);
 			if (animationFrame >= maxAttackedFrame)	ChangeStateToIdle();
 			break;
 		case State::GUARD:
 			actType = GUARD;
-			//animationFrame++;
 			if (animationFrame >= maxGuardFrame) ChangeStateToIdle();
 			break;
 		case State::DEAD:
-			//animationFrame++;
 			break;
 		case State::WIN:
-			//animationFrame++;
 			if (animationFrame >= winAnimationFrame) animationFrame = 0;
 			break;
 		default:
@@ -217,7 +213,6 @@ void Character::Update()
 		}
 
 		break;
-
 	}
 	
 }
